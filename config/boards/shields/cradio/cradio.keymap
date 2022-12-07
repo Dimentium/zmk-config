@@ -49,10 +49,6 @@
     release-after-ms = <1500>;
     quick-release;
 };
- &mt {
-     tapping-term-ms = <201>;
-     flavor = "tap-preferred";
-  };
 
 / {
     combos {
