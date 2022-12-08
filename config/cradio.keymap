@@ -364,7 +364,7 @@
         sys {
             bindings = <
                 _____    _____    _____             _____             _____           _____       _____       _____     _____      _____    
-                _____    &kp ESC  &kp LG(LS(LBKT))  &kp LG(LS(RBKT))  _____           _____       _____       _____     _____      _____    
+                _____    &kp ESC  &kp LG(LS(LBKT))  &kp LG(LS(RBKT))  _____           _____       &kp PG_DN   &kp PG_UP _____      _____    
                 &kp TAB  &kp DEL  &kp HOME          &kp END           _____           &kp LEFT    &kp DOWN    &kp UP    &kp RIGHT  &kp BKSP  
                                                     &trans            &kp LSHIFT      &kp LSHIFT  _____
             >;
