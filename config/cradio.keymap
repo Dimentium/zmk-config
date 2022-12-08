@@ -269,7 +269,7 @@
 
         navigation {
             bindings = <
-  &none         &none     &none      &none           &none              &kp HOME         &kp PG_DN       &kp PG_UP    &kp END          &kp DEL
+  &kp EJECT     &none     &none      &none           &none              &kp HOME         &kp PG_DN       &kp PG_UP    &kp END          &kp DEL
   &kp LGUI      &kp LALT  &kp LCTRL  &kp LSHIFT      &kp K_APP          &kp LEFT         &kp DOWN        &kp UP       &kp RIGHT        &kp BSPC
   &none         &none     &none      &none           &none              &kp INS          &kp TAB         &kp LA(ESC)  &kp LA(LS(ESC))  &kp LA(LC(TAB))
                                      &mo MICE        &kp SPACE          &none            &none
