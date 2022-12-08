@@ -320,7 +320,7 @@
                 _____        _____        _____        _____        _____            _____   _____        _____        _____        &to DEFAULT     
                 _____        &lmt LCTL L  &lmt LALT G  &lmt LGUI D  _____            _____   &rmt RGUI H  &rmt LALT U  &rmt RCTL O  _____        
                 &hl_l NUM I  &hl_l SM2 S  &hl_l SM1 R  &hl_l SYS T  &kp COMMA        &kp DOT &hl_r SYS N  &hl_r SM1 E  &hl_r SM2 A  &hl_r NUM C  
-                                                       &td_num      &kp SPC          &kp LSHFT &td_a2
+                                                       &td_num      &kp SPC          &sk LSHFT &td_a2
             >;
         };
 
@@ -328,8 +328,8 @@
             bindings = <
                 _____        _____        _____        _____        _____            _____    _____   _____        _____        _____        
                 _____        &kp V        &kp W        &kp M        _____            _____    &kp F   &kp X        &kp Z        _____           
-                &kp Q        &kp J        &kp P        &kp K        _____            _____    &kp B   &kp COMMA    &kp DOT      &kp Y        
-                                                       &trans       &trans           &trans   &trans
+                &kp Q        &kp J        &kp P        &kp K        &kp LBKT         &kp RBKT &kp B   &kp SQT      &kp SEMI     &kp Y        
+                                                       &trans       &kp FSLH         _____    &trans
             >;
         };
 
