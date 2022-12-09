@@ -130,6 +130,26 @@
                 <&macro_pause_for_release>,
                 <&macro_release &mo BV_NUM &kp LSHFT>;
         };
+        bv_al2_shifted: bv_al2_shifted {
+            label = "bv_al2_shifted";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            bindings =
+                <&macro_press &mo BV_AL2 &kp LSHFT>,
+                <&macro_pause_for_release>,
+                <&macro_release &mo BV_AL2 &kp LSHFT>;
+        };
+        bv_al3_shifted: bv_al3_shifted {
+            label = "bv_al3_shifted";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            bindings =
+                <&macro_press &mo BV_AL3 &kp LSHFT>,
+                <&macro_pause_for_release>,
+                <&macro_release &mo BV_AL3 &kp LSHFT>;
+        };
         sl_a2: sl_a2 {
             label = "sl_a2";
             compatible = "zmk,behavior-macro";
@@ -347,8 +367,8 @@
         bv_alpha2 {
             bindings = <
                 _____        _____        _____        _____        _____            _____        _____        _____        _____       _____
-                _____        &mtl LCTL V        &kp W        &kp M        _____            _____        &kp F        &kp X        &kp Z       _____
-                &mtl LSHFT Q &kp J        &kp P        &kp K        _____            _____        &kp B        &kp DOT      &kp X       &kp Y
+                _____        &kp V        &kp W        &kp M        _____            _____        &kp F        &kp X        &kp Z       _____
+                &kp Q        &kp J        &kp P        &kp K        _____            _____        &kp B        &kp DOT      &kp X       &kp Y
                                                        &key_repeat  _____            _____        &sl_a2u
             >;
         };
@@ -356,7 +376,7 @@
             bindings = <
                 _____        _____        _____        _____        _____            _____        _____        _____        _____       _____
                 _____        _____        _____        _____        _____            _____        _____        _____        _____       _____
-                &mtl LSHFT GRAVE &kp SQT      &kp LBKT     &kp RBKT     _____            _____        &kp SEMI     &kp COMMA    &kp DOT     &kp FSLH
+                &kp GRAVE    &kp SQT      &kp LBKT     &kp RBKT     _____            _____        &kp SEMI     &kp COMMA    &kp DOT     &kp FSLH
                                                        _____        _____            &sl_a3u      _____ 
             >;
         };
@@ -364,17 +384,17 @@
         bv_numbers {
             bindings = <
                 _____        _____        _____        _____        _____            _____        _____        _____        _____       _____
-                _____        &mtl LCTL KP_STAR  &mtl LALT KP_PLUS  &kp N5       _____            _____        &kp N6       &kp MINUS    &kp EQUAL   _____
-                &mtl LSHFT N1 &kp N2      &kp N3       &kp N4       _____            _____        &kp N7       &kp N8       &kp N9      &mtr LSHFT N0
-                                                       &trans       _____            _____        &trans
+                _____        &kp KP_STAR  &kp KP_PLUS  &kp N5       _____            _____        &kp N6       &kp MINUS    &kp EQUAL   _____
+                &kp N1       &kp N2       &kp N3       &kp N4       _____            _____        &kp N7       &kp N8       &kp N9      &kp N0
+                                                       _____        _____            _____        ____
             >;
         };
 
         bv_navigation {
             bindings = <
                 _____        _____        _____        _____        _____            _____        _____        _____        _____       _____
-                _____        &mtl LCTL ESC &mtl LALT LG(LS(LBKT))  &kp LG(LS(RBKT))  _____  _____        &kp PG_DN    &kp UP       &kp PG_UP   _____
-                &mtl LSHFT TAB &kp DEL    &kp HOME     &kp END      _____            _____        &kp LEFT     &kp DOWN     &kp RIGHT   &kp BKSP
+                _____        &kp ESC      &kp LG(LS(LBKT))  &kp LG(LS(RBKT))  _____  _____        &kp PG_DN    &kp UP       &kp PG_UP   _____
+                &kp TAB      &kp DEL      &kp HOME     &kp END      _____            _____        &kp LEFT     &kp DOWN     &kp RIGHT   &kp BKSP
                                                        _____        _____            _____        ____
             >;
         };
@@ -382,8 +402,8 @@
         bv_function {
             bindings = <
                 _____        _____        _____        _____        _____            _____        _____        _____        _____       _____
-                _____        &mtl LCTL A &mtl LALT A        &kp F5       _____            _____        &kp F6       &kp F11      &kp F12     _____
-                &mtl LSHFT F1       &kp F2       &kp F3       &kp F4       _____            _____        &kp F7       &kp F8       &kp F9      &kp F10
+                _____        &kp A        &kp A        &kp F5       _____            _____        &kp F6       &kp F11      &kp F12     _____
+                &kp F1       &kp F2       &kp F3       &kp F4       _____            _____        &kp F7       &kp F8       &kp F9      &kp F10
                                                        &kp C_PLAY_PAUSE &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE
             >;
         };
