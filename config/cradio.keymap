@@ -214,7 +214,7 @@
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings =
-                <&mo BV_AL1>,
+                <&mo BV_AL2>,
                 <&bv_al2_shifted>;
         };
         td_al3: tap_al3 {
