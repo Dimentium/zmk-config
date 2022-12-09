@@ -109,7 +109,7 @@
     };
 
     macros {
-            ext_shifted: ext_shifted {
+        ext_shifted: ext_shifted {
             label = "ext_shifted";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -211,6 +211,24 @@
             bindings =
                 <&mo BV_NUM>,
                 <&bv_num_shifted>;
+        };
+        td_al2: tap_al2 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_AL2";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings =
+                <&mo BV_AL1>,
+                <&bv_al2_shifted>;
+        };
+        td_al3: tap_al3 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_AL3";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings =
+                <&mo BV_AL3>,
+                <&bv_al3_shifted>;
         };
         mtl: left_hand_positional_hold_tap {
             compatible = "zmk,behavior-hold-tap";
@@ -360,8 +378,8 @@
             bindings = <
                 _____        _____        _____        _____        _____            _____        _____        _____        _____        &to COLEMAK
                 _____        LCL(L)       LAL(G)       LGL(D)       _____            _____        &mtr LGUI H  &mtr LALT U  &mtr LCTL O  _____
-                LSL(I)       &mol BV_NUM S &mol BV_FUN R &mol BV_NAV T _____         _____        &mor BV_NAV N &mor BV_FUN E &mor BV_NUM A &mtr RSHFT C
-                                                       &kp SPC      &td_num          &sl_a3       &sl_a2
+                &mtl LSHFT I &mol BV_NUM S &mol BV_FUN R &mol BV_NAV T _____         _____        &mor BV_NAV N &mor BV_FUN E &mor BV_NUM A &mtr RSHFT C
+                                                       &kp SPC      &td_num          &td_al3      &td_al2
             >;
         };
         bv_alpha2 {
