@@ -32,15 +32,6 @@
 #define NUBS NON_US_BSLH
 #define KP_STAR KP_ASTERISK
 
-#define LSL(keycode) &mtl LSHFT keycode     // mod tap left shift   (left half)
-#define LAL(keycode) &mtl LALT keycode      // mod tap left alt     (left half)
-#define LCL(keycode) &mtl LCTRL keycode     // mod tap left ctrl    (left half)
-#define LGL(keycode) &mtl LGUI keycode      // mod tap left cmd/win (left half)
-#define LSR(keycode) &mtr LSHFT keycode     // mod tap right shift   (right half)
-#define LAR(keycode) &mtr LALT keycode      // mod tap right alt     (right half)
-#define LCR(keycode) &mtr LCTRL keycode     // mod tap right ctrl    (right half)
-#define LGR(keycode) &mtr LGUI keycode      // mod tap right cmd/win (right half)
-
 #define MUP MOVE_UP
 #define MDOWN MOVE_DOWN
 #define MLEFT MOVE_LEFT
