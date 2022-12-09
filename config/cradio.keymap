@@ -253,14 +253,23 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
-        htdot: holdtap_dot {
+        // htdot: holdtap_dot {
+        //     compatible = "zmk,behavior-hold-tap";
+        //     label = "holdtap_dot";
+        //     #binding-cells = <0>;
+        //     tapping-term-ms = <190>;
+        //     quick-tap-ms = <250>;
+        //     flavor = "tap-preferred";
+        //     bindings = <&mk_dot>, <&kp COMMA>;
+        // };
+        as: auto_shift {
             compatible = "zmk,behavior-hold-tap";
-            label = "holdtap_dot";
-            #binding-cells = <0>;
-            tapping-term-ms = <190>;
-            quick-tap-ms = <250>;
+            label = "AUTO_SHIFT";
+            #binding-cells = <2>;
+            tapping_term_ms = <135>;
+            quick_tap_ms = <0>;
             flavor = "tap-preferred";
-            bindings = <&mk_dot>, <&kp COMMA>;
+            bindings = <&kp>, <&kp>;
         };
     };
 
@@ -366,7 +375,7 @@
                 _____        _____        _____        _____        _____            _____        _____        _____        _____        _____        
                 _____        &kp V        &kp W        &kp M        _____            _____        &kp F        &kp X        &kp Z        _____           
                 &kp Q        &kp J        &kp P        &kp K        &kp LBKT         &kp RBKT     &kp B        &kp SQT      &kp SEMI     &kp Y        
-                                                       &htdot       &kp DOT          _____        &trans
+                                                       &ht DOT COMMA       &kp DOT          _____        &trans
             >;
         };
 
