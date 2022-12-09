@@ -389,15 +389,15 @@
                                                        _____        _____            &sl_a3u      _____ 
             >;
         };
-
+        
         bv_numbers {
-            bindings = <
-                _____        _____        _____        _____        _____            _____        _____        _____        _____       _____
-                _____        &kp KP_STAR  &kp KP_PLUS  &kp N5       _____            _____        &kp N6       &kp MINUS    &kp EQUAL   _____
-                &kp N1       &kp N2       &kp N3       &kp N4       _____            _____        &kp N7       &kp N8       &kp N9      &kp N0
-                                                       _____        _____            _____        ____
-            >;
-        };
+             bindings = <
+                 _____        _____        _____        _____        _____            _____        _____        _____        _____       _____
+                 _____        &kp KP_STAR  &kp KP_PLUS  &kp N5       _____            _____        &kp N6       &kp MINUS    &kp EQUAL   _____
+                 &kp N1       &kp N2       &kp N3       &kp N4       _____            _____        &kp N7       &kp N8       &kp N9      &kp N0
+                                                        &trans       &kp LSHIFT       &kp LSHIFT   &trans
+             >;
+         };
 
         bv_navigation {
             bindings = <
