@@ -84,14 +84,14 @@
             timeout-ms = <20>;
             layers = <0 1 2>;
         };
-        al_enter {
+        bv_enter {
             bindings = <&kp ENTER>;
             key-positions = <27 28>;
             timeout-ms = <20>;
             layers = < BV_AL1 >;
         };
 
-        al_escape {
+        bv_escape {
             bindings = <&kp ESC>;
             key-positions = <17 18>;
             timeout-ms = <20>;
@@ -100,7 +100,7 @@
     };
 
     macros {
-            ext_shifted: ext_shifted {
+        ext_shifted: ext_shifted {
             label = "ext_shifted";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -125,6 +125,27 @@
                 <&macro_release>,
                 <&mo BV_NUM &kp LSHFT>;
         };
+        bv_al2_shifted: bv_al2_shifted {
+            label = "bv_al2_shifted";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            bindings =
+                <&macro_press &mo BV_AL2 &kp LSHFT>,
+                <&macro_pause_for_release>,
+                <&macro_release &mo BV_AL2 &kp LSHFT>;
+        };
+        bv_al3_shifted: bv_al3_shifted {
+            label = "bv_al3_shifted";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            bindings =
+                <&macro_press &mo BV_AL3 &kp LSHFT>,
+                <&macro_pause_for_release>,
+                <&macro_release &mo BV_AL3 &kp LSHFT>;
+        };
+
         sl_a2: sl_a2 {
             label = "sl_a2";
             compatible = "zmk,behavior-macro";
