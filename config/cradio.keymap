@@ -293,7 +293,7 @@
 
         function {
             bindings = <
-  &kp F1        &kp F2    &kp F3     &kp F4          &to AL1            &kp KP_NUMLOCK   &kp PRINTSCREEN   &kp SCROLLLOCK  &kp PAUSE_BREAK  &kp CAPS
+  &kp F1        &kp F2    &kp F3     &kp F4          &to BV_AL1         &kp KP_NUMLOCK   &kp PRINTSCREEN   &kp SCROLLLOCK  &kp PAUSE_BREAK  &kp CAPS
   &kp F5        &kp F6    &kp F7     &kp F8          &reset             &reset           &kp LSHFT         &kp LCTRL       &kp LALT         &kp LGUI
   &kp F9        &kp F10   &kp F11    &kp F12         &bootloader        &bootloader      &kp C_PLAY_PAUSE  &kp C_VOL_DN    &kp C_VOL_UP     &kp C_MUTE
                                      &to 0           &to 1              &to 2            &none
