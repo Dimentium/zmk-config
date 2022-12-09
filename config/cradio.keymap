@@ -31,6 +31,7 @@
 
 // Bindings
 #define _____ &none
+#define NUBS NON_US_BSLH
 
 #define MUP MOVE_UP
 #define MDOWN MOVE_DOWN
@@ -135,6 +136,23 @@
                 <&macro_release>,
                 <&mo AL2 &kp LSHFT>;
         };
+
+        mk_a2: mk_a2 {
+            label = "mk_a2";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            bindings =
+                <&sl AL2>;
+        };
+        mk_dot: mk_dot {
+            label = "mk_dot";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            bindings =
+                <&kp DOT>;
+        };
     };
 
     behaviors {
@@ -166,7 +184,7 @@
                 <&kp LSHFT>,
                 <&kp LCTRL>;
         };
-        lmt: left_hand_positional_hold_tap {
+        mtl: left_hand_positional_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "LEFT_POSITIONAL_HOLD_TAP";
             #binding-cells = <2>;
@@ -176,7 +194,7 @@
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 32 33 >;    // <---[[right-hand keys]]
         };
-        rmt: right_hand_positional_hold_tap {
+        mtr: right_hand_positional_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "RIGHT_POSITIONAL_HOLD_TAP";
             #binding-cells = <2>;
@@ -188,7 +206,7 @@
         };
     
 
-        hl_l: homerow_layers_left {
+        mol: homerow_layers_left {
             compatible = "zmk,behavior-hold-tap";
             label = "HOMEROW_LAYERS_L";
             #binding-cells = <2>;
@@ -198,7 +216,7 @@
             bindings = <&mo>, <&kp>;
             hold-trigger-key-positions = < 5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 30 31 32 33 >;    // <---[[right-hand keys]]
         };
-        hl_r: homerow_layers_right {
+        mor: homerow_layers_right {
             compatible = "zmk,behavior-hold-tap";
             label = "HOMEROW_LAYERS_R";
             #binding-cells = <2>;
@@ -226,6 +244,24 @@
                 < &kp LSHFT >,
                 < &sl NUM >;
         };
+        ht: holdtap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "holdtap";
+            #binding-cells = <2>;
+            tapping-term-ms = <190>;
+            quick-tap-ms = <250>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+        htdot: holdtap_dot {
+            compatible = "zmk,behavior-hold-tap";
+            label = "holdtap_dot";
+            #binding-cells = <2>;
+            tapping-term-ms = <190>;
+            quick-tap-ms = <250>;
+            flavor = "tap-preferred";
+            bindings = <&mk_dot>, <&kp COMMA>;
+        };
     };
 
     keymap {
@@ -234,7 +270,7 @@
         colemak {
             bindings = <
   &kp Q         &kp W     &kp F      &kp P           &kp B              &kp J            &kp L           &kp U        &kp Y    &kp SEMI
-  &lmt LGUI A   &kp R     &kp S      &lmt LSHIFT T   &kp G              &kp M            &rmt RSHIFT N   &kp E        &kp I    &rmt LGUI O
+  &mtl LGUI A   &kp R     &kp S      &mtl LSHIFT T   &kp G              &kp M            &mtr RSHIFT N   &kp E        &kp I    &mtr LGUI O
   &kp Z         &kp X     &kp C      &kp D           &kp V              &kp K            &kp H           &kp COMMA    &kp DOT  &kp FSLH
                                      &td_ext         &kp SPACE          &kp SPACE        &td_nav
             >;
@@ -243,7 +279,7 @@
         qwerty {
             bindings = <
   &kp Q         &kp W     &kp E      &kp R           &kp T              &kp Y            &kp U           &kp I        &kp O    &kp P
-  &lmt LGUI A   &kp S     &kp D      &lmt LSHIFT F   &kp G              &kp H            &rmt RSHIFT J   &kp K        &kp L    &rmt LGUI SEMI
+  &mtl LGUI A   &kp S     &kp D      &mtl LSHIFT F   &kp G              &kp H            &mtr RSHIFT J   &kp K        &kp L    &mtr LGUI SEMI
   &kp Z         &kp X     &kp C      &kp V           &kp B              &kp N            &kp M           &kp COMMA    &kp DOT  &kp FSLH
                                      &td_ext         &kp SPACE          &kp SPACE        &td_nav
             >;
@@ -252,7 +288,7 @@
         isrtgp {
             bindings = <
   &kp Y         &kp C     &kp L      &kp M           &kp K              &kp Z            &kp F           &kp U        &kp COMMA &kp SEMI
-  &lmt LGUI I   &kp S     &kp R      &lmt LSHIFT T   &kp G              &kp P            &rmt RSHIFT N   &kp E        &kp A    &rmt LGUI O
+  &mtl LGUI I   &kp S     &kp R      &mtl LSHIFT T   &kp G              &kp P            &mtr RSHIFT N   &kp E        &kp A    &mtr LGUI O
   &kp Q         &kp V     &kp W      &kp D           &kp J              &kp B            &kp H           &kp COMMA    &kp DOT  &kp FSLH
                                      &td_ext         &kp SPACE          &kp SPACE        &td_nav
             >;
@@ -261,7 +297,7 @@
         extended {
             bindings = <
   &sk LGUI      &sk LALT  &sk LCTRL  &sk LSHFT       &sk RALT           &kp NON_US_BSLH  &kp MINUS       &kp EQUAL    &kp LBKT  &kp RBKT
-  &lmt LGUI N1  &kp N2    &kp N3     &lmt LSHIFT N4  &kp N5             &kp N6           &rmt LSHIFT N7  &kp N8       &kp N9    &rmt LGUI N0
+  &mtl LGUI N1  &kp N2    &kp N3     &mtl LSHIFT N4  &kp N5             &kp N6           &mtr LSHIFT N7  &kp N8       &kp N9    &mtr LGUI N0
   &sk RGUI      &sk RALT  &none      &none           &kp LG(SPACE)      &kp GRAVE        &kp SQT         &kp COMMA    &kp DOT   &kp BSLH
                                      &none           &kp SPACE          &td_mod          &none
             >;
@@ -276,7 +312,7 @@
             >;
         };
 
-        functional {
+        function {
             bindings = <
   &kp F1        &kp F2    &kp F3     &kp F4          &to AL1            &kp KP_NUMLOCK   &kp PRINTSCREEN   &kp SCROLLLOCK  &kp PAUSE_BREAK  &kp CAPS
   &kp F5        &kp F6    &kp F7     &kp F8          &reset             &reset           &kp LSHFT         &kp LCTRL       &kp LALT         &kp LGUI
@@ -316,52 +352,52 @@
 // Ben Vallack 18-keys layout
 // --------------------------------------------------------------------------------------------------------------------------------------------
 
-        alpha1 {
+        bv_alpha1 {
             bindings = <
-                _____        _____        _____        _____        _____            _____   _____        _____        _____        &to DEFAULT     
-                _____        &lmt LCTL L  &lmt LALT G  &lmt LGUI D  _____            _____   &rmt RGUI H  &rmt LALT U  &rmt RCTL O  _____        
-                &hl_l NUM I  &hl_l SM2 S  &hl_l SM1 R  &hl_l SYS T  &kp COMMA        &kp DOT &hl_r SYS N  &hl_r SM1 E  &hl_r SM2 A  &hl_r NUM C  
-                                                       &td_num      &kp SPC          &sk LSHFT &td_a2
+                _____        _____        _____        _____        _____            _____        _____        _____        _____        &to DEFAULT     
+                _____        &mtl LCTL L  &mtl LALT G  &mtl LGUI D  _____            _____        &mtr RGUI H  &mtr LALT U  &mtr RCTL O  _____        
+                &mol NUM I   &mol SM2 S   &mol SM1 R   &mol SYS T   &kp COMMA        &kp DOT      &mor SYS N   &mor SM1 E   &mor SM2 A   &mor NUM C  
+                                                       &kp SPC      _____            &sk LSHFT    &mk_a2
             >;
         };
 
-        alpha2 {
+        bv_alpha2 {
             bindings = <
-                _____        _____        _____        _____        _____            _____    _____   _____        _____        _____        
-                _____        &kp V        &kp W        &kp M        _____            _____    &kp F   &kp X        &kp Z        _____           
-                &kp Q        &kp J        &kp P        &kp K        &kp LBKT         &kp RBKT &kp B   &kp SQT      &kp SEMI     &kp Y        
-                                                       &trans       &kp FSLH         _____    &trans
+                _____        _____        _____        _____        _____            _____        _____        _____        _____        _____        
+                _____        &kp V        &kp W        &kp M        _____            _____        &kp F        &kp X        &kp Z        _____           
+                &kp Q        &kp J        &kp P        &kp K        &kp LBKT         &kp RBKT     &kp B        &kp SQT      &kp SEMI     &kp Y        
+                                                       &htdot       &kp DOT          _____        &trans
             >;
         };
 
         sym1 {
             bindings = <
-                _____        _____        _____        _____        _____            _____   _____          _____        _____      _____       
-                _____        &kp STAR     &kp LS(N3)   &kp DLLR     _____            _____   &kp LS(COMMA)  &kp LS(DOT)  &kp MINUS  _____       
-                &kp BSLH     &kp GRAVE    &kp TILDE    &kp CARET    _____            _____   &kp LBKT       &kp RBKT     &kp PIPE   &kp SLASH   
-                                                       &trans       &trans           &trans  &trans
+                _____        _____        _____        _____        _____            _____        _____          _____        _____      _____       
+                _____        &kp STAR     &kp LS(N3)   &kp DLLR     _____            _____        &kp LS(COMMA)  &kp LS(DOT)  &kp MINUS  _____       
+                &kp BSLH     &kp GRAVE    &kp TILDE    &kp CARET    _____            _____        &kp LBKT       &kp RBKT     &kp PIPE   &kp SLASH   
+                                                       &trans       &trans           &trans       &trans
             >;
         };
         
         sym2 {
             bindings = <
-                _____        _____        _____        _____         _____           _____   _____         _____        _____        _____      
-                _____        &kp ATSN     &kp QMARK    &kp LA(N3)    _____           _____   &kp LPRN      &kp RPRN     &kp MINUS    _____           
-                &kp SEMI     &kp PRCNT    &kp EXCL     &kp LS(MINUS) _____           _____   &kp LBRC      &kp RBRC     &kp AMPS     &kp COLON  
-                                                       &trans        &trans          &trans  &trans
+                _____        _____        _____        _____         _____           _____        _____         _____        _____        _____      
+                _____        &kp ATSN     &kp QMARK    &kp LA(N3)    _____           _____        &kp LPRN      &kp RPRN     &kp MINUS    _____           
+                &kp SEMI     &kp PRCNT    &kp EXCL     &kp LS(MINUS) _____           _____        &kp LBRC      &kp RBRC     &kp AMPS     &kp COLON  
+                                                       &trans        &trans          &trans       &trans
             >;
         };
 
-        num {
+        bv_numbers {
             bindings = <
-                _____     _____                  _____            _____         _____        _____       _____          _____            _____            _____      
-                _____     &lmt LCTL NON_US_BSLH  &lmt LALT GRAVE  &lmt LGUI N5  _____        _____       &rmt RGUI N6   &rmt LALT MINUS  &rmt RCTL EQUAL  _____      
-                &kp N1    &kp N2                 &kp N3           &kp N4        &kp N5       &kp N6      &kp N7         &kp N8           &kp N9           &kp N0     
-                                                                  &trans        &kp LSHIFT   &kp LSHIFT  &trans
+                _____     _____           _____            _____         _____        _____       _____          _____            _____            _____      
+                _____     &mtl LCTL NUBS  &mtl LALT GRAVE  &mtl LGUI N5  _____        _____       &mtr RGUI N6   &mtr LALT MINUS  &mtr RCTL EQUAL  _____      
+                &kp N1    &kp N2          &kp N3           &kp N4        &kp N5       &kp N6      &kp N7         &kp N8           &kp N9           &kp N0     
+                                                           &trans        &kp LSHIFT   &kp LSHIFT  &trans
             >;
         };
 
-        sys {
+        bv_navigation {
             bindings = <
                 _____    _____    _____             _____             _____           _____       _____       _____     _____      _____    
                 _____    &kp ESC  &kp LG(LS(LBKT))  &kp LG(LS(RBKT))  _____           _____       &kp PG_DN   &kp PG_UP _____      _____    
@@ -370,7 +406,7 @@
             >;
         };
 
-        afun {
+        bv_function {
             bindings = <
                 _____         _____    _____    _____   _____         _____   _____    _____    _____   _____         
                 _____         &kp F11  &kp F10  &kp F1  _____         _____   &kp F2   &kp F3   &kp F4  _____              
@@ -379,7 +415,7 @@
             >;
         };
 
-        alpha2cap {
+        bv_alpha2_cap {
             bindings = <
                 _____      _____      _____      _____      _____         _____   _____      _____       _____      _____      
                 _____      &kp LS(V)  &kp LS(W)  &kp LS(M)  _____         _____   &kp LS(F)  &kp LS(X)   &kp LS(Z)  _____      
