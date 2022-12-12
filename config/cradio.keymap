@@ -170,14 +170,6 @@
             bindings =
                 <&sl BV_AL2>;
         };
-        sl_al2u: sl_al2u {
-            label = "sl_a2u";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            bindings =
-                <&sk LSHFT &sl BV_AL2>;
-        };
         sl_al3: sl_al3 {
             label = "sl_al3";
             compatible = "zmk,behavior-macro";
@@ -185,14 +177,6 @@
             wait-ms = <0>;
             bindings =
                 <&sl BV_AL3>;
-        };
-        sl_al3u: sl_al3u {
-            label = "sl_al3u";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            bindings =
-                <&sk LSHFT &sl BV_AL3>;
         };
     };
 
@@ -213,7 +197,7 @@
             tapping-term-ms = <300>;
             bindings =
                 <&mo EXT>,
-                <&sk F19>;
+                <&ext_shifted>;
         };
         td_num: tap_num {
             compatible = "zmk,behavior-tap-dance";
@@ -230,8 +214,8 @@
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings =
-                <&mo BV_AL2>,
-                <&bv_al2_shifted>;
+                <&sl_al2>,
+                <&mo BV_AL2>;
         };
         td_al3: tap_al3 {
             compatible = "zmk,behavior-tap-dance";
@@ -239,8 +223,8 @@
             #binding-cells = <0>;
             tapping-term-ms = <300>;
             bindings =
-                <&mo BV_AL3>,
-                <&bv_al3_shifted>;
+                <&sl_al3>,
+                <&mo BV_AL3>;
         };
         mtl: left_hand_positional_hold_tap {
             compatible = "zmk,behavior-hold-tap";
@@ -314,16 +298,16 @@
   &kp Q         &kp W     &kp F      &kp P           &kp B              &kp J       &kp L           &kp U        &kp Y    &kp SEMI
   &mtl LGUI A   &kp R     &kp S      &mtl LSHIFT T   &kp G              &kp M       &mtr RSHIFT N   &kp E        &kp I    &mtr LGUI O
   &kp Z         &kp X     &kp C      &kp D           &kp V              &kp K       &kp H           &kp COMMA    &kp DOT  &kp FSLH
-                &mt LC(LS(LALT)) SPC                 &td_ext            &none       &td_nav
+                                     &kp SPC         &td_ext            &none       &td_nav
             >;
         };
 
         qwerty {
             bindings = <
-  &kp Q         &kp W     &kp E      &kp R           &kp T              &kp Y       &kp U           &kp I        &kp O    &kp P
+  &kp Q         &kp W     &kp E          &kp R           &kp T              &kp Y       &kp U           &kp I        &kp O    &kp P
   &mtl LGUI A   &kp S     &kp D      &mtl LSHIFT F   &kp G              &kp H       &mtr RSHIFT J   &kp K        &kp L    &mtr LGUI SEMI
   &kp Z         &kp X     &kp C      &kp V           &kp B              &kp N       &kp M           &kp COMMA    &kp DOT  &kp FSLH
-                &mt LC(LS(LALT)) SPC                 &td_ext            &none       &td_nav
+                                     &kp SPC         &td_ext            &none       &td_nav
             >;
         };
 
@@ -332,7 +316,7 @@
   &kp Y         &kp C     &kp L      &kp M           &kp K              &kp Z       &kp F           &kp U        &kp COMMA &kp SEMI
   &mtl LGUI I   &kp S     &kp R      &mtl LSHIFT T   &kp G              &kp P       &mtr RSHIFT N   &kp E        &kp A     &mtr LGUI O
   &kp Q         &kp V     &kp W      &kp D           &kp J              &kp B       &kp H           &kp COMMA    &kp DOT   &kp FSLH
-                &mt LC(LS(LALT)) SPC                 &td_ext            &none       &td_nav
+                                     &kp SPC         &td_ext            &none       &td_nav
             >;
         };
         
@@ -341,7 +325,7 @@
   &sk LGUI      &sk LALT  &sk LCTRL  &sk LSHFT       &sk RALT           &kp NUBS    &kp MINUS       &kp EQUAL    &kp LBKT  &kp RBKT
   &mtl LGUI N1  &kp N2    &kp N3     &mtl LSHIFT N4  &kp N5             &kp N6      &mtr LSHIFT N7  &kp N8       &kp N9    &mtr LGUI N0
   &sk RGUI      &sk RALT  &none      &none           &kp LG(SPACE)      &kp GRAVE   &kp SQT         &kp COMMA    &kp DOT   &kp BSLH
-                                     &none           &none              &none       &kp SPACE
+                                     &none           &none              &kp F19     &kp SPACE
             >;
         };
 
@@ -399,34 +383,34 @@
                 _____             _____              _____         _____         _____            _____        _____             _____           _____            &to COLEMAK
                 _____             &mtl LCTL L        &mtl LALT G   &mtl LGUI D   _____            _____        &mtr LGUI H       &mtr LALT U     &mtr LCTL O      _____
                 &mtl LSHFT I      &mol BV_NUM S      &mol BV_FUN R &mol BV_NAV T _____            _____        &mor BV_HOT N     &mor BV_FUN E   &mor BV_NUM A    &mtr RSHFT C
-                                                     &mt LC(LS(LALT)) SPC        &td_num          &sl_al3      &sl_al2
+                                                                   &kp SPC       &td_num          &td_al3      &td_al2
             >;
         };
 
         bv_alpha2 {
             bindings = <
                 _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
-                _____             &mtl LCTL V        &mtl LALT W   &mtl LGUI M   _____            _____        &mtr LGUI F       &mtr LALT SEMI  &mtr LCTL Z      _____
-                &mtl LSHFT Q      &kp J              &kp P         &kp K         _____            _____        &kp B             &kp Z           &kp X            &mtr RSHFT Y
-                                                                   &key_repeat   &mo BV_AL2       _____        &mo BV_AL2
+                _____             &kp V              &kp W         &kp M         _____            _____        &kp F             &kp SEMI        &kp Z            _____
+                &kp Q             &kp J              &kp P         &kp K         _____            _____        &kp B             &kp Z           &kp X            &kp Y
+                                                                   &key_repeat   _____            _____        _____
             >;
         };
 
         bv_alpha3 {
             bindings = <
                 _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
-                _____             &kp LCTL           &sk RALT      &kp LGUI      _____            _____        &kp RGUI          &sk RALT        &kp RCTL         _____
-                &mtl LSHFT GRAVE  &kp SQT            &kp LBKT      &kp RBKT      _____            _____        &kp BSLH          &kp COMMA       &kp DOT          &mtr RSHFT FSLH
-                                                                   _____         &mo BV_AL3       &mo BV_AL3   _____ 
+                _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
+                &kp GRAVE         &kp SQT            &kp LBKT      &kp RBKT      _____            _____        &kp BSLH          &kp COMMA       &kp DOT          &kp FSLH
+                                                                   &key_repeat   _____            _____        _____ 
             >;
         };
 
         bv_numbers {
             bindings = <
                 _____          _____             _____             _____         _____            _____        _____             _____           _____            _____
-                _____          &mtl LCTL KP_STAR &mtl LALT KP_PLUS &mtl LGUI N5  _____            _____        &mtr LGUI N6      &mtr LALT MINUS &mtr LCTL EQUAL  _____
+                _____          &kp KP_STAR       &kp KP_PLUS       &kp N5        _____            _____        &kp N6            &kp MINUS       &kp EQUAL        _____
                 &mtl LSHFT N1  &kp N2            &kp N3            &kp N4        _____            _____        &kp N7            &kp N8          &kp N9           &mtr RSHFT N0
-                                                                   _____         _____            _____        &kp SPC
+                                                                   _____         _____            &mo BV_HOT   &kp SPC
             >;
         };
 
@@ -435,7 +419,7 @@
                 _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                 _____             &kp LCTL           &kp LALT      &kp LGUI      _____            _____        &kp LG(LS(LBKT))  &kp UP          &kp LG(LS(LBKT)) _____
                 &kp LSHFT         &kp TAB            &kp HOME      &kp END       _____            _____        &kp LEFT          &kp DOWN        &kp RIGHT        &bspc_del
-                                                                   &mo BV_MICE2  _____            _____        &mo BV_NAV
+                                                                   &mo BV_MICE2  _____            _____        _____
             >;
         };
 
@@ -443,8 +427,8 @@
             bindings = <
                 _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                 _____             &kp LCTL           &kp LALT      &kp LGUI      _____            _____        &mkp LCLK         &mmv MUP2       &mkp RCLK        _____
-                &kp LSHFT         &kp TAB            &mwh SUP      &mwh SDOWN    _____            _____        &mmv MLEFT2       &mmv MDOWN2     &mmv MRIGHT2     &mo BV_MICE
-                                                                   _____         _____            _____        &mo BV_MICE2
+                &kp LSHFT         _____              &mwh SUP      &mwh SDOWN    _____            _____        &mmv MLEFT2       &mmv MDOWN2     &mmv MRIGHT2     _____
+                                                                   _____         _____            _____        &mo BV_MICE
             >;
         };
 
@@ -452,7 +436,7 @@
             bindings = <
                 _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                 _____             &kp LCTL           &kp LALT      &kp LGUI      _____            _____        &mkp LCLK         &mmv MUP        &mkp RCLK        _____
-                &kp LSHFT         &kp TAB            &mwh SUP      &mwh SDOWN    _____            _____        &mmv MLEFT        &mmv MDOWN      &mmv MRIGHT      _____
+                &kp LSHFT         _____              &mwh SUP      &mwh SDOWN    _____            _____        &mmv MLEFT        &mmv MDOWN      &mmv MRIGHT      _____
                                                                    _____         _____            _____        _____
             >;
         };
@@ -469,8 +453,8 @@
         bv_hotkeys {
             bindings = <
                 _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
-                _____             &sk LCTL           &sk LALT      &sk LGUI      _____            _____        _____             _____           _____            _____
-                &kp Z             &kp X              &kp C         &kp V         _____            _____        _____             _____           _____            _____
+                _____             &sk LCTL           &sk LALT      &sk LGUI      _____            _____        &sk RGUI          &sk RALT        &sk RCTL         _____
+                &kp Z             &kp X              &kp C         &kp V         _____            _____        &kp Q             &kp W           &kp O            &kp F19
                                                                    _____         _____            _____        _____ 
             >;
         };
