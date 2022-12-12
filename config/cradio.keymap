@@ -34,7 +34,7 @@
 #define _____ &none
 #define NUBS NON_US_BSLH
 #define KP_STAR KP_ASTERISK
-#define KP_NUM KP_NUMLOCK
+// #define KP_NUM KP_NUMLOCK
 
 #define MUP MOVE_UP
 #define MDOWN MOVE_DOWN
