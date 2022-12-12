@@ -16,8 +16,8 @@
 #define EXT     3
 #define NAV     4
 #define FUN     5
-#define MICE    6
-#define MICE2   7
+// #define MICE    6
+// #define MICE2   7
 #define SYSTEM  8
 
 #define BV_AL1   9
@@ -25,8 +25,8 @@
 #define BV_AL3   11
 #define BV_NUM   12
 #define BV_NAV   13
-#define BV_MICE2 14
-#define BV_MICE  15
+// #define BV_MICE2 14
+// #define BV_MICE  15
 #define BV_FUN   16
 #define BV_HOT   17
 
@@ -188,7 +188,7 @@
             tapping-term-ms = <300>;
             bindings =
                 <&mo NAV>,
-                <&mo MICE2>;
+                <&mo FUN>;
         };
         td_ext: tap_dance_ext {
             compatible = "zmk,behavior-tap-dance";
@@ -347,22 +347,39 @@
             >;
         };
 
-        mouse_slow {
+        // mouse_slow {
 //             bindings = <
 //   &none         &none     &none      &none           &none              &none       &mkp LCLK       &mmv MUP     &mkp RCLK   &mwh SUP
 //   &kp LGUI      &kp LALT  &kp LCTRL  &kp LSHIFT      &none              &none       &mmv MLEFT      &mmv MDOWN   &mmv MRIGHT &mo MICE2
 //   &none         &none     &none      &none           &none              &none       &mwh SLEFT      &mkp MCLK    &mwh SRIGHT &mwh SDOWN
 //                                      &none           &kp SPACE          &none       &none
 //             >;
-        };
+        // };
 
-        mouse_fast {
+        // mouse_fast {
 //             bindings = <
 //   &none         &none     &none      &none           &none              &none       &mkp LCLK       &mmv MUP2    &mkp RCLK    &mwh SUP
 //   &kp LGUI      &kp LALT  &kp LCTRL  &kp LSHIFT      &none              &none       &mmv MLEFT2     &mmv MDOWN2  &mmv MRIGHT2 &mo MICE
 //   &none         &none     &none      &none           &none              &none       &mwh SLEFT      &mkp MCLK    &mwh SRIGHT  &mwh SDOWN
 //                                      &none           &kp SPACE          &none       &none
 //             >;
+        // };
+
+        blank {
+            bindings = <
+                _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
+                _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
+                _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
+                                                                   _____         _____            _____        _____
+            >;
+        };
+        blank {
+            bindings = <
+                _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
+                _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
+                _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
+                                                                   _____         _____            _____        _____
+            >;
         };
 
         system {
@@ -423,22 +440,39 @@
             >;
         };
 
-        bv_mouse_fast {
+        // bv_mouse_fast {
         //     bindings = <
         //         _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
         //         _____             &kp LCTL           &kp LALT      &kp LGUI      _____            _____        &mkp LCLK         &mmv MUP2       &mkp RCLK        _____
         //         &kp LSHFT         _____              &mwh SUP      &mwh SDOWN    _____            _____        &mmv MLEFT2       &mmv MDOWN2     &mmv MRIGHT2     _____
         //                                                            _____         _____            _____        &mo BV_MICE
         //     >;
-        };
+        // };
 
-        bv_mouse_slow {
+        // bv_mouse_slow {
         //     bindings = <
         //         _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
         //         _____             &kp LCTL           &kp LALT      &kp LGUI      _____            _____        &mkp LCLK         &mmv MUP        &mkp RCLK        _____
         //         &kp LSHFT         _____              &mwh SUP      &mwh SDOWN    _____            _____        &mmv MLEFT        &mmv MDOWN      &mmv MRIGHT      _____
         //                                                            _____         _____            _____        _____
         //     >;
+        // };
+
+        blank {
+            bindings = <
+                _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
+                _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
+                _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
+                                                                   _____         _____            _____        _____
+            >;
+        };
+        blank {
+            bindings = <
+                _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
+                _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
+                _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
+                                                                   _____         _____            _____        _____
+            >;
         };
 
         bv_function {
