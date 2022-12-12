@@ -30,8 +30,9 @@
 #define _____ &none
 #define NUBS NON_US_BSLH
 #define KP_STAR KP_ASTERISK
-#undef KP_NUM
-#define KP_NUM KP_NUMLOCK
+#ifndef KP_NUM
+  #define KP_NUM KP_NUMLOCK
+#endif
 
 #define MUP MOVE_UP
 #define MDOWN MOVE_DOWN
@@ -415,7 +416,7 @@
             bindings = <
                 _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                 _____             &sk LCTL           &sk LALT      &sk LGUI      _____            _____        &sk RGUI          &sk RALT        &sk RCTL         _____
-                &mtl LSHFT Z      &kp X              &kp C         &kp V         _____            _____        &kp Q             &kp W           &kp O            &mtr RSHT F19
+                &mtl LSHFT Z      &kp X              &kp C         &kp V         _____            _____        &kp Q             &kp W           &kp O            &mtr RSHFT F19
                                                                    _____         _____            _____        _____ 
             >;
         };
