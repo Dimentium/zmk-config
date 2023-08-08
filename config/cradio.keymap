@@ -84,7 +84,7 @@ combos {
     nav_shift_alt_esc {
         bindings = <&kp LS(LA(ESC))>;
         key-positions = <11 12>;
-        timeout-ms = < COMBO_TIMEOUT_2 >;
+        timeout-ms = < COMBO_TIMEOUT_3 >;
         layers = < NAV >;
     };
 
@@ -106,10 +106,16 @@ combos {
         timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
+    nav_shift_undo {
+        bindings = <&kp LS(LC(Z))>;
+        key-positions = <10 13>;
+        timeout-ms = < COMBO_TIMEOUT_3 >;
+        layers = < NAV >;
+    };
     nav_select_all {
         bindings = <&kp LC(A)>;
         key-positions = <11 13>;
-        timeout-ms = < COMBO_TIMEOUT_2 >;
+        timeout-ms = < COMBO_TIMEOUT_3 >;
         layers = < NAV >;
     };
 
@@ -130,6 +136,12 @@ combos {
         key-positions = <17 18>;
         timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
+    };
+    nav_enter {
+        bindings = <&kp ENTER>;
+        key-positions = <10 11>;
+        timeout-ms = < COMBO_TIMEOUT_3 >;
+        layers = < NAV >;
     };
     backspace {
         bindings = <&bspc_del>;
