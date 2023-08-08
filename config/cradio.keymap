@@ -27,7 +27,7 @@
 // Bindings
 #define _____ &none
 #define TAPPING_TERM 300  // tapping-term-ms = <300>;
-#define COMBO_TIMEOUT 60  // timeout-ms = <30>;
+#define COMBO_TIMEOUT 30  // timeout-ms = <30>;
 
 &sk {
     release-after-ms = <1500>;
@@ -52,19 +52,19 @@ combos {
     to_eng { 
         bindings = <&to_eng>;
         key-positions = <11 12 13>;
-        timeout-ms = < 60 >;
+        timeout-ms = < COMBO_TIMEOUT * 2 >;
         layers = < AL1 AR1 NUM >;
     };
     to_rus {
         bindings = <&to_rus>;
         key-positions = <16 17 18>;
-        timeout-ms = < 60 >;
+        timeout-ms = < COMBO_TIMEOUT * 2 >;
         layers = < AL1 AR1 NUM >;
     };
     to_num {
         bindings = <&to NUM>;
         key-positions = <6 7 8>;
-        timeout-ms = < 60 >;
+        timeout-ms = < COMBO_TIMEOUT * 2 >;
         layers = < AL1 AR1 >;
     };
 
@@ -107,7 +107,7 @@ combos {
     };
     nav_select_all {
         bindings = <&kp LC(A)>;
-        key-positions = <10 11>;
+        key-positions = <11 13>;
         timeout-ms = < COMBO_TIMEOUT >;
         layers = < NAV >;
     };
