@@ -27,7 +27,8 @@
 // Bindings
 #define _____ &none
 #define TAPPING_TERM 300  // tapping-term-ms = <300>;
-#define COMBO_TIMEOUT 30  // timeout-ms = <30>;
+#define COMBO_TIMEOUT_2 30  // timeout-ms for 2 fingers cofbos
+#define COMBO_TIMEOUT_3 60  // timeout-ms for 2 fingers combos
 
 &sk {
     release-after-ms = <1500>;
@@ -52,144 +53,144 @@ combos {
     to_eng { 
         bindings = <&to_eng>;
         key-positions = <11 12 13>;
-        timeout-ms = < COMBO_TIMEOUT * 2 >;
+        timeout-ms = < COMBO_TIMEOUT_3 >;
         layers = < AL1 AR1 NUM >;
     };
     to_rus {
         bindings = <&to_rus>;
         key-positions = <16 17 18>;
-        timeout-ms = < COMBO_TIMEOUT * 2 >;
+        timeout-ms = < COMBO_TIMEOUT_3 >;
         layers = < AL1 AR1 NUM >;
     };
     to_num {
         bindings = <&to NUM>;
         key-positions = <6 7 8>;
-        timeout-ms = < COMBO_TIMEOUT * 2 >;
+        timeout-ms = < COMBO_TIMEOUT_3 >;
         layers = < AL1 AR1 >;
     };
 
     lock {
         bindings = <&to_eng_lock>;
         key-positions = < 1 3 >;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
     alt_esc {
         bindings = <&kp LA(ESC)>;
         key-positions = <11 12>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
     nav_shift_alt_esc {
         bindings = <&kp LS(LA(ESC))>;
         key-positions = <11 12>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < NAV >;
     };
 
     copy_cut {
         bindings = <&td_copy_cut>;
         key-positions = <11 13>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
     paste {
         bindings = <&kp LC(V)>;
         key-positions = <12 13>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
     undo {
         bindings = <&kp LC(Z)>;
         key-positions = <10 13>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
     nav_select_all {
         bindings = <&kp LC(A)>;
         key-positions = <11 13>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < NAV >;
     };
 
     escape {
         bindings = <&kp ESC>;
         key-positions = <7 8>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
     escape_left {
         bindings = <&kp ESC>;
         key-positions = <1 2>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
     enter {
         bindings = <&kp ENTER>;
         key-positions = <17 18>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
     backspace {
         bindings = <&bspc_del>;
         key-positions = <16 17>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
     delete {
         bindings = <&kp DEL>;
         key-positions = <18 19>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
     nav_backspace {
         bindings = <&bspc_del>;
         key-positions = <12 13>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < NAV >;
     };
     tab {
         bindings = <&kp TAB>;
         key-positions = <6 7>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
     tab_left {
         bindings = <&kp TAB>;
         key-positions = <2 3>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
 
     bt0 {
         bindings = <&bt BT_SEL 0>;
         key-positions = <1 10>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
     };
     bt1 {
         bindings = <&bt BT_SEL 1>;
         key-positions = <2 10>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
     };
     bt2 {
         bindings = <&bt BT_SEL 2>;
         key-positions = <3 10>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
     };
     bt3 {
         bindings = <&bt BT_SEL 3>;
         key-positions = <6 10>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
     };
     bt4 {
         bindings = <&bt BT_SEL 4>;
         key-positions = <7 10>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
     };
     bt_clr {
         bindings = <&bt BT_CLR>;
         key-positions = <8 10>;
-        timeout-ms = < COMBO_TIMEOUT >;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
     };        
 };
 
