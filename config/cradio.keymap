@@ -311,7 +311,7 @@ alpha1 {
 alpha2 {
     label = "Alpha 2";
     bindings = <
-    _____             &kp V              &kp W         &kp M         _____            _____        &kp F             &kp NUBS        &bspc_del        _____
+    _____             &kp V              &kp W         &kp M         _____            _____        &kp F             &kp NUBS        &kp MINUS        _____
     &kp Q             &kp J              &kp P         &kp K         _____            _____        &kp B             &kp Z           &kp X            &kp Y
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                                                        _____         _____            &to AL1      _____
@@ -341,7 +341,7 @@ alpha1rus {
 alpha2rus {
     label = "Alpha 2R";
     bindings = <
-    _____             &kp SEMI           &kp U         &kp LBKT      _____            _____        &kp A             &kp X           &bspc_del        _____
+    _____             &kp SEMI           &kp U         &kp LBKT      _____            _____        &kp A             &kp X           &kp MINUS        _____
     &kp DOT           &kp Q              &kp G         &kp W         _____            _____        &kp COMMA         &kp P           &kp M            &kp S
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                                                        _____         _____            &to AR1      _____
