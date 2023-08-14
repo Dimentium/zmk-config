@@ -18,7 +18,7 @@
 #define NUM   6
 #define NAV   7
 #define FUN   8
-#define MED   9
+#define SYS   9
 
 #define LEFT_HALF 0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 
 #define RIGHT_HALF 5 6 7 8 9 15 16 17 18 19 25 26 27 28 29
@@ -27,25 +27,22 @@
 // Bindings
 #define _____ &none
 #define TAPPING_TERM 300  // tapping-term-ms = <300>;
+#define QUICK_TAP_TERM 250  // tapping-term-ms = <300>;
 #define COMBO_TIMEOUT_2 30  // timeout-ms for 2 fingers cofbos
 #define COMBO_TIMEOUT_3 60  // timeout-ms for 2 fingers combos
 
-&sk {
-    release-after-ms = <1500>;
-    quick-release;
-};
-
 &mt {
     tapping-term-ms = <200>;
-    // quick-tap-ms = <200>;
     flavor = "tap-preferred";
  };
-
-&lt {
-    tapping-term-ms = <200>;
-    // flavor = "balanced";
-    flavor = "tap-preferred";
- };
+&sk {
+    release-after-ms = <1000>;
+    quick-release;
+};
+// &lt {
+//     tapping-term-ms = <200>;
+//     flavor = "tap-preferred";
+//  };
 
 / {
 combos {
@@ -173,37 +170,6 @@ combos {
         timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
-
-    bt0 {
-        bindings = <&bt BT_SEL 0>;
-        key-positions = <1 10>;
-        timeout-ms = < COMBO_TIMEOUT_2 >;
-    };
-    bt1 {
-        bindings = <&bt BT_SEL 1>;
-        key-positions = <2 10>;
-        timeout-ms = < COMBO_TIMEOUT_2 >;
-    };
-    bt2 {
-        bindings = <&bt BT_SEL 2>;
-        key-positions = <3 10>;
-        timeout-ms = < COMBO_TIMEOUT_2 >;
-    };
-    bt3 {
-        bindings = <&bt BT_SEL 3>;
-        key-positions = <6 10>;
-        timeout-ms = < COMBO_TIMEOUT_2 >;
-    };
-    bt4 {
-        bindings = <&bt BT_SEL 4>;
-        key-positions = <7 10>;
-        timeout-ms = < COMBO_TIMEOUT_2 >;
-    };
-    bt_clr {
-        bindings = <&bt BT_CLR>;
-        key-positions = <8 10>;
-        timeout-ms = < COMBO_TIMEOUT_2 >;
-    };        
 };
 
 macros {
@@ -269,7 +235,50 @@ macros {
 };
 
 behaviors {
-
+    mtl: homerow_mods_left {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_MODS_LEFT";
+        #binding-cells = <2>;
+        tapping-term-ms = < TAPPING_TERM >;
+        quick-tap-ms = < QUICK_TAP_TERM >;
+        flavor = "tap-preferred";
+        // flavor = "balanced";
+        bindings = <&kp>, <&kp>;
+        hold-trigger-key-positions = < RIGHT_HALF THUMBS >;    // <---[[right-hand keys]]
+    };
+    mtr: homerow_mods_right {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_MODS_RIGHT";
+        #binding-cells = <2>;
+        tapping-term-ms = < TAPPING_TERM >;
+        quick-tap-ms = < QUICK_TAP_TERM >;
+        flavor = "tap-preferred";
+        // flavor = "balanced";
+        bindings = <&kp>, <&kp>;
+        hold-trigger-key-positions = < LEFT_HALF THUMBS >;    // <---[[left-hand keys]]
+    };
+    mol: homerow_layers_left {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_LAYERS_LEFT";
+        #binding-cells = <2>;
+        tapping-term-ms = < TAPPING_TERM >;
+        quick-tap-ms = < QUICK_TAP_TERM >;
+        flavor = "tap-preferred";
+        // flavor = "balanced";
+        bindings = <&mo>, <&kp>;
+        hold-trigger-key-positions = < RIGHT_HALF THUMBS >;    // <---[[right-hand keys]]
+    };
+    mor: homerow_layers_right {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_LAYERS_RIGHT";
+        #binding-cells = <2>;
+        tapping-term-ms = < TAPPING_TERM >;
+        quick-tap-ms = < QUICK_TAP_TERM >;
+        flavor = "tap-preferred";
+        // flavor = "balanced";
+        bindings = <&mo>, <&kp>;
+        hold-trigger-key-positions = < LEFT_HALF THUMBS >;    // <---[[left-hand keys]]
+    };
     td_copy_cut: tap_dance_copy_cut {
         compatible = "zmk,behavior-tap-dance";
         label = "TAP_DANCE_COPY_CUT";
@@ -277,102 +286,12 @@ behaviors {
         tapping-term-ms = <300>;
         bindings = <&kp LC(C)>, <&kp LC(X)>;
     };
-
-    mtl: left_hand_positional_hold_tap {
-        compatible = "zmk,behavior-hold-tap";
-        label = "LEFT_POSITIONAL_MOD_TAP";
-        #binding-cells = <2>;
-        flavor = "balanced";
-        tapping-term-ms = < TAPPING_TERM >;
-        quick-tap-ms = <200>;
-        bindings = <&kp>, <&kp>;
-        hold-trigger-key-positions = < RIGHT_HALF THUMBS >;    // <---[[right-hand keys]]
-    };
-    mtr: right_hand_positional_hold_tap {
-        compatible = "zmk,behavior-hold-tap";
-        label = "RIGHT_POSITIONAL_MOD_TAP";
-        #binding-cells = <2>;
-        flavor = "balanced";
-        tapping-term-ms = < TAPPING_TERM >;
-        quick-tap-ms = <200>;
-        bindings = <&kp>, <&kp>;
-        hold-trigger-key-positions = < LEFT_HALF THUMBS >;    // <---[[left-hand keys]]
-    };
-    mtr_r_to_c: right_hand_positional_hold_tap_ru {
-        compatible = "zmk,behavior-hold-tap";
-        label = "RIGHT_POSITIONAL_MOD_TAP_ru";
-        #binding-cells = <2>;
-        flavor = "balanced";
-        tapping-term-ms = < TAPPING_TERM >;
-        quick-tap-ms = <200>;
-        bindings = <&kp>, <&r_to_c>;
-        hold-trigger-key-positions = < LEFT_HALF THUMBS >;    // <---[[left-hand keys]]
-    };
-
-    mol: homerow_layers_left {
-        compatible = "zmk,behavior-hold-tap";
-        label = "LEFT_POSITIONAL_LAYER_TAP";
-        #binding-cells = <2>;
-        // flavor = "balanced";
-        tapping-term-ms = < TAPPING_TERM >;
-        flavor = "tap-preferred";
-        // quick-tap-ms = <200>;
-        // global-quick-tap;
-        bindings = <&mo>, <&kp>;
-        hold-trigger-key-positions = < RIGHT_HALF THUMBS >;    // <---[[right-hand keys]]
-    };
-    mor: homerow_layers_right {
-        compatible = "zmk,behavior-hold-tap";
-        label = "RIGHT_POSITIONAL_LAYER_TAP";
-        #binding-cells = <2>;
-        // flavor = "balanced";
-        tapping-term-ms = < TAPPING_TERM >;
-        flavor = "tap-preferred";
-        // quick-tap-ms = <200>;
-        // global-quick-tap;
-        bindings = <&mo>, <&kp>;
-        hold-trigger-key-positions = < LEFT_HALF THUMBS >;    // <---[[left-hand keys]]
-    };
-
     bspc_del: backspace_delete {
         compatible = "zmk,behavior-mod-morph";
         label = "BACKSPACE_DELETE";
         #binding-cells = <0>;
         bindings = <&kp BACKSPACE>, <&kp DELETE>;
         mods = <(MOD_LSFT|MOD_RSFT)>;
-    };
-
-    p_to_z: p_to_z {
-        compatible = "zmk,behavior-mod-morph";
-        label = "p_to_z";
-        #binding-cells = <0>;
-        bindings = <&kp P>, <&kp Z>;
-        mods = <(MOD_LCTL)>;
-        keep-mods = <(MOD_LCTL)>;
-    };
-    m_to_x: m_to_x {
-        compatible = "zmk,behavior-mod-morph";
-        label = "m_to_x";
-        #binding-cells = <0>;
-        bindings = <&kp M>, <&kp X>;
-        mods = <(MOD_LCTL)>;
-        keep-mods = <(MOD_LCTL)>;
-    };
-    r_to_c: r_to_c {
-        compatible = "zmk,behavior-mod-morph";
-        label = "r_to_c";
-        #binding-cells = <0>;
-        bindings = <&kp R>, <&kp C>;
-        mods = <(MOD_LCTL)>;
-        keep-mods = <(MOD_LCTL)>;
-    };
-    semi_to_v: semi_to_v {
-        compatible = "zmk,behavior-mod-morph";
-        label = "semi_to_v";
-        #binding-cells = <0>;
-        bindings = <&kp SEMI>, <&kp V>;
-        mods = <(MOD_LCTL)>;
-        keep-mods = <(MOD_LCTL)>;
     };
 };
 
@@ -392,7 +311,7 @@ alpha1 {
 alpha2 {
     label = "Alpha 2";
     bindings = <
-    _____             &kp V              &kp W         &kp M         _____            _____        &kp F             _____           &kp NUBS         _____
+    _____             &kp V              &kp W         &kp M         _____            _____        &kp F             &kp NUBS        &bspc_del        _____
     &kp Q             &kp J              &kp P         &kp K         _____            _____        &kp B             &kp Z           &kp X            &kp Y
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                                                        _____         _____            &to AL1      _____
@@ -414,7 +333,7 @@ alpha1rus {
     label = "Alpha 1R";
     bindings = <
     _____             &mtl LCTL K        &mtl LALT D   &mtl LGUI L   _____            _____        &mtr LGUI V       &mtr LALT E     &mtr LCTL J      _____
-    &mtl LSHFT B      &mol NUM H         &mol FUN C    &mol NAV N    _____            _____        &mor NAV Y        &mor FUN T      &mor NUM F       &mtr_r_to_c LSHFT 0
+    &mtl LSHFT B      &mol NUM H         &mol FUN C    &mol NAV N    _____            _____        &mor NAV Y        &mor FUN T      &mor NUM F       &mtr RSHFT R
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                                                        &lt NAV SPC   &num_shifted     &sl_ar3      &sl_ar2
     >;
@@ -422,8 +341,8 @@ alpha1rus {
 alpha2rus {
     label = "Alpha 2R";
     bindings = <
-    _____             &semi_to_v         &kp U         &kp LBKT      _____            _____        &kp A             &kp X           _____            _____
-    &kp DOT           &kp Q              &kp G         &kp W         _____            _____        &kp COMMA         &p_to_z         &m_to_x          &kp S
+    _____             &kp SEMI           &kp U         &kp LBKT      _____            _____        &kp A             &kp X           &bspc_del        _____
+    &kp DOT           &kp Q              &kp G         &kp W         _____            _____        &kp COMMA         &kp P           &kp M            &kp S
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                                                        _____         _____            &to AR1      _____
     >;
@@ -441,7 +360,7 @@ alpha3rus {
 // ======================================================================= ADDINIONAL =======================================================================================
 
 numbers {
-    label = "Nums";
+    label = "Num";
     bindings = <
     _____          &kp KP_DIVIDE     &kp KP_PLUS       &kp N5        _____            _____        &kp N6            &kp MINUS       &kp EQUAL        _____
     &kp N1         &kp N2            &kp N3            &kp N4        _____            _____        &kp N7            &kp N8          &kp N9           &kp N0
@@ -466,16 +385,16 @@ function {
     _____             &kp LCTL           &kp LALT      &mtl LGUI F5  _____            _____        &mtr LGUI F6      &mtr LALT F11   &mtr LCTL F12    _____
     &mtl LSHFT F1     &kp F2             &kp F3        &kp F4        _____            _____        &kp F7            &kp F8          &kp F9           &mtr RSHFT F10
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
-                                                       &kp K_APP     &kp PRINTSCREEN  &kp C_EJECT  &mo MED
+                                                       &kp K_APP     &kp PRINTSCREEN  &kp C_EJECT  &mo SYS
     >;
 };
-media {
+system {
     label = "Sys";
     bindings = <
-    _____             _____              _____         &kp F5        _____            _____        &kp F6            &kp C_VOL_DN    &kp C_VOL_UP     _____
-    &kp C_BRI_DN      &kp C_BRI_UP       &kp F3        &kp F4        _____            _____        &kp C_PREV        &kp C_PP        &kp C_NEXT       &kp C_MUTE
+    _____             _____              _____         &bt BT_SEL 0  _____            _____        &kp C_MUTE        &kp C_VOL_DN    &kp C_VOL_UP     _____
+    &kp C_BRI_DN      &kp C_BRI_UP       &bt BT_PRV    &bt BT_NXT    _____            _____        &kp C_PREV        &kp C_PP        &kp C_NEXT       _____
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
-                                                       _____         &bootloader      &bootloader  _____                                                                      
+                                                       &bt BT_CLR    &bootloader      &bootloader  _____                                                                      
     >;
 };
     };
