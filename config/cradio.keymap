@@ -74,13 +74,13 @@ combos {
     };
     alt_esc {
         bindings = <&kp LA(ESC)>;
-        key-positions = <11 12>;
+        key-positions = <11 12 13>;
         timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
     nav_shift_alt_esc {
         bindings = <&kp LS(LA(ESC))>;
-        key-positions = <11 12>;
+        key-positions = <11 12 13>;
         timeout-ms = < COMBO_TIMEOUT_3 >;
         layers = < NAV >;
     };
@@ -134,14 +134,20 @@ combos {
         timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
-    nav_enter {
+    enter_left {
         bindings = <&kp ENTER>;
-        key-positions = <10 11>;
+        key-positions = <11 12>;
         timeout-ms = < COMBO_TIMEOUT_3 >;
-        layers = < NAV >;
+        layers = < AL1 AR1 >;
     };
     backspace {
         bindings = <&bspc_del>;
+        key-positions = <16 17>;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
+        layers = < AL1 AR1 >;
+    };
+    ctrl_backspace {
+        bindings = <&kp LC(BACKSPACE)>;
         key-positions = <16 17>;
         timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
@@ -257,6 +263,30 @@ behaviors {
         bindings = <&kp>, <&kp>;
         hold-trigger-key-positions = < LEFT_HALF THUMBS >;    // <---[[left-hand keys]]
     };
+
+    msl: homerow_shift_left {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_SHIFT_LEFT";
+        #binding-cells = <2>;
+        tapping-term-ms = < TAPPING_TERM >;
+        quick-tap-ms = < QUICK_TAP_TERM >;
+        // flavor = "tap-preferred";
+        flavor = "balanced";
+        bindings = <&kp>, <&kp>;
+        hold-trigger-key-positions = < RIGHT_HALF THUMBS >;    // <---[[right-hand keys]]
+    };
+    msr: homerow_shift_right {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_SHIFT_RIGHT";
+        #binding-cells = <2>;
+        tapping-term-ms = < TAPPING_TERM >;
+        quick-tap-ms = < QUICK_TAP_TERM >;
+        // flavor = "tap-preferred";
+        flavor = "balanced";
+        bindings = <&kp>, <&kp>;
+        hold-trigger-key-positions = < LEFT_HALF THUMBS >;    // <---[[left-hand keys]]
+    };
+
     mol: homerow_layers_left {
         compatible = "zmk,behavior-hold-tap";
         label = "HOMEROW_LAYERS_LEFT";
@@ -303,7 +333,7 @@ alpha1 {
     label = "Alpha 1";
     bindings = <
     _____             &mtl LCTL L        &mtl LALT G   &mtl LGUI D   _____            _____        &mtr LGUI H       &mtr LALT U     &mtr LCTL O      _____  
-    &mtl LSHFT I      &mol NUM R         &mol FUN S    &mol NAV T    _____            _____        &mor NAV N        &mor FUN E      &mor NUM A       &mtr RSHFT C
+    &msl LSHFT I      &mol NUM R         &mol FUN S    &mol NAV T    _____            _____        &mor NAV N        &mor FUN E      &mor NUM A       &msr RSHFT C
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                                                        &lt NAV SPC   &num_shifted     &sl_al3      &sl_al2
     >;
@@ -333,7 +363,7 @@ alpha1rus {
     label = "Alpha 1R";
     bindings = <
     _____             &mtl LCTL K        &mtl LALT D   &mtl LGUI L   _____            _____        &mtr LGUI V       &mtr LALT E     &mtr LCTL J      _____
-    &mtl LSHFT B      &mol NUM H         &mol FUN C    &mol NAV N    _____            _____        &mor NAV Y        &mor FUN T      &mor NUM F       &mtr RSHFT R
+    &msl LSHFT B      &mol NUM H         &mol FUN C    &mol NAV N    _____            _____        &mor NAV Y        &mor FUN T      &mor NUM F       &msr RSHFT R
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                                                        &lt NAV SPC   &num_shifted     &sl_ar3      &sl_ar2
     >;
