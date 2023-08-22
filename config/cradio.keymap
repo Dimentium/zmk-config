@@ -39,10 +39,10 @@
     release-after-ms = <1000>;
     quick-release;
 };
-// &lt {
-//     tapping-term-ms = <200>;
-//     flavor = "tap-preferred";
-//  };
+&lt {
+    tapping-term-ms = <200>;
+    flavor = "balanced";
+};
 
 / {
 combos {
@@ -51,17 +51,11 @@ combos {
         bindings = <&to_eng>;
         key-positions = <11 12 13>;
         timeout-ms = < COMBO_TIMEOUT_3 >;
-        layers = < AL1 AR1 NUM >;
+        layers = < AL1 AR1 >;
     };
     to_rus {
         bindings = <&to_rus>;
         key-positions = <16 17 18>;
-        timeout-ms = < COMBO_TIMEOUT_3 >;
-        layers = < AL1 AR1 NUM >;
-    };
-    to_num {
-        bindings = <&to NUM>;
-        key-positions = <6 7 8>;
         timeout-ms = < COMBO_TIMEOUT_3 >;
         layers = < AL1 AR1 >;
     };
@@ -144,13 +138,11 @@ combos {
         bindings = <&bspc_del>;
         key-positions = <16 17>;
         timeout-ms = < COMBO_TIMEOUT_2 >;
-        layers = < AL1 AR1 >;
     };
     ctrl_backspace {
         bindings = <&kp LC(BACKSPACE)>;
-        key-positions = <16 17>;
+        key-positions = <16 19>;
         timeout-ms = < COMBO_TIMEOUT_2 >;
-        layers = < AL1 AR1 >;
     };
     delete {
         bindings = <&kp DEL>;
@@ -335,7 +327,7 @@ alpha1 {
     _____             &mtl LCTL L        &mtl LALT G   &mtl LGUI D   _____            _____        &mtr LGUI H       &mtr LALT U     &mtr LCTL O      _____  
     &msl LSHFT I      &mol NUM R         &mol FUN S    &mol NAV T    _____            _____        &mor NAV N        &mor FUN E      &mor NUM A       &msr RSHFT C
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
-                                                       &lt NAV SPC   &num_shifted     &sl_al3      &sl_al2
+                                                       &kp SPC       &num_shifted     &sl_al3      &sl_al2
     >;
 };
 alpha2 {
@@ -365,7 +357,7 @@ alpha1rus {
     _____             &mtl LCTL K        &mtl LALT D   &mtl LGUI L   _____            _____        &mtr LGUI V       &mtr LALT E     &mtr LCTL J      _____
     &msl LSHFT B      &mol NUM H         &mol FUN C    &mol NAV N    _____            _____        &mor NAV Y        &mor FUN T      &mor NUM F       &msr RSHFT R
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
-                                                       &lt NAV SPC   &num_shifted     &sl_ar3      &sl_ar2
+                                                       &kp SPC       &num_shifted     &sl_ar3      &sl_ar2
     >;
 };
 alpha2rus {
@@ -421,7 +413,7 @@ function {
 system {
     label = "Sys";
     bindings = <
-    _____             _____              _____         &bt BT_SEL 0  _____            _____        &kp C_MUTE        &kp C_VOL_DN    &kp C_VOL_UP     _____
+    _____             &bt BT_SEL 0       &bt BT_SEL 1  &bt BT_SEL 2  _____            _____        &kp C_MUTE        &kp C_VOL_DN    &kp C_VOL_UP     _____
     &kp C_BRI_DN      &kp C_BRI_UP       &bt BT_PRV    &bt BT_NXT    _____            _____        &kp C_PREV        &kp C_PP        &kp C_NEXT       _____
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                                                        &bt BT_CLR    &bootloader      &bootloader  _____                                                                      
