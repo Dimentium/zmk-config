@@ -17,6 +17,8 @@
 include:
    - board: nice_nano_v2
      shield: cradio_left
+#   - board: seeed_xiao
+#     shield: zaphod_lite
    # - board: nice_nano_v2
    #   shield: cradio_right
    # - board: nice_nano_v2
