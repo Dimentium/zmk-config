@@ -1,6 +1,0 @@
-if SHIELD_CRADIO_LEFT || SHIELD_CRADIO_RIGHT
-
-config ZMK_KEYBOARD_NAME
-	default "Cradio"
-
-endif
