@@ -32,4 +32,4 @@
 #define THUMBS    30 31 32 33
 
 // Include main keymap
-#include "../../../dk_keymap.dtsi"
+#include "dk_keymap.dtsi"
