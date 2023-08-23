@@ -9,7 +9,7 @@
 #include <dt-bindings/zmk/bt.h>
 
 // Layers
-#define CRADIO 1
+#define DK_CRADIO_LEFT 1
 
 // ARTS Row
 #define KEY_A 3
