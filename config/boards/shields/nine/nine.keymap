@@ -291,8 +291,8 @@ navigation {
 function {
     label = "Fns";
     bindings = <
-                      &kp LCTL           &kp LALT      &mt LGUI F5                                 &mtr LGUI F6      &mtr LALT F11   &mtr LCTL F12         
-    &mt LSHFT F1      &kp F2             &kp F3        &kp F4                                      &kp F7            &kp F8          &kp F9           &mtr RSHFT F10
+                      &kp LCTL           &kp LALT      &mt LGUI F5                                 &mt LGUI F6      &mt LALT F11   &mt LCTL F12         
+    &mt LSHFT F1      &kp F2             &kp F3        &kp F4                                      &kp F7            &kp F8          &kp F9           &mt RSHFT F10
                                                        &kp K_APP     &kp PRINTSCREEN  &kp C_EJECT  &mo SYS
     >;
 };
