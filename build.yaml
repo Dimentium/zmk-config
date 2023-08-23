@@ -4,30 +4,21 @@
 # control, add individual board + shield combinations to
 # the `include` property, e.g:
 #
-# board: [ "nice_nano_v2" ]
-# shield: [ "corne_left", "corne_right" ]
-# include:
-#   - board: bdn9_rev2
-#   - board: nice_nano_v2
-#     shield: reviung41
-#
-#board: [ "sparkfun_pro_micro_rp2040"]
-#shield: [ "corne_left", "corne_right", "reviung41" ]
 ---
 include:
-   - board: nice_nano_v2
+   - board:  nice_nano_v2
      shield: cradio_left
-   - board: seeeduino_xiao_ble
+   - board:  seeeduino_xiao_ble
      shield: zaphod_lite
-   # - board: nice_nano_v2
-   #   shield: cradio_right
-   # - board: nice_nano_v2
-   #   shield: reviung41
-  #  - board: sparkfun_pro_micro_rp2040
+  #  - board:  nice_nano_v2
+  #    shield: cradio_right
+  #  - board:  nice_nano_v2
   #    shield: reviung41
-#   - board: nice_nano_v2
-#     shield: corne_left
-#   - board: nice_nano_v2
-#     shield: corne_right
-#   - board: nice_nano_v2
-#     shield: settings_reset
+  #  - board:  sparkfun_pro_micro_rp2040
+  #    shield: reviung41
+  #  - board: nice_nano_v2
+  #    shield: corne_left
+  #  - board: nice_nano_v2
+  #    shield: corne_right
+  #  - board: nice_nano_v2
+  #    shield: settings_reset
