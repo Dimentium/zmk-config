@@ -33,7 +33,7 @@
 
 &mt {
     tapping-term-ms = <200>;
-    flavor = "balanced";
+    flavor = "tap-preferred";
  };
 &sk {
     release-after-ms = <5000>;
@@ -41,7 +41,7 @@
 };
 &lt {
     tapping-term-ms = <200>;
-    flavor = "balanced";
+    flavor = "tap-preferred";
 };
 
 / {
