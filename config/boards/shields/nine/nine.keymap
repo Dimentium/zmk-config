@@ -36,7 +36,7 @@
     flavor = "tap-preferred";
  };
 &sk {
-    release-after-ms = <1000>;
+    release-after-ms = <5000>;
     quick-release;
 };
 &lt {
@@ -247,6 +247,13 @@ macros {
         wait-ms = <0>;
         bindings = <&sl AL3>;
     };
+    sl_ar1: sl_ar1 {
+        label = "sl_ar1";
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        wait-ms = <0>;
+        bindings = <&sl AR2>;
+    };
     sl_ar2: sl_ar2 {
         label = "sl_ar2";
         compatible = "zmk,behavior-macro";
@@ -395,7 +402,7 @@ navigation {
     label = "Nav";
     bindings = <
                       &sk LCTL           &sk LALT      &sk LGUI                                    &kp PG_DN         &kp UP          &kp PG_UP             
-    &sk LSHFT         &kp TAB            &kp HOME      &kp END                                     &kp LEFT          &kp DOWN        &kp RIGHT        &bspc_del
+    &sk LSHFT         &caps_word         &kp HOME      &kp END                                     &kp LEFT          &kp DOWN        &kp RIGHT        &bspc_del
                                                        &kp SPC       _____            _____        &mt LSHFT SPC
     >;
 };
