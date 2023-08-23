@@ -14,8 +14,8 @@
 #define AL3   2
 #define AR1   3
 #define AR2   4
-#define AR3   5
-#define NUM   6
+#define NUM   5
+#define NUM2  6
 #define NAV   7
 #define FUN   8
 #define SYS   9
@@ -33,7 +33,7 @@
 
 &mt {
     tapping-term-ms = <200>;
-    flavor = "tap-preferred";
+    flavor = "balanced";
  };
 &sk {
     release-after-ms = <5000>;
@@ -121,34 +121,14 @@ combos {
         timeout-ms = < COMBO_TIMEOUT_3 >;
         layers = < AL1 AR1 >;
     };
-
-    escape_right {
-        bindings = <&kp ESC>;
-        key-positions = < 4 5 >;
-        timeout-ms = < COMBO_TIMEOUT_2 >;
-        layers = < AL1 AR1 >;
-    };
     escape_left_al1 {
         bindings = <&esc_to_al1>;
         key-positions = < 0 1 >;
         timeout-ms = < COMBO_TIMEOUT_2 >;
-        layers = < AL1 AL2 AL3 AR1 AR2 AR3 >;
-    };
-    enter_right {
-        bindings = <&kp ENTER>;
-        key-positions = < 11 12 >;
-        timeout-ms = < COMBO_TIMEOUT_2 >;
-        layers = < AL1 AR1 >;
     };
     enter_left {
         bindings = <&kp ENTER>;
         key-positions = < 7 8 >;
-        timeout-ms = < COMBO_TIMEOUT_2 >;
-        layers = < AL1 AR1 >;
-    };
-    backspace_right {
-        bindings = <&bspc_del>;
-        key-positions = < 10 11 >;
         timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
@@ -158,27 +138,9 @@ combos {
         timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
-    ctrl_backspace_right {
-        bindings = <&kp LC(BACKSPACE)>;
-        key-positions = < 10 13 >;
-        timeout-ms = < COMBO_TIMEOUT_2 >;
-        layers = < AL1 AR1 >;
-    };
     ctrl_backspace_left {
         bindings = <&kp LC(BACKSPACE)>;
         key-positions = < 7 8 9>;
-        timeout-ms = < COMBO_TIMEOUT_2 >;
-        layers = < AL1 AR1 >;
-    };
-    delete_right {
-        bindings = <&kp DEL>;
-        key-positions = < 12 13>;
-        timeout-ms = < COMBO_TIMEOUT_2 >;
-        layers = < AL1 AR1 >;
-    };
-    tab_right {
-        bindings = <&kp TAB>;
-        key-positions = < 3 4>;
         timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
@@ -188,6 +150,23 @@ combos {
         timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
+
+al3_0 { bindings = <&kp SQT>  ; key-positions = < 15 0 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 >;};
+al3_1 { bindings = <&kp LBKT> ; key-positions = < 15 1 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 >;};
+al3_2 { bindings = <&kp RBKT> ; key-positions = < 15 2 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 >;};
+al3_6 { bindings = <&kp GRAVE>; key-positions = < 15 6 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 >;};
+al3_7 { bindings = <&kp DOT>  ; key-positions = < 15 7 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 >;};
+al3_8 { bindings = <&kp COMMA>; key-positions = < 15 8 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 >;};
+al3_9 { bindings = <&kp SEMI> ; key-positions = < 15 9 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 >;};
+
+ar2_0 { bindings = <&kp FSLH>; key-positions = < 14 0 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 >;};
+ar2_1 { bindings = <&kp BSLH>; key-positions = < 14 1 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 >;};
+ar2_2 { bindings = <&kp F>   ; key-positions = < 14 2 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 >;};
+ar2_6 { bindings = <&kp Y>   ; key-positions = < 14 6 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 >;};
+ar2_7 { bindings = <&kp X>   ; key-positions = < 14 7 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 >;};
+ar2_8 { bindings = <&kp Z>   ; key-positions = < 14 8 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 >;};
+ar2_9 { bindings = <&kp B>   ; key-positions = < 14 9 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 >;};
+
 };
 
 macros {
@@ -240,105 +219,9 @@ macros {
         wait-ms = <0>;
         bindings = <&sl AL2>;
     };
-    sl_al3: sl_al3 {
-        label = "sl_al3";
-        compatible = "zmk,behavior-macro";
-        #binding-cells = <0>;
-        wait-ms = <0>;
-        bindings = <&sl AL3>;
-    };
-    sl_ar1: sl_ar1 {
-        label = "sl_ar1";
-        compatible = "zmk,behavior-macro";
-        #binding-cells = <0>;
-        wait-ms = <0>;
-        bindings = <&sl AR2>;
-    };
-    sl_ar2: sl_ar2 {
-        label = "sl_ar2";
-        compatible = "zmk,behavior-macro";
-        #binding-cells = <0>;
-        wait-ms = <0>;
-        bindings = <&sl AR2>;
-    };
-    sl_ar3: sl_ar3 {
-        label = "sl_ar3";
-        compatible = "zmk,behavior-macro";
-        #binding-cells = <0>;
-        wait-ms = <0>;
-        bindings = <&sl AR3>;
-    };
 };
 
 behaviors {
-    mtl: homerow_mods_left {
-        compatible = "zmk,behavior-hold-tap";
-        label = "HOMEROW_MODS_LEFT";
-        #binding-cells = <2>;
-        tapping-term-ms = < TAPPING_TERM >;
-        quick-tap-ms = < QUICK_TAP_TERM >;
-        flavor = "tap-preferred";
-        // flavor = "balanced";
-        bindings = <&kp>, <&kp>;
-        hold-trigger-key-positions = < RIGHT_HALF THUMBS >;    // <---[[right-hand keys]]
-    };
-    mtr: homerow_mods_right {
-        compatible = "zmk,behavior-hold-tap";
-        label = "HOMEROW_MODS_RIGHT";
-        #binding-cells = <2>;
-        tapping-term-ms = < TAPPING_TERM >;
-        quick-tap-ms = < QUICK_TAP_TERM >;
-        flavor = "tap-preferred";
-        // flavor = "balanced";
-        bindings = <&kp>, <&kp>;
-        hold-trigger-key-positions = < LEFT_HALF THUMBS >;    // <---[[left-hand keys]]
-    };
-
-    msl: homerow_shift_left {
-        compatible = "zmk,behavior-hold-tap";
-        label = "HOMEROW_SHIFT_LEFT";
-        #binding-cells = <2>;
-        tapping-term-ms = < TAPPING_TERM >;
-        quick-tap-ms = < QUICK_TAP_TERM >;
-        // flavor = "tap-preferred";
-        flavor = "balanced";
-        bindings = <&kp>, <&kp>;
-        hold-trigger-key-positions = < RIGHT_HALF THUMBS >;    // <---[[right-hand keys]]
-    };
-    msr: homerow_shift_right {
-        compatible = "zmk,behavior-hold-tap";
-        label = "HOMEROW_SHIFT_RIGHT";
-        #binding-cells = <2>;
-        tapping-term-ms = < TAPPING_TERM >;
-        quick-tap-ms = < QUICK_TAP_TERM >;
-        // flavor = "tap-preferred";
-        flavor = "balanced";
-        bindings = <&kp>, <&kp>;
-        hold-trigger-key-positions = < LEFT_HALF THUMBS >;    // <---[[left-hand keys]]
-    };
-
-    mol: homerow_layers_left {
-        compatible = "zmk,behavior-hold-tap";
-        label = "HOMEROW_LAYERS_LEFT";
-        #binding-cells = <2>;
-        tapping-term-ms = < TAPPING_TERM >;
-        quick-tap-ms = < QUICK_TAP_TERM >;
-        flavor = "tap-preferred";
-        // flavor = "balanced";
-        bindings = <&mo>, <&kp>;
-        hold-trigger-key-positions = < RIGHT_HALF THUMBS >;    // <---[[right-hand keys]]
-    };
-    mor: homerow_layers_right {
-        compatible = "zmk,behavior-hold-tap";
-        label = "HOMEROW_LAYERS_RIGHT";
-        #binding-cells = <2>;
-        tapping-term-ms = < TAPPING_TERM >;
-        quick-tap-ms = < QUICK_TAP_TERM >;
-        flavor = "tap-preferred";
-        // flavor = "balanced";
-        bindings = <&mo>, <&kp>;
-        hold-trigger-key-positions = < LEFT_HALF THUMBS >;    // <---[[left-hand keys]]
-    };
     td_copy_cut: tap_dance_copy_cut {
         compatible = "zmk,behavior-tap-dance";
         label = "TAP_DANCE_COPY_CUT";
@@ -355,48 +238,46 @@ behaviors {
     };
 };
 
+
+
+
 keymap { compatible = "zmk,keymap";
 // ======================================================================= ALPHA =======================================================================================
 alpha1 {label = "Alpha 1"; bindings = <
-                      &mtl LCTL L        &mtl LALT G   &mtl LGUI D      _____ _____ _____                 
-    &msl LSHFT I      &mol NUM R         &mol FUN S    &mol NAV T       _____ _____ _____ _____
-                                         &sl_al2       &sl_ar1          _____ _____
+                      &mt LCTL L         &mt LALT G    &mt LGUI D       _____ _____ _____                 
+    &mt LSHFT I       &lt NUM R          &lt FUN S     &lt NAV T        _____ _____ _____ _____
+                                         &lt AR1 SPACE &mo AL2          _____ _____
     >;};
 alpha2 {label = "Alpha 2"; bindings = <
                       &kp V              &kp W         &kp M            _____ _____ _____                   
     &kp Q             &kp J              &kp P         &kp K            _____ _____ _____ _____
-                                         &sl_al3       &kp SPACE        _____        _____
+                                         _____         _____            _____ _____
     >;};
 alpha3 {label = "Alpha 3"; bindings = <
-                      &kp LS(SQT)        &kp LS(LBKT)  &kp LS(RBKT)     _____ _____ _____                 
-    &kp GRAVE         &kp SQT            &kp LBKT      &kp RBKT         _____ _____ _____ _____
-                                         _____         _____            _____        _____
+                      &kp SQT            &kp LBKT      &kp RBKT         _____ _____ _____                 
+    &kp GRAVE         &kp DOT            &kp COMMA     &kp SEMI         _____ _____ _____ _____
+                                         _____         _____            _____ _____
     >;};
 alpha1right {label = "Alpha 1R"; bindings = <
                       &kp O              &kp U         &kp H            _____ _____ _____         
     &kp C             &kp A              &kp E         &kp N            _____ _____ _____ _____
-                                         &sl_ar3       &sl_ar2          _____        _____
+                                         _____         _____            _____ _____
     >;}; 
 alpha2right {label = "Alpha 2R"; bindings = <
-                      &kp MINUS          &kp NUBS      &kp F            _____ _____ _____
+                      &kp FSLH           &kp BSLH      &kp F            _____ _____ _____
     &kp Y             &kp X              &kp Z         &kp B            _____ _____ _____ _____
-                                         _____         &kp SPACE        _____        _____
+                                         _____         _____            _____ _____
     >;};
-alpha3right {label = "Alpha 3R"; bindings = <
-                      &kp LS(BSLH)       &kp SEMI      &kp LS(SEMI)     _____ _____ _____   
-    &kp FSLH          &kp DOT            &kp COMMA     &kp BSLH         _____ _____ _____ _____
-                                         _____         _____            _____        _____
+numbers1 {label = "Num1"; bindings = <
+                   &sk LSHFT         &kp MINUS         &kp N5           _____ _____ _____
+    &kp N1         &kp N2            &kp N3            &kp N4           _____ _____ _____ _____
+                                     &mo NUM           &mo NUM2        _____ _____ 
     >;};
-// ======================================================================= ADDINIONAL =======================================================================================
-
-numbers {
-    label = "Num";
-    bindings = <
-                   &kp KP_DIVIDE     &kp KP_PLUS       &kp N5                                      &kp N6            &kp MINUS       &kp EQUAL             
-    &kp N1         &kp N2            &kp N3            &kp N4                                      &kp N7            &kp N8          &kp N9           &kp N0
-                                                       &mt LSHFT SPC &kp RALT         &kp COMMA    &kp DOT
-    >;
-};
+numbers2 {label = "Num2"; bindings = <
+                   &sk LSHFT         &kp EQUAL         &kp N6           _____ _____ _____
+    &kp N0         &kp N9            &kp N8            &kp N7           _____ _____ _____ _____
+                                     _____             _____            _____ _____ 
+    >;};
 
 navigation {
     label = "Nav";
@@ -410,8 +291,8 @@ navigation {
 function {
     label = "Fns";
     bindings = <
-                      &kp LCTL           &kp LALT      &mtl LGUI F5                                &mtr LGUI F6      &mtr LALT F11   &mtr LCTL F12         
-    &mtl LSHFT F1     &kp F2             &kp F3        &kp F4                                      &kp F7            &kp F8          &kp F9           &mtr RSHFT F10
+                      &kp LCTL           &kp LALT      &mt LGUI F5                                 &mtr LGUI F6      &mtr LALT F11   &mtr LCTL F12         
+    &mt LSHFT F1      &kp F2             &kp F3        &kp F4                                      &kp F7            &kp F8          &kp F9           &mtr RSHFT F10
                                                        &kp K_APP     &kp PRINTSCREEN  &kp C_EJECT  &mo SYS
     >;
 };
