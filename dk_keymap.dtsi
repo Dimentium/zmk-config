@@ -122,7 +122,6 @@ combos {
         bindings = <&kp ESC>;
         key-positions = <7 8>;
         timeout-ms = < COMBO_TIMEOUT_2 >;
-        layers = < AL1 AR1 >;
     };
     escape_left_al1 {
         bindings = <&esc_to_al1>;
@@ -152,7 +151,6 @@ combos {
         bindings = <&bspc_del>;
         key-positions = <16 17>;
         timeout-ms = < COMBO_TIMEOUT_2 >;
-        layers = < AL1 AR1 >;
     };
     backspace_left {
         bindings = <&bspc_del>;
@@ -162,14 +160,14 @@ combos {
     };
     ctrl_backspace {
         bindings = <&kp LC(BACKSPACE)>;
-        key-positions = <16 19>;
-        timeout-ms = < COMBO_TIMEOUT_2 >;
+        key-positions = <16 17 19>;
+        timeout-ms = < COMBO_TIMEOUT_3 >;
         layers = < AL1 AR1 >;
     };
     ctrl_backspace_left {
         bindings = <&kp LC(BACKSPACE)>;
-        key-positions = <11 12 13>;
-        timeout-ms = < COMBO_TIMEOUT_2 >;
+        key-positions = <10 12 13>;
+        timeout-ms = < COMBO_TIMEOUT_3 >;
         layers = < AL1 AR1 >;
     };
     delete {
