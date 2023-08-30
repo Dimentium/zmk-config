@@ -137,24 +137,24 @@ combos {
     };
     enter {
         bindings = <&kp ENTER>;
-        key-positions = <17 18>;
+        key-positions = <6 16>;
         timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
     enter_left {
         bindings = <&kp ENTER>;
-        key-positions = <11 12>;
+        key-positions = <3 13>;
         timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
     backspace {
         bindings = <&bspc_del>;
-        key-positions = <16 17>;
+        key-positions = <16 7>;
         timeout-ms = < COMBO_TIMEOUT_2 >;
     };
     backspace_left {
         bindings = <&bspc_del>;
-        key-positions = <12 13>;
+        key-positions = <2 13>;
         timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
@@ -172,7 +172,13 @@ combos {
     };
     delete {
         bindings = <&kp DEL>;
-        key-positions = <18 19>;
+        key-positions = <7 18>;
+        timeout-ms = < COMBO_TIMEOUT_2 >;
+        layers = < AL1 AR1 >;
+    };
+    delete_left {
+        bindings = <&kp DEL>;
+        key-positions = <2 11>;
         timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
