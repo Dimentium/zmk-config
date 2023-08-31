@@ -137,13 +137,13 @@ combos {
     };
     enter {
         bindings = <&kp ENTER>;
-        key-positions = <6 16>;
+        key-positions = <17 18>;
         timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
     enter_left {
         bindings = <&kp ENTER>;
-        key-positions = <3 13>;
+        key-positions = <11 12>;
         timeout-ms = < COMBO_TIMEOUT_2 >;
         layers = < AL1 AR1 >;
     };
