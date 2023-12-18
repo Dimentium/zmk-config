@@ -333,8 +333,8 @@ behaviors {
         #binding-cells = <2>;
         tapping-term-ms = < TAPPING_TERM >;
         quick-tap-ms = < QUICK_TAP_TERM >;
-        flavor = "tap-preferred";
-        // flavor = "balanced";
+        // flavor = "tap-preferred";
+        flavor = "balanced";
         bindings = <&mo>, <&kp>;
         hold-trigger-key-positions = < LEFT_HALF THUMBS >;    // <---[[left-hand keys]]
     };
