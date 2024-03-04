@@ -22,6 +22,7 @@
 #define NAV   7
 #define FUN   8
 #define SYS   9
+#define MYS  10
 
 // Bindings
 #define TAPPING_TERM    300  // tapping-term-ms = <300>;
@@ -350,7 +351,7 @@ keymap {
 alpha1 {
     bindings = <
     _____             &mtl LCTL L        &mtl LALT G   &mtl LGUI D   _____            _____        &mtr LGUI H       &mtr LALT U     &mtr LCTL O      _____  
-    &msl LSHFT I      &mol NUM R         &mol FUN S    &mol NAV T    _____            _____        &mor NAV N        &mor FUN E      &mor NUM A       &msr RSHFT C
+    &msl LSHFT I      &mol NUM R         &mol FUN S    &mol MYS T    _____            _____        &mor NAV N        &mor FUN E      &mor NUM A       &msr RSHFT C
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                                                        &lt NAV SPC   &num_shifted     &sl_al3      &sl_al2
     >;
@@ -435,5 +436,15 @@ system {
                                                        &bt BT_DISC 1 &bt BT_CLR       &bootloader  &bt BT_CLR                                                                      
     >;
 };
+
+mouse {
+    bindings = <
+    _____             &kp LCTL           &kp LALT      &kp LGUI      _____            _____        &msc SCRL_DOWN    &mmv MOVE_UP    &msc SCRL_UP     _____
+    &kp LSHFT         _____              _____         _____         _____            _____        &mmv MOVE_LEFT    &mmv MOVE_DOWN  &mmv MOVE_RIGHT  _____
+    _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
+                                                       &mkp MB1      &mkp MB2         &none        &mkp MB3
+    >;
+};
+
     };
 };
