@@ -378,7 +378,7 @@ alpha3 {
 alpha1rus {
     bindings = <
     _____             &mtl LCTL K        &mtl LALT D   &mtl LGUI L   _____            _____        &mtr LGUI V       &mtr LALT E     &mtr LCTL J      _____
-    &msl LSHFT B      &mol NUM H         &mol FUN C    &mol NAV N    _____            _____        &mor NAV Y        &mor FUN T      &mor NUM F       &msr RSHFT R
+    &msl LSHFT B      &mol NUM H         &mol FUN C    &mol MYS N    _____            _____        &mor NAV Y        &mor FUN T      &mor NUM F       &msr RSHFT R
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                                                        &lt NAV SPC   &num_shifted     &sl_ar3      &sl_ar2
     >;
@@ -428,10 +428,11 @@ function {
                                                        &kp K_APP     &kp PRINTSCREEN  &kp C_EJECT  &mo SYS
     >;
 };
+
 system {
     bindings = <
     _____             &kp C_BRI_UP       &bt BT_SEL 3  &bt BT_SEL 4  _____            _____        &kp C_MUTE        &kp C_VOL_DN    &kp C_VOL_UP     _____
-    &kp C_BRI_DN      &bt BT_SEL 0       &bt BT_SEL 1  &bt BT_SEL 2  _____            _____        &kp C_PREV        &kp C_PP        &kp C_NEXT       _____
+    &kp C_BRI_DN      &bt BT_SEL 0       &bt BT_SEL 1  &bt BT_SEL 2  _____            _____        &kp C_PREV        &kp C_PP        &kp C_NEXT       &none
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                                                        &bt BT_DISC 1 &bt BT_CLR       &bootloader  &bt BT_CLR                                                                      
     >;
@@ -440,7 +441,7 @@ system {
 mouse {
     bindings = <
     _____             &kp LCTL           &kp LALT      &kp LGUI      _____            _____        &msc SCRL_DOWN    &mmv MOVE_UP    &msc SCRL_UP     _____
-    &kp LSHFT         _____              _____         _____         _____            _____        &mmv MOVE_LEFT    &mmv MOVE_DOWN  &mmv MOVE_RIGHT  _____
+    &kp LSHFT         &none              &none         &none         _____            _____        &mmv MOVE_LEFT    &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &none
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                                                        &mkp MB1      &mkp MB2         &none        &mkp MB3
     >;
