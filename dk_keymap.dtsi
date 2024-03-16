@@ -7,8 +7,8 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <behaviors/mouse_keys.dtsi>
-#include <dt-bindings/zmk/mouse.h>
+// #include <behaviors/mouse_keys.dtsi>
+// #include <dt-bindings/zmk/mouse.h>
 #include <dt-bindings/zmk/outputs.h>
 
 // Layers
@@ -351,7 +351,7 @@ keymap {
 alpha1 {
     bindings = <
     _____             &mtl LCTL L        &mtl LALT G   &mtl LGUI D   _____            _____        &mtr LGUI H       &mtr LALT U     &mtr LCTL O      _____  
-    &msl LSHFT I      &mol NUM R         &mol FUN S    &mol MYS T    _____            _____        &mor NAV N        &mor FUN E      &mor NUM A       &msr RSHFT C
+    &msl LSHFT I      &mol NUM R         &mol FUN S    &kp T         _____            _____        &mor NAV N        &mor FUN E      &mor NUM A       &msr RSHFT C
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                                                        &lt NAV SPC   &num_shifted     &sl_al3      &sl_al2
     >;
@@ -378,7 +378,7 @@ alpha3 {
 alpha1rus {
     bindings = <
     _____             &mtl LCTL K        &mtl LALT D   &mtl LGUI L   _____            _____        &mtr LGUI V       &mtr LALT E     &mtr LCTL J      _____
-    &msl LSHFT B      &mol NUM H         &mol FUN C    &mol MYS N    _____            _____        &mor NAV Y        &mor FUN T      &mor NUM F       &msr RSHFT R
+    &msl LSHFT B      &mol NUM H         &mol FUN C    &kp N         _____            _____        &mor NAV Y        &mor FUN T      &mor NUM F       &msr RSHFT R
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                                                        &lt NAV SPC   &num_shifted     &sl_ar3      &sl_ar2
     >;
@@ -416,7 +416,7 @@ navigation {
     _____             &kp LCTL           &kp LALT      &kp LGUI      _____            _____        &kp PG_DN         &kp UP          &kp PG_UP        _____
     &kp LSHFT         &kp TAB            &kp HOME      &kp END       _____            _____        &kp LEFT          &kp DOWN        &kp RIGHT        &bspc_del
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
-                                                       &mkp MB1      &mo SYS          &none        &mt LSHFT SPC
+                                                       &none         &mo SYS          &none        &mt LSHFT SPC
     >;
 };
 
@@ -438,14 +438,14 @@ system {
     >;
 };
 
-mouse {
-    bindings = <
-    _____             &kp LCTL           &kp LALT      &kp LGUI      _____            _____        &msc SCRL_DOWN    &mmv MOVE_UP    &msc SCRL_UP     _____
-    &kp LSHFT         &none              &none         &none         _____            _____        &mmv MOVE_LEFT    &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &none
-    _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
-                                                       &mkp MB1      &mkp MB2         &none        &mkp MB3
-    >;
-};
+// mouse {
+//     bindings = <
+//     _____             &kp LCTL           &kp LALT      &kp LGUI      _____            _____        &msc SCRL_DOWN    &mmv MOVE_UP    &msc SCRL_UP     _____
+//     &kp LSHFT         &none              &none         &none         _____            _____        &mmv MOVE_LEFT    &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &none
+//     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
+//                                                        &mkp MB1      &mkp MB2         &none        &mkp MB3
+//     >;
+// };
 
     };
 };

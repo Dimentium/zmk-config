@@ -10,22 +10,16 @@ config SPI
 	default y
 
 config ZMK_DISPLAY
-	default y
 	select LV_USE_CONT
 	select LV_FONT_MONTSERRAT_26
-
-choice ZMK_DISPLAY_STATUS_SCREEN
-	default ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
-
-endchoice
-
-config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
-	select LV_USE_LABEL
 
 if ZMK_DISPLAY
 
 config SYSTEM_WORKQUEUE_STACK_SIZE
     default 2048
+
+config LV_Z_MEM_POOL_SIZE
+     default 4096
 
 choice LV_FONT_DEFAULT
     default LV_FONT_DEFAULT_MONTSERRAT_26
@@ -55,11 +49,5 @@ config LV_Z_VDB_SIZE
 	default 16
 
 endif # ZMK_DISPLAY
-
-config ZMK_SLEEP
-	default y
-
-config ZMK_COMBO_MAX_COMBOS_PER_KEY
-	default 10
 
 endif # SHIELD_ZAPHOD_LITE
