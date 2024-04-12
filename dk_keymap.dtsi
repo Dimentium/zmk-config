@@ -28,6 +28,13 @@
 #define COMBO_TIMEOUT_2  50  // timeout-ms for 2 fingers cofbos
 #define COMBO_TIMEOUT_3  80  // timeout-ms for 2 fingers combos
 
+#define COMBO(NAME, BINDINGS, KEYPOS, LAYERS) \
+  combo_##NAME { \
+    timeout-ms = <50>; \
+    bindings = <BINDINGS>; \
+    key-positions = <KEYPOS>; \
+    layers = <LAYERS>; \
+  };
 #define ONESHOT_LAYER_MACRO(name, layer)                \
 name: name##_oneshot_macro {                            \
     compatible = "zmk,behavior-macro";                  \
@@ -109,6 +116,26 @@ combos {
     delete_right       { key-positions = < KEY_U KEY_A >;       bindings = <&kp DEL>;           timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
     tab_left           { key-positions = < KEY_G KEY_D >;       bindings = <&kp TAB>;           timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
     tab_right          { key-positions = < KEY_H KEY_U >;       bindings = <&kp TAB>;           timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
+
+    COMBO(al2_v, &kp V, KEY_L THUMB_RR, AL1)
+    COMBO(al2_w, &kp W, KEY_G THUMB_RR, AL1)
+    COMBO(al2_m, &kp M, KEY_D THUMB_RR, AL1)
+    COMBO(al2_q, &kp Q, KEY_I THUMB_RR, AL1)
+    COMBO(al2_j, &kp J, KEY_R THUMB_RR, AL1)
+    COMBO(al2_p, &kp P, KEY_S THUMB_RR, AL1)
+    COMBO(al2_k, &kp K, KEY_T THUMB_RR, AL1)
+
+    COMBO(al2_f, &kp F, KEY_H THUMB_RR, AL1)
+    // COMBO(al2_, &kp Q, KEY_Q THUMB_RR, AL1)
+    // COMBO(al2_q, &kp Q, KEY_Q THUMB_RR, AL1)
+    COMBO(al2_b, &kp B, KEY_N THUMB_RR, AL1)
+    COMBO(al2_z, &kp Z, KEY_E THUMB_RR, AL1)
+    COMBO(al2_x, &kp X, KEY_A THUMB_RR, AL1)
+    COMBO(al2_y, &kp Y, KEY_C THUMB_RR, AL1)
+
+    COMBO(al3_comma, &kp COMMA, KEY_E THUMB_RL, AL1)
+    COMBO(al3_dot  , &kp DOT  , KEY_A THUMB_RL, AL1)
+
 };
 
 macros {
