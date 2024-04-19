@@ -14,47 +14,100 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/mouse.h>
 
-/*** Keys  **************
-*      0  1  2  3  4
-*      5  6  7  8  9
-************************/
-#define K1  0
-#define K2  1
-#define K3  2
-#define K4  3
-#define K5  4
-#define K6  5
-#define K7  6
-#define K8  7
-#define K9  8
-#define K10 9
+// Timeouts
+#define TIMEOUT_LT 300
+#define TIMEOUT_TD 300
+#define TIMEOUT_SL 1000
+#define TIMEOUT_SK 5000
+#define TIMEOUT_COMBO 70
 
-#define RK1  4
-#define RK2  3
-#define RK3  2
-#define RK4  1
-#define RK5  0
-#define RK6  9
-#define RK7  8
-#define RK8  7
-#define RK9  6
-#define RK10 5
+#define COMBO_LETTER(BINDINGS, KEYPOS_LEFT, KEYPOS_RIGHT) \
+  combo_left_##BINDINGS { \
+    bindings      = <&kp BINDINGS>; \
+    key-positions = <KEYPOS_LEFT>; \
+    layers        = <L_LAT>; \
+    timeout-ms    = <TIMEOUT_COMBO>; \
+  }; \
+  combo_right_##BINDINGS { \
+    bindings      = <&kp BINDINGS>; \
+    key-positions = <KEYPOS_RIGHT>; \
+    layers        = <R_LAT>; \
+    timeout-ms    = <TIMEOUT_COMBO>; \
+  }; \
+  combo_left_##BINDINGS##_ru { \
+    bindings      = <&kp BINDINGS ## _RU>; \
+    key-positions = <KEYPOS_LEFT>; \
+    layers        = <L_RUS>; \
+    timeout-ms    = <TIMEOUT_COMBO>; \
+  }; \
+  combo_right_##BINDINGS##_ru { \
+    bindings      = <&kp BINDINGS ## _RU>; \
+    key-positions = <KEYPOS_RIGHT>; \
+    layers        = <R_RUS>; \
+    timeout-ms    = <TIMEOUT_COMBO>; \
+  }; 
 
-#define LAT_1 A
-#define LAT_2 N
-#define LAT_3 I
-#define LAT_4 S
-#define LAT_5 O
-#define LAT_6 T
-#define LAT_7 E
+#define COMBO_KEY(BINDINGS, KEYPOS_LEFT, KEYPOS_RIGHT, LAYER) \
+  combo_left_##BINDINGS { \
+    bindings      = <&kp BINDINGS>; \
+    key-positions = <KEYPOS_LEFT>; \
+    layers        = <L_ ## LAYER>; \
+    timeout-ms    = <TIMEOUT_COMBO>; \
+  }; \
+  combo_right_##BINDINGS { \
+    bindings      = <&kp BINDINGS>; \
+    key-positions = <KEYPOS_RIGHT>; \
+    layers        = <R_ ## LAYER>; \
+    timeout-ms    = <TIMEOUT_COMBO>; \
+  }; 
 
-#define RUS_1 A_RU
-#define RUS_2 N_RU
-#define RUS_3 I_RU
-#define RUS_4 S_RU
-#define RUS_5 O_RU
-#define RUS_6 T_RU
-#define RUS_7 E_RU
+#define COMBO_SYS(NAME, BINDINGS, KEYPOS_LEFT, KEYPOS_RIGHT, LAYER) \
+  combo_left_##NAME { \
+    bindings      = <BINDINGS>; \
+    key-positions = <KEYPOS_LEFT>; \
+    layers        = <L_ ## LAYER>; \
+    timeout-ms    = <TIMEOUT_COMBO>; \
+  }; \
+  combo_right_##NAME { \
+    bindings      = <BINDINGS>; \
+    key-positions = <KEYPOS_RIGHT>; \
+    layers        = <R_ ## LAYER>; \
+    timeout-ms    = <TIMEOUT_COMBO>; \
+  }; 
+
+#define COMBO(NAME, BINDINGS, KEYPOS, LAYERS) \
+  combo_left_##NAME { \
+    bindings      = <BINDINGS>; \
+    key-positions = <KEYPOS>; \
+    layers        = <LAYERS>; \
+    timeout-ms    = <TIMEOUT_COMBO>; \
+  };
+
+/***************** Keyboard ******************
+*    U1 U2 U3 U4 U5      U5R U4R U3R U2R U1R
+*    D1 D2 D3 D4 D5      D5R D4R D3R D2R D1R
+**********************************************/
+#define U1  0
+#define U2  1
+#define U3  2
+#define U4  3
+#define U5  4
+#define D1  5
+#define D2  6
+#define D3  7
+#define D4  8
+#define D5  9
+
+#define U1R  4
+#define U2R  3
+#define U3R  2
+#define U4R  1
+#define U5R  0
+#define D1R  9
+#define D2R  8
+#define D3R  7
+#define D4R  6
+#define D5R  5
 
 #define A_RU F
 #define B_RU COMMA
@@ -82,13 +135,28 @@
 #define X_RU Z
 #define Y_RU S
 #define Z_RU P
+#define CH    X
 #define CH_RU X
+#define SH    I
 #define SH_RU I
+#define SCH    O
 #define SCH_RU O
+#define SOFT    M
 #define SOFT_RU M
+#define HARD    RBKT
 #define HARD_RU RBKT
+#define YO    GRAVE
 #define YO_RU GRAVE
 #define AE_RU SQT 
+
+#define COMMA_RU LS(FSLH)
+#define DOT_RU      FSLH
+#define SEMI_RU  LS(N4)
+#define COLON_RU LS(N6)
+#define FSLH_RU     KP_DIVIDE
+#define QMARK_RU LS(N7)
+#define SQT_RU   LA(O)
+#define DQT_RU   LS(N2)
 
 #define THUMB &kp SPACE
 #define _____ &none
@@ -101,37 +169,22 @@
 #define L_SYM 3
 #define L_ADD 4
 #define L_NAV 5
-#define L_BLE 6
-#define L_FUN 7
-#define L_SYS 8
-#define L_ALL 0 1 2 3 4 5 6 7 8 
+#define L_FUN 6
+#define L_SYS 7
+#define L_ALL 0 1 2 3 4 5 6 7
 
-#define R_LAT 9
-#define R_RUS 10
-#define R_LTR 9 10
-#define R_NUM 11
-#define R_SYM 12
-#define R_ADD 13
-#define R_NAV 14
-#define R_BLE 15
-#define R_FUN 16
-#define R_SYS 17
-#define R_ALL 9 10 11 12 13 14 15 16 17 
+#define R_LAT 8
+#define R_RUS 9
+#define R_LTR 8 9
+#define R_NUM 10
+#define R_SYM 11
+#define R_ADD 12
+#define R_NAV 13
+#define R_FUN 14
+#define R_SYS 15
+#define R_ALL 9 10 11 12 13 14 15
 
-// Timeouts
-#define T2 70
-#define T3 120
-#define T4 150
-#define TIMEOUT_LT 300
-#define TIMEOUT_TD 300
-#define TIMEOUT_SL 1000
-#define TIMEOUT_SK 5000
-
-#define _L layers =
-#define _T timeout-ms =
-#define _K key-positions =
-#define _B bindings = 
-
+#define BLE 16
 
 // tune-up default behaviors
 &sk { release-after-ms = <TIMEOUT_SK>; quick-release; };
@@ -141,196 +194,135 @@
 / {
     combos {
         compatible = "zmk,combos";
-        boot { _B <&bootloader>; _K < 0 2 4 5 7 9 >; _T <T2>; };
+        combo_boot { bindings = <&bootloader>; key-positions = < 0 2 4 5 7 9 >; timeout-ms = <TIMEOUT_COMBO>; };
+        // combo_repeat        { layers = <L_LTR>; timeout-ms = <T2>; key-positions = <U1 D5>;         bindings = <&key_repeat>; };   rcombo_repeat        { layers = <R_LTR>; timeout-ms = <T2>; key-positions = <U1R D5R>;         bindings = <&key_repeat>; };
 
-        // English layout
-
+// Letters
         // single_a
-        combo_b             { _L <L_LAT>; _T <T3>; _K <K8 K9 K10>;      _B <&kp B>; };         rcombo_b             { _L <R_LAT>; _T <T3>; _K <RK8 RK9 RK10>;      _B <&kp B>; };
-        combo_b_ru          { _L <L_RUS>; _T <T3>; _K <K8 K9 K10>;      _B <&kp B_RU>; };      rcombo_b_ru          { _L <R_RUS>; _T <T3>; _K <RK8 RK9 RK10>;      _B <&kp B_RU>; };
-        combo_c             { _L <L_LAT>; _T <T2>; _K <K8 K9>;          _B <&kp C>; };         rcombo_c             { _L <R_LAT>; _T <T2>; _K <RK8 RK9>;          _B <&kp C>; };
-        combo_c_ru          { _L <L_RUS>; _T <T2>; _K <K8 K9>;          _B <&kp C_RU>; };      rcombo_c_ru          { _L <R_RUS>; _T <T2>; _K <RK8 RK9>;          _B <&kp C_RU>; };
-        combo_d             { _L <L_LAT>; _T <T3>; _K <K2 K10>;         _B <&kp D>; };         rcombo_d             { _L <R_LAT>; _T <T3>; _K <RK2 RK10>;         _B <&kp D>; };
-        combo_d_ru          { _L <L_RUS>; _T <T3>; _K <K2 K10>;         _B <&kp D_RU>; };      rcombo_d_ru          { _L <R_RUS>; _T <T3>; _K <RK2 RK10>;         _B <&kp D_RU>; };
-        // single_e
-        combo_f             { _L <L_LAT>; _T <T2>; _K <K3 K4>;          _B <&kp F>; };         rcombo_f             { _L <R_LAT>; _T <T2>; _K <RK3 RK4>;          _B <&kp F>; };
-        combo_f_ru          { _L <L_RUS>; _T <T2>; _K <K3 K4>;          _B <&kp F_RU>; };      rcombo_f_ru          { _L <R_RUS>; _T <T2>; _K <RK3 RK4>;          _B <&kp F_RU>; };
-        combo_g             { _L <L_LAT>; _T <T2>; _K <K2 K3>;          _B <&kp G>; };         rcombo_g             { _L <R_LAT>; _T <T2>; _K <RK2 RK3>;          _B <&kp G>; };
-        combo_g_ru          { _L <L_RUS>; _T <T2>; _K <K2 K3>;          _B <&kp G_RU>; };      rcombo_g_ru          { _L <R_RUS>; _T <T2>; _K <RK2 RK3>;          _B <&kp G_RU>; };
-        combo_h             { _L <L_LAT>; _T <T3>; _K <K9 K10>;         _B <&kp H>; };         rcombo_h             { _L <R_LAT>; _T <T3>; _K <RK9 RK10>;         _B <&kp H>; };
-        combo_h_ru          { _L <L_RUS>; _T <T3>; _K <K9 K10>;         _B <&kp H_RU>; };      rcombo_h_ru          { _L <R_RUS>; _T <T3>; _K <RK9 RK10>;         _B <&kp H_RU>; };
-        // single_i
-        combo_j             { _L <L_LAT>; _T <T2>; _K <K7 K9>;          _B <&kp J>; };         rcombo_j             { _L <R_LAT>; _T <T2>; _K <RK7 RK9>;          _B <&kp J>; };
-        combo_j_ru          { _L <L_RUS>; _T <T2>; _K <K7 K9>;          _B <&kp J_RU>; };      rcombo_j_ru          { _L <R_RUS>; _T <T2>; _K <RK7 RK9>;          _B <&kp J_RU>; };
-        combo_k             { _L <L_LAT>; _T <T2>; _K <K2 K4>;          _B <&kp K>; };         rcombo_k             { _L <R_LAT>; _T <T2>; _K <RK2 RK4>;          _B <&kp K>; };
-        combo_k_ru          { _L <L_RUS>; _T <T2>; _K <K2 K4>;          _B <&kp K_RU>; };      rcombo_k_ru          { _L <R_RUS>; _T <T2>; _K <RK2 RK4>;          _B <&kp K_RU>; };
-        combo_l             { _L <L_LAT>; _T <T3>; _K <K3 K10>;         _B <&kp L>; };         rcombo_l             { _L <R_LAT>; _T <T3>; _K <RK3 RK10>;         _B <&kp L>; };
-        combo_l_ru          { _L <L_RUS>; _T <T3>; _K <K3 K10>;         _B <&kp L_RU>; };      rcombo_l_ru          { _L <R_RUS>; _T <T3>; _K <RK3 RK10>;         _B <&kp L_RU>; };
-        combo_m             { _L <L_LAT>; _T <T3>; _K <K7 K8 K10>;      _B <&kp M>; };         rcombo_m             { _L <R_LAT>; _T <T3>; _K <RK7 RK8 RK10>;      _B <&kp M>; };
-        combo_m_ru          { _L <L_RUS>; _T <T3>; _K <K7 K8 K10>;      _B <&kp M_RU>; };      rcombo_m_ru          { _L <R_RUS>; _T <T3>; _K <RK7 RK8 RK10>;      _B <&kp M_RU>; };
-        // single_n
-        // single_o
-        combo_p             { _L <L_LAT>; _T <T3>; _K <K7 K9 K10>;      _B <&kp P>; };         rcombo_p             { _L <R_LAT>; _T <T3>; _K <RK7 RK9 RK10>;      _B <&kp P>; };
-        combo_p_ru          { _L <L_RUS>; _T <T3>; _K <K7 K9 K10>;      _B <&kp P_RU>; };      rcombo_p_ru          { _L <R_RUS>; _T <T3>; _K <RK7 RK9 RK10>;      _B <&kp P_RU>; };
-        combo_q             { _L <L_LAT>; _T <T3>; _K <K2 K4 K10>;      _B <&kp Q>; };         rcombo_q             { _L <R_LAT>; _T <T3>; _K <RK2 RK4 RK10>;      _B <&kp Q>; };
-        combo_q_ru_yu       { _L <L_RUS>; _T <T3>; _K <K2 K4 K10>;      _B <&kp Q_RU>; };      rcombo_q_ru_yu       { _L <R_RUS>; _T <T3>; _K <RK2 RK4 RK10>;      _B <&kp Q_RU>; };
-        combo_r             { _L <L_LAT>; _T <T3>; _K <K8 K10>;         _B <&kp R>; };         rcombo_r             { _L <R_LAT>; _T <T3>; _K <RK8 RK10>;         _B <&kp R>; };
-        combo_r_ru          { _L <L_RUS>; _T <T3>; _K <K8 K10>;         _B <&kp R_RU>; };      rcombo_r_ru          { _L <R_RUS>; _T <T3>; _K <RK8 RK10>;         _B <&kp R_RU>; };
-        // single_s
-        // single_t
-        combo_u             { _L <L_LAT>; _T <T3>; _K <K7 K8>;          _B <&kp U>; };         rcombo_u             { _L <R_LAT>; _T <T3>; _K <RK7 RK8>;          _B <&kp U>; };
-        combo_u_ru          { _L <L_RUS>; _T <T3>; _K <K7 K8>;          _B <&kp U_RU>; };      rcombo_u_ru          { _L <R_RUS>; _T <T3>; _K <RK7 RK8>;          _B <&kp U_RU>; };
-        combo_v             { _L <L_LAT>; _T <T3>; _K <K6 K10>;         _B <&kp V>; };         rcombo_v             { _L <R_LAT>; _T <T3>; _K <RK6 RK10>;         _B <&kp V>; };
-        combo_v_ru          { _L <L_RUS>; _T <T3>; _K <K6 K10>;         _B <&kp V_RU>; };      rcombo_v_ru          { _L <R_RUS>; _T <T3>; _K <RK6 RK10>;         _B <&kp V_RU>; };
-        combo_w             { _L <L_LAT>; _T <T3>; _K <K4 K10>;         _B <&kp W>; };         rcombo_w             { _L <R_LAT>; _T <T3>; _K <RK4 RK10>;         _B <&kp W>; };
-        combo_w_ru_zhe      { _L <L_RUS>; _T <T3>; _K <K4 K10>;         _B <&kp W_RU>; };      rcombo_w_ru_zhe      { _L <R_RUS>; _T <T3>; _K <RK4 RK10>;         _B <&kp W_RU>; };
-        combo_x             { _L <L_LAT>; _T <T3>; _K <K2 K3 K10>;      _B <&kp X>; };         rcombo_x             { _L <R_LAT>; _T <T3>; _K <RK2 RK3 RK10>;      _B <&kp X>; };
-        combo_x_ru_ya       { _L <L_RUS>; _T <T3>; _K <K2 K3 K10>;      _B <&kp X_RU>; };      rcombo_x_ru_ya       { _L <R_RUS>; _T <T3>; _K <RK2 RK3 RK10>;      _B <&kp X_RU>; };
-        combo_y             { _L <L_LAT>; _T <T3>; _K <K7 K10>;         _B <&kp Y>; };         rcombo_y             { _L <R_LAT>; _T <T3>; _K <RK7 RK10>;         _B <&kp Y>; };
-        combo_y_ru          { _L <L_RUS>; _T <T3>; _K <K7 K10>;         _B <&kp Y_RU>; };      rcombo_y_ru          { _L <R_RUS>; _T <T3>; _K <RK7 RK10>;         _B <&kp Y_RU>; };
-        combo_z             { _L <L_LAT>; _T <T3>; _K <K3 K4 K10>;      _B <&kp Z>; };         rcombo_z             { _L <R_LAT>; _T <T3>; _K <RK3 RK4 RK10>;      _B <&kp Z>; };
-        combo_z_ru          { _L <L_RUS>; _T <T3>; _K <K3 K4 K10>;      _B <&kp Z_RU>; };      rcombo_z_ru          { _L <R_RUS>; _T <T3>; _K <RK3 RK4 RK10>;      _B <&kp Z_RU>; };
+        COMBO_LETTER( B    , D3 D4 D5    , D3R D4R D5R     )
+        COMBO_LETTER( C    , D3 D4       , D3R D4R         )
+        COMBO_LETTER( D    , U2 D5       , U2R D5R         )
+        // single_e             
+        COMBO_LETTER( F    , U3 U4       , U3R U4R         )
+        COMBO_LETTER( G    , U2 U3       , U2R U3R         )
+        COMBO_LETTER( H    , D4 D5       , D4R D5R         )
+        // single_i             
+        COMBO_LETTER( J    , D2 D4       , D2R D4R         )
+        COMBO_LETTER( K    , U2 U4       , U2R U4R         )
+        COMBO_LETTER( L    , U3 D5       , U3R D5R         )
+        COMBO_LETTER( M    , D2 D3 D5    , D2R D3R D5R     )
+        // single_n             
+        // single_o             
+        COMBO_LETTER( P    , D2 D4 D5    , D2R D4R D5R     )
+        COMBO_LETTER( Q    , U2 U4 D5    , U2R U4R D5R     )
+        COMBO_LETTER( R    , D3 D5       , D3R D5R         )
+        // single_s             
+        // single_t             
+        COMBO_LETTER( U    , D2 D3       , D2R D3R         )
+        COMBO_LETTER( V    , D1 D5       , D1R D5R         )
+        COMBO_LETTER( W    , U4 D5       , U4R D5R         )
+        COMBO_LETTER( X    , U2 U3 D5    , U2R U3R D5R     )
+        COMBO_LETTER( Y    , D2 D5       , D2R D5R         )
+        COMBO_LETTER( Z    , U3 U4 D5    , U3R U4R D5R     )
+  
+        COMBO_LETTER( CH   , U2 D4       , U2R D4R         )
+        COMBO_LETTER( SH   , U3 D2 D4    , U3R D2R D4R     )
+        COMBO_LETTER( SCH  , U3 D2 D4 D5 , U3R D2R D4R D5R )
+        COMBO_LETTER( SOFT , U2 D3       , U2R D3R         )
+        COMBO_LETTER( HARD , U2 D3 D5    , U2R D3R D5R     )
+        COMBO_LETTER( YO   , U2 D4 D5    , U2R D4R D5R     )
+
+// Punctuation
+        COMBO_LETTER( COMMA, U4 D2       , U4R D2R         )
+        COMBO_LETTER( DOT  , U4 D3       , U4R D3R         )
+        COMBO_LETTER( SEMI , U4 D2 D5    , U4R D2R D5R     )
+        COMBO_LETTER( COLON, U4 D3 D5    , U4R D3R D5R     )
+        COMBO_LETTER( FSLH , U4 D1       , U4R D1R         )
+        COMBO_LETTER( QMARK, U4 D1 D5    , U4R D1R D5R     )
+        COMBO_LETTER( SQT  , U4 D2 D3    , U4R D2R D3R     )
+        COMBO_LETTER( DQT  , U4 D2 D3 D5 , U4R D2R D3R D5R )
+
+ // NUM layer 
+        COMBO_KEY( N7      , U3 U4       , U3R U4R         , NUM )
+        COMBO_KEY( N8      , U2 U3       , U2R U3R         , NUM )
+        COMBO_KEY( N9      , D3 D4       , D3R D4R         , NUM )
+        COMBO_KEY( N0      , D2 D3       , D2R D3R         , NUM )
+        COMBO_KEY( MINUS   , U2 U4       , U2R U4R         , NUM )
+        COMBO_KEY( EQUAL   , D2 D4       , D2R D4R         , NUM )
+ // FUN layer      
+        COMBO_KEY( F7      , U3 U4       , U3R U4R         , FUN )
+        COMBO_KEY( F8      , U2 U3       , U2R U3R         , FUN )
+        COMBO_KEY( F9      , D3 D4       , D3R D4R         , FUN )
+        COMBO_KEY( F10     , D2 D3       , D2R D3R         , FUN )
+        COMBO_KEY( F11     , U2 U4       , U2R U4R         , FUN )
+        COMBO_KEY( F12     , D2 D4       , D2R D4R         , FUN )
+
+// NAV layer
+        COMBO_KEY( PG_UP   , U3 U4       , U3R U4R         , NAV )
+        COMBO_KEY( PG_DN   , D3 D4       , D3R D4R         , NAV )
+        COMBO_KEY( SPC     , D2 D3 D4    , D2R D3R D4R     , LTR )
+        COMBO_KEY( BSPC    , U3 D4       , U3R D4R         , LTR )
+        COMBO_KEY( DEL     , U3 D2       , U3R D2R         , LTR )
+        COMBO_KEY( TAB     , U2 U3 U4    , U2R U3R U4R     , LTR )
+        COMBO_KEY( ESC     , U1 D1       , U1R D1R         , LTR )
+        COMBO_KEY( ENTER   , U5 D5       , U5R D5R         , LTR )
+
+// SYS combos
+        COMBO_SYS( BSPC_W  , &kp LA(BACKSPACE), U2 U3 D4    , U2R U3R D4R     , LTR )
+        COMBO_SYS( DEL_W   , &kp LA(DELETE   ), U3 U4 D2    , U3R U4R D2R     , LTR )
+        COMBO_SYS( SHFTLOCK, &kt LSHFT        , U1 D5       , U1R D5R         , LTR )
+        COMBO_SYS( LCTRL   , &sk LCTRL        , U2 D2       , U2R D2R         , LTR )
+        COMBO_SYS( LALT    , &sk LALT         , U3 D3       , U3R D3R         , LTR )
+        COMBO_SYS( LGUI    , &sk LGUI         , U4 D4       , U4R D4R         , LTR )
+
+        COMBO( to_eng_left , &to_eng_l        , D1 D2 D3 D5       , L_LTR R_LTR )
+        COMBO( to_rus_left , &to_rus_l        , U1 U2 U3 D5       , L_LTR R_LTR )
+        COMBO( to_eng_right, &to_eng_r        , D1R D2R D3R D5R   , L_LTR R_LTR )
+        COMBO( to_rus_right, &to_rus_r        , U1R U2R U3R D5R   , L_LTR R_LTR )
  
-        combo_ch_en         { _L <L_LAT>; _T <T2>; _K <K2 K9>;          _B <&none>; };         rcombo_ch_en         { _L <R_LAT>; _T <T2>; _K <RK2 RK9>;          _B <&none>; };
-        combo_ch_ru         { _L <L_RUS>; _T <T2>; _K <K2 K9>;          _B <&kp CH_RU>; };     rcombo_ch_ru         { _L <R_RUS>; _T <T2>; _K <RK2 RK9>;          _B <&kp CH_RU>; };
-        combo_sh_en         { _L <L_LAT>; _T <T2>; _K <K3 K7 K9>;       _B <&none>; };         rcombo_sh_en         { _L <R_LAT>; _T <T2>; _K <RK3 RK7 RK9>;       _B <&none>; };
-        combo_sh_ru         { _L <L_RUS>; _T <T2>; _K <K3 K7 K9>;       _B <&kp SH_RU>; };     rcombo_sh_ru         { _L <R_RUS>; _T <T2>; _K <RK3 RK7 RK9>;       _B <&kp SH_RU>; };
-        combo_sch_en        { _L <L_LAT>; _T <T3>; _K <K3 K7 K9 K10>;   _B <&none>; };         rcombo_sch_en        { _L <R_LAT>; _T <T3>; _K <RK3 RK7 RK9 RK10>;   _B <&none>; };
-        combo_sch_ru        { _L <L_RUS>; _T <T3>; _K <K3 K7 K9 K10>;   _B <&kp SCH_RU>; };    rcombo_sch_ru        { _L <R_RUS>; _T <T3>; _K <RK3 RK7 RK9 RK10>;   _B <&kp SCH_RU>; };
-        combo_soft_en       { _L <L_LAT>; _T <T2>; _K <K2 K8>;          _B <&none>; };         rcombo_soft_en       { _L <R_LAT>; _T <T2>; _K <RK2 RK8>;          _B <&none>; };
-        combo_soft_ru       { _L <L_RUS>; _T <T2>; _K <K2 K8>;          _B <&kp SOFT_RU>; };   rcombo_soft_ru       { _L <R_RUS>; _T <T2>; _K <RK2 RK8>;          _B <&kp SOFT_RU>; };
-        combo_hard_en       { _L <L_LAT>; _T <T3>; _K <K2 K8 K10>;      _B <&none>; };         rcombo_hard_en       { _L <R_LAT>; _T <T3>; _K <RK2 RK8 RK10>;      _B <&none>; };
-        combo_hard_ru       { _L <L_RUS>; _T <T3>; _K <K2 K8 K10>;      _B <&kp HARD_RU>; };   rcombo_hard_ru       { _L <R_RUS>; _T <T3>; _K <RK2 RK8 RK10>;      _B <&kp HARD_RU>; };
-        combo_yo_en         { _L <L_LAT>; _T <T3>; _K <K2 K9 K10>;      _B <&none>; };         rcombo_yo_en         { _L <R_LAT>; _T <T3>; _K <RK2 RK9 RK10>;      _B <&none>; };
-        combo_yo_ru         { _L <L_RUS>; _T <T3>; _K <K2 K9 K10>;      _B <&kp YO_RU>; };     rcombo_yo_ru         { _L <R_RUS>; _T <T3>; _K <RK2 RK9 RK10>;      _B <&kp YO_RU>; };
+        COMBO( sl_ble      , &sl BLE          , U1 U5 D1 D5       , L_LTR R_LTR )
+        COMBO( clear_ble   , &bt BT_CLR       , U2 U3 D4 D2 D3 D4 , L_LTR R_LTR )
 
-        // Punctuation
-        combo_comma         { _L <L_LAT>; _T <T2>; _K <K4 K7>;          _B <&kp COMMA>; };     rcombo_comma         { _L <R_LAT>; _T <T2>; _K <RK4 RK7>;          _B <&kp COMMA>; };
-        combo_comma_ru      { _L <L_RUS>; _T <T2>; _K <K4 K7>;          _B <&kp LS(FSLH)>; };  rcombo_comma_ru      { _L <R_RUS>; _T <T2>; _K <RK4 RK7>;          _B <&kp LS(FSLH)>; };
+        COMBO( copy_cut    , &td_copy_cut     , D2 D4             , L_NAV R_NAV )
+        COMBO( paste       , &kp LG(V)        , U2 U4             , L_NAV R_NAV )
+        COMBO( undo        , &kp LG(Z)        , U3 D2 D4          , L_NAV R_NAV )
 
-        combo_dot           { _L <L_LAT>; _T <T2>; _K <K4 K8>;          _B <&kp PERIOD>; };    rcombo_dot           { _L <R_LAT>; _T <T2>; _K <RK4 RK8>;          _B <&kp PERIOD>; };
-        combo_dot_ru        { _L <L_RUS>; _T <T2>; _K <K4 K8>;          _B <&kp FSLH>; };      rcombo_dot_ru        { _L <R_RUS>; _T <T2>; _K <RK4 RK8>;          _B <&kp FSLH>; };
 
-        combo_semi          { _L <L_LAT>; _T <T3>; _K <K4 K7 K10>;      _B <&kp SEMI>; };      rcombo_semi          { _L <R_LAT>; _T <T3>; _K <RK4 RK7 RK10>;      _B <&kp SEMI>; };
-        combo_semi_ru       { _L <L_RUS>; _T <T3>; _K <K4 K7 K10>;      _B <&kp LS(N4)>; };    rcombo_semi_ru       { _L <R_RUS>; _T <T3>; _K <RK4 RK7 RK10>;      _B <&kp LS(N4)>; };
+// 
+        // // combo_nav           { layers = <L_NAV>; timeout-ms = <T3>; key-positions = <U3 D2 D4>;       bindings = <&to L_NAV>; };
+        // combo_nav_la_esc    { layers = <L_NAV>; timeout-ms = <T2>; key-positions = <U2 U3>;          bindings = <&kp LA(ESC)>; };     rcombo_nav_la_esc    { layers = <R_NAV>; timeout-ms = <T2>; key-positions = <U2R U3R>;          bindings = <&kp LA(ESC)>; };
+        // combo_nav_ls_la_esc { layers = <L_NAV>; timeout-ms = <T2>; key-positions = <D2 D3>;          bindings = <&kp LS(LA(ESC))>; }; rcombo_nav_ls_la_esc { layers = <R_NAV>; timeout-ms = <T2>; key-positions = <D2R D3R>;          bindings = <&kp LS(LA(ESC))>; };
 
-        combo_colon         { _L <L_LAT>; _T <T3>; _K <K4 K8 K10>;      _B <&kp LS(SEMI)>; };  rcombo_colon         { _L <R_LAT>; _T <T3>; _K <RK4 RK8 RK10>;      _B <&kp LS(SEMI)>; };
-        combo_colon_ru      { _L <L_RUS>; _T <T3>; _K <K4 K8 K10>;      _B <&kp LS(N6)>; };    rcombo_colon_ru      { _L <R_RUS>; _T <T3>; _K <RK4 RK8 RK10>;      _B <&kp LS(N6)>; };
+        // combo_lock          { layers = <L_ALL>; timeout-ms = <T3>; key-positions = <U2 U4 D3>;       bindings = <&to_eng_lock>; };      rcombo_lock          { layers = <R_ALL>; timeout-ms = <T3>; key-positions = <U2R U4R D3R>;       bindings = <&to_eng_lock_r>; };
+        // combo_eject         { layers = <L_ALL>; timeout-ms = <T4>; key-positions = <U4 D1 D2 D3>;    bindings = <&kp C_EJECT>; };       rcombo_eject         { layers = <R_ALL>; timeout-ms = <T4>; key-positions = <U4R D1R D2R D3R>;    bindings = <&kp C_EJECT>; };
 
-        combo_d_quote       { _L <L_LAT>; _T <T3>; _K <K4 K7 K8 K10>;   _B <&kp LS(SQT)>; };   rcombo_d_quote       { _L <R_LAT>; _T <T3>; _K <RK4 RK7 RK8 RK10>;   _B <&kp LS(SQT)>; };
-        combo_d_quote_ru    { _L <L_RUS>; _T <T3>; _K <K4 K7 K8 K10>;   _B <&kp LS(N2)>; };    rcombo_d_quote_ru    { _L <R_RUS>; _T <T3>; _K <RK4 RK7 RK8 RK10>;   _B <&kp LS(N2)>; };
-
-        combo_question      { _L <L_LAT>; _T <T3>; _K <K4 K6 K10>;      _B <&kp LS(SLASH)>; }; rcombo_question      { _L <R_LAT>; _T <T3>; _K <RK4 RK6 RK10>;      _B <&kp LS(SLASH)>; };
-        combo_question_ru   { _L <L_RUS>; _T <T3>; _K <K4 K6 K10>;      _B <&kp LS(N7)>; };    rcombo_question_ru   { _L <R_RUS>; _T <T3>; _K <RK4 RK6 RK10>;      _B <&kp LS(N7)>; };
-
-        combo_slash         { _L <L_LTR>; _T <T2>; _K <K4 K6>;          _B <&kp KP_DIVIDE>; }; rcombo_slash         { _L <R_LTR>; _T <T2>; _K <RK4 RK6>;          _B <&kp KP_DIVIDE>; };
-        combo_single_quote  { _L <L_LTR>; _T <T3>; _K <K4 K7 K8>;       _B <&kp SQT>; };       rcombo_single_quote  { _L <R_LTR>; _T <T3>; _K <RK4 RK7 RK8>;       _B <&kp SQT>; };
-        combo_repeat        { _L <L_LTR>; _T <T2>; _K <K1 K10>;         _B <&key_repeat>; };   rcombo_repeat        { _L <R_LTR>; _T <T2>; _K <RK1 RK10>;         _B <&key_repeat>; };
-
-        // NUM layer 
-        combo_seven         { _L <L_NUM>; _T <T2>; _K <K3 K4>;          _B <&kp N7>; };        rcombo_seven         { _L <R_NUM>; _T <T2>; _K <RK3 RK4>;          _B <&kp N7>; };
-        combo_eight         { _L <L_NUM>; _T <T2>; _K <K2 K3>;          _B <&kp N8>; };        rcombo_eight         { _L <R_NUM>; _T <T2>; _K <RK2 RK3>;          _B <&kp N8>; };
-        combo_nine          { _L <L_NUM>; _T <T2>; _K <K8 K9>;          _B <&kp N9>; };        rcombo_nine          { _L <R_NUM>; _T <T2>; _K <RK8 RK9>;          _B <&kp N9>; };
-        combo_zero          { _L <L_NUM>; _T <T2>; _K <K7 K8>;          _B <&kp N0>; };        rcombo_zero          { _L <R_NUM>; _T <T2>; _K <RK7 RK8>;          _B <&kp N0>; };
-        combo_minus         { _L <L_NUM>; _T <T2>; _K <K2 K4>;          _B <&kp MINUS>; };     rcombo_minus         { _L <R_NUM>; _T <T2>; _K <RK2 RK4>;          _B <&kp MINUS>; };
-        combo_equal         { _L <L_NUM>; _T <T2>; _K <K7 K9>;          _B <&kp EQUAL>; };     rcombo_equal         { _L <R_NUM>; _T <T2>; _K <RK7 RK9>;          _B <&kp EQUAL>; };
-
-        // FUN layer 
-        combo_f7            { _L <L_FUN>; _T <T2>; _K <K3 K4>;          _B <&kp F7>; };        rcombo_f7            { _L <R_FUN>; _T <T2>; _K <RK3 RK4>;          _B <&kp F7>; };
-        combo_f8            { _L <L_FUN>; _T <T2>; _K <K2 K3>;          _B <&kp F8>; };        rcombo_f8            { _L <R_FUN>; _T <T2>; _K <RK2 RK3>;          _B <&kp F8>; };
-        combo_f9            { _L <L_FUN>; _T <T2>; _K <K8 K9>;          _B <&kp F9>; };        rcombo_f9            { _L <R_FUN>; _T <T2>; _K <RK8 RK9>;          _B <&kp F9>; };
-        combo_f10           { _L <L_FUN>; _T <T2>; _K <K7 K8>;          _B <&kp F10>; };       rcombo_f10           { _L <R_FUN>; _T <T2>; _K <RK7 RK8>;          _B <&kp F10>; };
-        combo_f11           { _L <L_FUN>; _T <T2>; _K <K2 K4>;          _B <&kp F11>; };       rcombo_f11           { _L <R_FUN>; _T <T2>; _K <RK2 RK4>;          _B <&kp F11>; };
-        combo_f12           { _L <L_FUN>; _T <T2>; _K <K7 K9>;          _B <&kp F12>; };       rcombo_f12           { _L <R_FUN>; _T <T2>; _K <RK7 RK9>;          _B <&kp F12>; };
-
-        // NAV layer
-        // combo_nav           { _L <L_NAV>; _T <T3>; _K <K3 K7 K9>;       _B <&to L_NAV>; };
-        combo_pgup          { _L <L_NAV>; _T <T2>; _K <K3 K4>;          _B <&kp PAGE_UP>; };     rcombo_pgup          { _L <R_NAV>; _T <T2>; _K <RK3 RK4>;          _B <&kp PAGE_UP>; };
-        combo_pgdn          { _L <L_NAV>; _T <T2>; _K <K8 K9>;          _B <&kp PAGE_DOWN>; };   rcombo_pgdn          { _L <R_NAV>; _T <T2>; _K <RK8 RK9>;          _B <&kp PAGE_DOWN>; };
-        combo_nav_la_esc    { _L <L_NAV>; _T <T2>; _K <K2 K3>;          _B <&kp LA(ESC)>; };     rcombo_nav_la_esc    { _L <R_NAV>; _T <T2>; _K <RK2 RK3>;          _B <&kp LA(ESC)>; };
-        combo_nav_ls_la_esc { _L <L_NAV>; _T <T2>; _K <K7 K8>;          _B <&kp LS(LA(ESC))>; }; rcombo_nav_ls_la_esc { _L <R_NAV>; _T <T2>; _K <RK7 RK8>;          _B <&kp LS(LA(ESC))>; };
-
-        // mods  
-        combo_shift         { _L <L_ALL>; _T <T2>; _K <K1 K6>;          _B <&sk LSHFT>; slow-release;};        rcombo_shift         { _L <R_ALL>; _T <T2>; _K <RK1 RK6>;          _B <&sk LSHFT>; slow-release;};
-        combo_control       { _L <L_ALL>; _T <T2>; _K <K6 K7>;          _B <&sk LCTRL>; slow-release;};        rcombo_control       { _L <R_ALL>; _T <T2>; _K <RK6 RK7>;          _B <&sk LCTRL>; slow-release;};
-        combo_alt           { _L <L_ALL>; _T <T2>; _K <K6 K8>;          _B <&sk LALT>;  slow-release;};        rcombo_alt           { _L <R_ALL>; _T <T2>; _K <RK6 RK8>;          _B <&sk LALT>;  slow-release;};
-        combo_gui           { _L <L_ALL>; _T <T2>; _K <K6 K9>;          _B <&sk LGUI>;  slow-release;};        rcombo_gui           { _L <R_ALL>; _T <T2>; _K <RK6 RK9>;          _B <&sk LGUI>;  slow-release;};
-        combo_shift_lock    { _L <L_ALL>; _T <T2>; _K <K3 K8>;          _B <&kt LSHFT>; };                     rcombo_shift_lock    { _L <R_ALL>; _T <T2>; _K <RK3 RK8>;          _B <&kt LSHFT>; };
-
-        // one shot layers
-        combo_fun           { _L <L_ALL>; _T <T2>; _K <K3 K6>;          _B <&sl L_FUN>;    slow-release; };    rcombo_fun           { _L <R_ALL>; _T <T2>; _K <RK3 RK6>;          _B <&sl R_FUN>;    slow-release; };
-        combo_sys           { _L <L_ALL>; _T <T2>; _K <K3 K6 K10>;      _B <&sl L_SYS>;    slow-release; };    rcombo_sys           { _L <R_ALL>; _T <T2>; _K <RK3 RK6 RK10>;      _B <&sl R_SYS>;    slow-release; };
-        combo_num           { _L <L_ALL>; _T <T2>; _K <K2 K6>;          _B <&sl L_NUM>;    slow-release; };    rcombo_num           { _L <R_ALL>; _T <T2>; _K <RK2 RK6>;          _B <&sl R_NUM>;    slow-release; };
-        combo_num_shifted   { _L <L_ALL>; _T <T3>; _K <K2 K6 K10>;      _B <&num_shifted>; slow-release; };    rcombo_num_shifted   { _L <R_ALL>; _T <T3>; _K <RK2 RK6 RK10>;      _B <&num_shifted_r>; slow-release; };
-
-        // controls
-        combo_enter         { _L <L_ALL>; _T <T2>; _K <K4 K9>;          _B <&kp ENTER>; };         rcombo_enter         { _L <R_ALL>; _T <T2>; _K <RK4 RK9>;          _B <&kp ENTER>; };
-        combo_backspace     { _L <L_ALL>; _T <T2>; _K <K3 K9>;          _B <&kp BACKSPACE>; };     rcombo_backspace     { _L <R_ALL>; _T <T2>; _K <RK3 RK9>;          _B <&kp BACKSPACE>; };
-        combo_bspc_word     { _L <L_ALL>; _T <T2>; _K <K2 K3 K9>;       _B <&kp LA(BACKSPACE)>; }; rcombo_bspc_word     { _L <R_ALL>; _T <T2>; _K <RK2 RK3 RK9>;       _B <&kp LA(BACKSPACE)>; };
-        combo_delete        { _L <L_ALL>; _T <T2>; _K <K3 K7>;          _B <&kp DELETE>; };        rcombo_delete        { _L <R_ALL>; _T <T2>; _K <RK3 RK7>;          _B <&kp DELETE>; };
-        combo_esc           { _L <L_ALL>; _T <T2>; _K <K2 K7>;          _B <&kp ESC>; };           rcombo_esc           { _L <R_ALL>; _T <T2>; _K <RK2 RK7>;          _B <&kp ESC>; };
-        combo_tab           { _L <L_ALL>; _T <T4>; _K <K2 K3 K4>;       _B <&kp TAB>; };           rcombo_tab           { _L <R_ALL>; _T <T4>; _K <RK2 RK3 RK4>;       _B <&kp TAB>; };
-        combo_space         { _L <L_ALL>; _T <T4>; _K <K7 K8 K9>;       _B <&kp SPACE>; };         rcombo_space         { _L <R_ALL>; _T <T4>; _K <RK7 RK8 RK9>;       _B <&kp SPACE>; };
-
-        combo_lock          { _L <L_ALL>; _T <T3>; _K <K2 K4 K8>;       _B <&to_eng_lock>; };      rcombo_lock          { _L <R_ALL>; _T <T3>; _K <RK2 RK4 RK8>;       _B <&to_eng_lock_r>; };
-        combo_eject         { _L <L_ALL>; _T <T4>; _K <K4 K6 K7 K8>;    _B <&kp C_EJECT>; };       rcombo_eject         { _L <R_ALL>; _T <T4>; _K <RK4 RK6 RK7 RK8>;    _B <&kp C_EJECT>; };
-
-        combo_sl_ble        { _L <L_ALL>; _T <T4>; _K <K1 K4 K6 K9>;    _B <&sl L_BLE>; };         rcombo_sl_ble        { _L <R_ALL>; _T <T4>; _K <RK1 RK4 RK6 RK9>;    _B <&sl R_BLE>; };
-        combo_bt_clr        { _L <L_BLE>; _T <T4>; _K <K2 K3 K7 K8>;    _B <&bt BT_CLR>; };        rcombo_bt_clr        { _L <R_BLE>; _T <T4>; _K <RK2 RK3 RK7 RK8>;    _B <&bt BT_CLR>; };
-
-        combo_lat           {             _T <T3>; _K <K1 K7 K8 K9>;    _B <&to_eng>; };           rcombo_lat           {             _T <T3>; _K <RK1 RK7 RK8 RK9>;    _B <&to_eng_r>; };
-        combo_rus           {             _T <T3>; _K <K1 K2 K3 K4>;    _B <&to_rus>; };           rcombo_rus           {             _T <T3>; _K <RK1 RK2 RK3 RK4>;    _B <&to_rus_r>; };
-
-        combo_copy_cut      { _L <L_ALL>; _T <T2>; _K <K1 K2>;          _B <&td_copy_cut>; };      rcombo_copy_cut      { _L <R_ALL>; _T <T2>; _K <RK1 RK2>;          _B <&td_copy_cut>; };
-        combo_paste         { _L <L_ALL>; _T <T2>; _K <K1 K3>;          _B <&kp LG(V)>; };         rcombo_paste         { _L <R_ALL>; _T <T2>; _K <RK1 RK3>;          _B <&kp LG(V)>; };
-        combo_undo          { _L <L_ALL>; _T <T2>; _K <K1 K4>;          _B <&kp LG(Z)>; };         rcombo_undo          { _L <R_ALL>; _T <T2>; _K <RK1 RK4>;          _B <&kp LG(Z)>; };
     };
 
     macros {
-        to_eng: to_eng {
+        to_eng_l: to_eng_l {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            _B <&to L_LAT &kp LC(LS(N1))>;};
-        to_eng_lock: to_eng_lock {
+            bindings = <&to L_LAT &kp F18>;};
+        to_eng_lock_l: to_eng_lock_l {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            _B <&to L_LAT &kp LC(LS(N1)) &kp LC(LG(Q))>;};
-        to_rus: to_rus {
+            bindings = <&to L_LAT &kp F18 &kp LC(LG(Q))>;};
+        to_rus_l: to_rus_l {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            _B <&to L_RUS &kp LC(LS(N3))>;};
-        num_shifted: num_shifted {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            _B
-            <&macro_press>,
-            <&mo L_NUM &kp LSHFT>,
-            <&macro_pause_for_release>,
-            <&macro_release>,
-            <&mo L_NUM &kp LSHFT>;};
+            bindings = <&to L_RUS &kp F19>;};
         to_eng_r: to_eng_r {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            _B <&to R_LAT &kp LC(LS(N1))>;};
+            bindings = <&to R_LAT &kp F18>;};
         to_eng_lock_r: to_eng_lock_r {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            _B <&to R_LAT &kp LC(LS(N1)) &kp LC(LG(Q))>;};
+            bindings = <&to R_LAT &kp F18 &kp LC(LG(Q))>;};
         to_rus_r: to_rus_r {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            _B <&to R_RUS &kp LC(LS(N3))>;};
-        num_shifted_r: num_shifted_r {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <0>;
-            _B
-            <&macro_press>,
-            <&mo R_NUM &kp LSHFT>,
-            <&macro_pause_for_release>,
-            <&macro_release>,
-            <&mo R_NUM &kp LSHFT>;};
+            bindings = <&to R_RUS &kp F19>;};
     };
 
     behaviors {
@@ -338,7 +330,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = < TIMEOUT_TD >;
-            _B <&kp LG(C)>, <&kp LG(X)>;};
+            bindings = <&kp LG(C)>, <&kp LG(X)>;};
     };
 };
 
@@ -346,111 +338,106 @@
     keymap {
         compatible = "zmk,keymap";
         L_LAT {
-            _B <
-                &sk LCTRL           &kp LAT_1           &kp LAT_2           &lt L_ADD LAT_3           _____
-                &lt L_NAV LAT_4     &kp LAT_5           &kp LAT_6           &lt L_SYM LAT_7           THUMB       
+            bindings = <
+                &sk LSHFT           &kp A               &kp N               &lt L_ADD I               &mo L_FUN
+                &lt L_NAV S         &kp O               &kp T               &lt L_SYM E               &lt L_NUM SPACE 
             >;
         };
         L_RUS {
-            _B <
-                &sk LCTRL           &kp RUS_1           &kp RUS_2           &lt L_ADD RUS_3           _____
-                &lt L_NAV RUS_4     &kp RUS_5           &kp RUS_6           &lt L_SYM RUS_7           THUMB 
+            bindings = <
+                &sk LSHFT           &kp A_RU            &kp N_RU            &lt L_ADD I_RU            &mo L_FUN
+                &lt L_NAV S_RU      &kp O_RU            &kp T_RU            &lt L_SYM E_RU            &lt L_NUM SPACE
             >;
         };
         L_NUM {
-            _B <
+            bindings = <
                 _____               &kp N3     	        &kp N2              &kp N1                    _____   
                 &kp LSHFT           &kp N6              &kp N5              &kp N4                    _____    
             >;
         };
         L_SYM {
-           _B <
+           bindings = <
                 _____               &kp LBKT            &kp RBKT            &kp NUBS                  _____ 
-                &kp GRAVE           &kp FSLH            &kp BSLH            _____                     _____    
+                &kp GRAVE           &kp FSLH            &kp BSLH            _____                     &kp LSHFT    
             >;
         };
         L_ADD {
-            _B <
+            bindings = <
                 _____               &kp LCTRL           &kp LALT            _____                     _____   
                 &kp LSHFT           &none               &none               &none                     _____    
             >;
         };
         L_NAV {
-            _B <
+            bindings = <
                 _____               &kp HOME            &kp UP              &kp END                   _____             
-                _____               &kp LEFT            &kp DOWN            &kp RIGHT                 _____           
-            >;
-        };
-        L_BLE {
-            _B <
-                _____               &bt BT_SEL 2        &bt BT_SEL 1        &bt BT_SEL 0              _____
-                &out OUT_TOG        &bt BT_SEL 5        &bt BT_SEL 4        &bt BT_SEL 3              _____
+                _____               &kp LEFT            &kp DOWN            &kp RIGHT                 &kp LSHFT           
             >;
         };
         L_FUN {
-            _B <
+            bindings = <
                 _____               &kp F3     	        &kp F2              &kp F1                    _____              
-                _____               &kp F6              &kp F5              &kp F4                    _____                
+                _____               &kp F6              &kp F5              &kp F4                    &mo L_SYS                
             >;
         };
         L_SYS {
-            _B <
+            bindings = <
                 _____               &kp C_VOL_UP        &kp C_BRI_DN        &kp C_BRI_UP              _____        
                 _____               &kp C_VOL_DN        &kp C_PP            &kp C_MUTE                _____            
             >;
         };
+
         R_LAT {
-            _B <
-                _____               &lt R_ADD LAT_3     &kp LAT_2           &kp LAT_1                 _____
-                THUMB               &lt R_SYM LAT_7     &kp LAT_6           &kp LAT_5                 &lt R_NAV LAT_4                           
+            bindings = <
+                &mo R_FUN           &lt R_ADD I         &kp N               &kp A                     &sk LSHFT
+                &lt R_NUM SPACE     &lt R_SYM E         &kp T               &kp O                     &lt R_NAV S
             >;
         };
         R_RUS {
-            _B <
-                _____               &lt R_ADD RUS_3     &kp RUS_2           &kp RUS_1                _____
-                THUMB               &lt R_SYM RUS_7     &kp RUS_6           &kp RUS_5                &lt R_NAV RUS_4
+            bindings = <
+                &mo R_FUN           &lt R_ADD I_RU      &kp N_RU            &kp A_RU                  &sk LSHFT
+                &lt R_NUM SPACE     &lt R_SYM E_RU      &kp T_RU            &kp O_RU                  &lt R_NAV S_RU
             >;
         };
         R_NUM {
-            _B <
+            bindings = <
                 _____               &kp N1     	        &kp N2              &kp N3                    _____   
                 _____               &kp N4              &kp N5              &kp N6                    &kp LSHFT
             >;
         };
         R_SYM {
-           _B <
+           bindings = <
                 _____               &kp NUBS            &kp RBKT            &kp LBKT                  _____ 
-                _____               _____               &kp BSLH            &kp FSLH                  &kp GRAVE    
+                &kp LSHFT           _____               &kp BSLH            &kp FSLH                  &kp GRAVE    
             >;
         };
         R_ADD {
-            _B <
+            bindings = <
                 _____               _____               &kp LALT            &kp LCTRL                 _____   
                 _____               &none               &none               &none                     &kp LSHFT    
             >;
         };
         R_NAV {
-            _B <
+            bindings = <
                 _____               &kp HOME            &kp UP              &kp END                   _____             
-                _____               &kp LEFT            &kp DOWN            &kp RIGHT                 _____           
-            >;
-        };
-        R_BLE {
-            _B <
-                _____               &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2              _____
-                _____               &bt BT_SEL 3        &bt BT_SEL 4        &bt BT_SEL 5              &out OUT_TOG
+                &kp LSHFT           &kp LEFT            &kp DOWN            &kp RIGHT                 _____           
             >;
         };
         R_FUN {
-            _B <
+            bindings = <
                 _____               &kp F1     	        &kp F2              &kp F3                    _____              
-                _____               &kp F4              &kp F5              &kp F6                    _____                
+                _____               &kp F4              &kp F5              &kp F6                    &mo R_SYS                 
             >;
         };
         R_SYS {
-            _B <
+            bindings = <
                 _____               &kp C_BRI_UP        &kp C_BRI_DN        &kp C_VOL_UP              _____        
                 _____               &kp C_MUTE          &kp C_PP            &kp C_VOL_DN              _____            
+            >;
+        };
+        BLE {
+            bindings = <
+                &bt BT_PRV          &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2              &bt BT_NXT
+                &bt BT_SEL 255      &bt BT_SEL 3        &bt BT_SEL 4        &bt BT_SEL 5              &out OUT_TOG
             >;
         };
     };
