@@ -117,65 +117,69 @@ combos {
     tab_left           { key-positions = < KEY_G KEY_D >;       bindings = <&kp TAB>;           timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
     tab_right          { key-positions = < KEY_H KEY_U >;       bindings = <&kp TAB>;           timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
 
-    COMBO(al2_l, &kp V, 	KEY_L THUMB_RR, AL1)
-    COMBO(al2_g, &kp W, 	KEY_G THUMB_RR, AL1)
-    COMBO(al2_d, &kp M, 	KEY_D THUMB_RR, AL1)
-    COMBO(al2_i, &kp Q, 	KEY_I THUMB_RR, AL1)
-    COMBO(al2_r, &kp J, 	KEY_R THUMB_RR, AL1)
-    COMBO(al2_s, &kp P, 	KEY_S THUMB_RR, AL1)
-    COMBO(al2_t, &kp K, 	KEY_T THUMB_RR, AL1)
-    COMBO(al2_h, &kp F,		KEY_H THUMB_RR, AL1)
-    COMBO(al2_u, &kp NUBS,	KEY_U THUMB_RR, AL1)
-    COMBO(al2_o, &kp MINUS,	KEY_O THUMB_RR, AL1)
-    COMBO(al2_n, &kp B,		KEY_N THUMB_RR, AL1)
-    COMBO(al2_e, &kp Z,		KEY_E THUMB_RR, AL1)
-    COMBO(al2_a, &kp X,		KEY_A THUMB_RR, AL1)
-    COMBO(al2_c, &kp Y,		KEY_C THUMB_RR, AL1)
+    COMBO(al2_l, &kp V, 	    KEY_L THUMB_LL, AL1)
+    COMBO(al2_g, &kp W, 	    KEY_G THUMB_LL, AL1)
+    COMBO(al2_d, &kp M, 	    KEY_D THUMB_LL, AL1)
+    COMBO(al2_i, &kp Q, 	    KEY_I THUMB_LL, AL1)
+    COMBO(al2_r, &kp J, 	    KEY_R THUMB_LL, AL1)
+    COMBO(al2_s, &kp P, 	    KEY_S THUMB_LL, AL1)
+    COMBO(al2_t, &kp K, 	    KEY_T THUMB_LL, AL1)
 
-    COMBO(al3_l, &kp LS(SQT), 	KEY_L THUMB_RL, AL1)
-    COMBO(al3_g, &kp LS(LBKT), 	KEY_G THUMB_RL, AL1)
-    COMBO(al3_d, &kp LS(RBKT), 	KEY_D THUMB_RL, AL1)
-    COMBO(al3_i, &kp GRAVE, 	KEY_I THUMB_RL, AL1)
-    COMBO(al3_r, &kp SQT, 	KEY_R THUMB_RL, AL1)
-    COMBO(al3_s, &kp LBKT, 	KEY_S THUMB_RL, AL1)
-    COMBO(al3_t, &kp RBKT, 	KEY_T THUMB_RL, AL1)
+    COMBO(al2_h, &kp F,		    KEY_H THUMB_RR, AL1)
+    COMBO(al2_u, &kp NUBS,	    KEY_U THUMB_RR, AL1)
+    COMBO(al2_o, &kp MINUS,	    KEY_O THUMB_RR, AL1)
+    COMBO(al2_n, &kp B,		    KEY_N THUMB_RR, AL1)
+    COMBO(al2_e, &kp Z,		    KEY_E THUMB_RR, AL1)
+    COMBO(al2_a, &kp X,		    KEY_A THUMB_RR, AL1)
+    COMBO(al2_c, &kp Y,		    KEY_C THUMB_RR, AL1)
+
+    COMBO(al3_l, &kp LS(SQT), 	KEY_L THUMB_LR, AL1)
+    COMBO(al3_g, &kp LS(LBKT), 	KEY_G THUMB_LR, AL1)
+    COMBO(al3_d, &kp LS(RBKT), 	KEY_D THUMB_LR, AL1)
+    COMBO(al3_i, &kp GRAVE, 	KEY_I THUMB_LR, AL1)
+    COMBO(al3_r, &kp SQT, 	    KEY_R THUMB_LR, AL1)
+    COMBO(al3_s, &kp LBKT, 	    KEY_S THUMB_LR, AL1)
+    COMBO(al3_t, &kp RBKT, 	    KEY_T THUMB_LR, AL1)
+
     COMBO(al3_h, &kp LS(BSLH),	KEY_H THUMB_RL, AL1)
-    COMBO(al3_u, &kp SEMI,	KEY_U THUMB_RL, AL1)
+    COMBO(al3_u, &kp SEMI,	    KEY_U THUMB_RL, AL1)
     COMBO(al3_o, &kp LS(SEMI),	KEY_O THUMB_RL, AL1)
-    COMBO(al3_n, &kp BSLH,	KEY_N THUMB_RL, AL1)
-    COMBO(al3_e, &kp COMMA,	KEY_E THUMB_RL, AL1)
-    COMBO(al3_a, &kp DOT,	KEY_A THUMB_RL, AL1)
-    COMBO(al3_c, &kp FSLH,	KEY_C THUMB_RL, AL1)
+    COMBO(al3_n, &kp BSLH,	    KEY_N THUMB_RL, AL1)
+    COMBO(al3_e, &kp COMMA,	    KEY_E THUMB_RL, AL1)
+    COMBO(al3_a, &kp DOT,	    KEY_A THUMB_RL, AL1)
+    COMBO(al3_c, &kp FSLH,	    KEY_C THUMB_RL, AL1)
 
-    COMBO(ar2_l, &kp SEMI,	KEY_L THUMB_RR, AR1)
-    COMBO(ar2_g, &kp U,		KEY_G THUMB_RR, AR1)
-    COMBO(ar2_d, &kp LBKT,	KEY_D THUMB_RR, AR1)
-    COMBO(ar2_i, &kp DOT,	KEY_I THUMB_RR, AR1)
-    COMBO(ar2_r, &kp Q,		KEY_R THUMB_RR, AR1)
-    COMBO(ar2_s, &kp G,		KEY_S THUMB_RR, AR1)
-    COMBO(ar2_t, &kp W,		KEY_T THUMB_RR, AR1)
-    COMBO(ar2_h, &kp A,		KEY_H THUMB_RR, AR1)
-    COMBO(ar2_u, &kp X,		KEY_U THUMB_RR, AR1)
-    COMBO(ar2_o, &kp MINUS,	KEY_O THUMB_RR, AR1)
-    COMBO(ar2_n, &kp COMMA,	KEY_N THUMB_RR, AR1)
-    COMBO(ar2_e, &kp P,		KEY_E THUMB_RR, AR1)
-    COMBO(ar2_a, &kp M,		KEY_A THUMB_RR, AR1)
-    COMBO(ar2_c, &kp S,		KEY_C THUMB_RR, AR1)
+    COMBO(ar2_l, &kp SEMI,	    KEY_L THUMB_LL, AR1)
+    COMBO(ar2_g, &kp U,		    KEY_G THUMB_LL, AR1)
+    COMBO(ar2_d, &kp LBKT,	    KEY_D THUMB_LL, AR1)
+    COMBO(ar2_i, &kp DOT,	    KEY_I THUMB_LL, AR1)
+    COMBO(ar2_r, &kp Q,		    KEY_R THUMB_LL, AR1)
+    COMBO(ar2_s, &kp G,		    KEY_S THUMB_LL, AR1)
+    COMBO(ar2_t, &kp W,		    KEY_T THUMB_LL, AR1)
+
+    COMBO(ar2_h, &kp A,		    KEY_H THUMB_RR, AR1)
+    COMBO(ar2_u, &kp X,		    KEY_U THUMB_RR, AR1)
+    COMBO(ar2_o, &kp MINUS,	    KEY_O THUMB_RR, AR1)
+    COMBO(ar2_n, &kp COMMA,	    KEY_N THUMB_RR, AR1)
+    COMBO(ar2_e, &kp P,		    KEY_E THUMB_RR, AR1)
+    COMBO(ar2_a, &kp M,		    KEY_A THUMB_RR, AR1)
+    COMBO(ar2_c, &kp S,		    KEY_C THUMB_RR, AR1)
     
-    COMBO(ar3_l, &kp LS(N2),	KEY_L THUMB_RL, AR1)
-    COMBO(ar3_g, &kp LA(O),	KEY_G THUMB_RL, AR1)
-    COMBO(ar3_d, &kp RBKT,	KEY_D THUMB_RL, AR1)
-    COMBO(ar3_i, &kp GRAVE,	KEY_I THUMB_RL, AR1)
-    COMBO(ar3_r, &kp SQT,	KEY_R THUMB_RL, AR1)
-    COMBO(ar3_s, &kp I,		KEY_S THUMB_RL, AR1)
-    COMBO(ar3_t, &kp O,		KEY_T THUMB_RL, AR1)
-    COMBO(ar3_h, &kp NUBS,	KEY_H THUMB_RL, AR1)
-    COMBO(ar3_u, &kp LS(N4),	KEY_U THUMB_RL, AR1)
-    COMBO(ar3_o, &kp LS(N6),	KEY_O THUMB_RL, AR1)
-    COMBO(ar3_n, &kp BSLH,	KEY_N THUMB_RL, AR1)
+    COMBO(ar3_l, &kp LS(N2),    KEY_L THUMB_LR, AR1)
+    COMBO(ar3_g, &kp LA(O),	    KEY_G THUMB_LR, AR1)
+    COMBO(ar3_d, &kp RBKT,	    KEY_D THUMB_LR, AR1)
+    COMBO(ar3_i, &kp GRAVE,	    KEY_I THUMB_LR, AR1)
+    COMBO(ar3_r, &kp SQT,	    KEY_R THUMB_LR, AR1)
+    COMBO(ar3_s, &kp I,		    KEY_S THUMB_LR, AR1)
+    COMBO(ar3_t, &kp O,		    KEY_T THUMB_LR, AR1)
+
+    COMBO(ar3_h, &kp NUBS,	    KEY_H THUMB_RL, AR1)
+    COMBO(ar3_u, &kp LS(N4),    KEY_U THUMB_RL, AR1)
+    COMBO(ar3_o, &kp LS(N6),    KEY_O THUMB_RL, AR1)
+    COMBO(ar3_n, &kp BSLH,	    KEY_N THUMB_RL, AR1)
     COMBO(ar3_e, &kp LS(FSLH),	KEY_E THUMB_RL, AR1)
-    COMBO(ar3_a, &kp FSLH,	KEY_A THUMB_RL, AR1)
-    COMBO(ar3_c, &kp Z,		KEY_C THUMB_RL, AR1)
+    COMBO(ar3_a, &kp FSLH,	    KEY_A THUMB_RL, AR1)
+    COMBO(ar3_c, &kp Z,		    KEY_C THUMB_RL, AR1)
 
 };
 
@@ -274,7 +278,8 @@ alpha1 {
     _____             &lctl_en 0 L       &lalt_en 0 G  &lgui_en 0 D  _____            _____        &rgui_en 0 H      &ralt_en 0 U    &rctl_en 0 O     _____  
     &lshft 0 I        &mol NUM R         &mol FUN S    &mol MYS T    _____            _____        &mor NAV N        &mor FUN E      &mor NUM A       &rshft 0 C
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
-                                                       &lt NAV SPC   &num_shifted     &sl_al3      &sl_al2
+                                                       &lt NAV SPC   &num_shifted     _____        _____
+                                                    //    &lt NAV SPC   &num_shifted     &sl_al3      &sl_al2
     >;
 };
 alpha2 {
@@ -301,7 +306,8 @@ alpha1rus {
     _____             &lctl_ru 0 K       &lalt_ru 0 D  &lgui_ru 0 L _____            _____        &rgui_ru 0 V      &ralt_ru 0 E    &rctl_ru 0 J     _____
     &lshft 0 B        &mol NUM H         &mol FUN C    &mol MYS N   _____            _____        &mor NAV Y        &mor FUN T      &mor NUM F       &rshft 0 R
     _____             _____              _____         _____        _____            _____        _____             _____           _____            _____
-                                                       &lt NAV SPC   &num_shifted     &sl_ar3      &sl_ar2
+                                                       &lt NAV SPC   &num_shifted    _____        _____
+                                                    //    &lt NAV SPC   &num_shifted     &sl_ar3      &sl_ar2
     >;
 };
 alpha2rus {
