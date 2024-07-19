@@ -91,9 +91,9 @@ name: name##_mod_tap_righthand {                        \
 combos {
     compatible = "zmk,combos";
     lock               { key-positions = < KEY_L KEY_G KEY_D >; bindings = <&lock>;             timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
-    to_eng             { key-positions = < KEY_R KEY_S KEY_T >; bindings = <&eng>;              timeout-ms = < COMBO_TIMEOUT_3 >; layers = < AL1 AR1 >; };   
-    to_rus             { key-positions = < KEY_N KEY_E KEY_A >; bindings = <&rus>;              timeout-ms = < COMBO_TIMEOUT_3 >; layers = < AL1 AR1 >; };      
-    toggle_device      { key-positions = < KEY_H KEY_U KEY_O >; bindings = <&bt BT_SEL 255>;    timeout-ms = < COMBO_TIMEOUT_3 >; layers = < AL1 AR1 >; };      
+    to_eng             { key-positions = < KEY_R KEY_S KEY_T >; bindings = <&eng>;              timeout-ms = < COMBO_TIMEOUT_3 >; layers = < AL1 AR1 >; };
+    to_rus             { key-positions = < KEY_N KEY_E KEY_A >; bindings = <&rus>;              timeout-ms = < COMBO_TIMEOUT_3 >; layers = < AL1 AR1 >; };
+    toggle_device      { key-positions = < KEY_H KEY_U KEY_O >; bindings = <&bt BT_SEL 255>;    timeout-ms = < COMBO_TIMEOUT_3 >; layers = < AL1 AR1 >; };
 
     shift_lock         { key-positions = < KEY_G KEY_S >;       bindings = <&kt LSHFT>;         timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
     alt_esc            { key-positions = < KEY_I KEY_R >;       bindings = <&kp LA(ESC)>;       timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
@@ -164,7 +164,7 @@ combos {
     COMBO(ar2_e, &kp P,		    KEY_E THUMB_RR, AR1)
     COMBO(ar2_a, &kp M,		    KEY_A THUMB_RR, AR1)
     COMBO(ar2_c, &kp S,		    KEY_C THUMB_RR, AR1)
-    
+
     COMBO(ar3_l, &kp LS(N2),    KEY_L THUMB_LR, AR1)
     COMBO(ar3_g, &kp LA(O),	    KEY_G THUMB_LR, AR1)
     COMBO(ar3_d, &kp RBKT,	    KEY_D THUMB_LR, AR1)
@@ -188,7 +188,7 @@ macros {
         compatible = "zmk,behavior-macro";
         #binding-cells = <0>;
         bindings =
-            <&macro_press &mo NUM &kp LSHFT>,
+            <&macro_press &kp LSHFT &mo NUM >,
             <&macro_pause_for_release>,
             <&macro_release &mo NUM &kp LSHFT>;
         };
@@ -201,12 +201,12 @@ macros {
         compatible = "zmk,behavior-macro";
         #binding-cells = <0>;
         bindings = < &kp F18 &to AL1 >;
-        }; 
+        };
     rus: rus {
         compatible = "zmk,behavior-macro";
         #binding-cells = <0>;
         bindings = < &kp F19 &to AR1 >;
-        }; 
+        };
     ONESHOT_LAYER_MACRO(sl_al2, AL2)
     ONESHOT_LAYER_MACRO(sl_al3, AL3)
     ONESHOT_LAYER_MACRO(sl_ar2, AR2)
@@ -223,19 +223,19 @@ macros {
 };
 
 behaviors {
-    HOME_ROW_MOD_TAP_LEFT (lalt_ru, &alt_ru, tap-preferred)
-    HOME_ROW_MOD_TAP_LEFT (lgui_ru, &gui_ru, tap-preferred)
-    HOME_ROW_MOD_TAP_LEFT (lctl_ru, &ctl_ru, tap-preferred)
-    HOME_ROW_MOD_TAP_RIGHT(ralt_ru, &alt_ru, tap-preferred)
-    HOME_ROW_MOD_TAP_RIGHT(rgui_ru, &gui_ru, tap-preferred)
-    HOME_ROW_MOD_TAP_RIGHT(rctl_ru, &ctl_ru, tap-preferred)
-    
-    HOME_ROW_MOD_TAP_LEFT (lalt_en, &alt_en, tap-preferred)
-    HOME_ROW_MOD_TAP_LEFT (lgui_en, &gui_en, tap-preferred)
-    HOME_ROW_MOD_TAP_LEFT (lctl_en, &ctl_en, tap-preferred)
-    HOME_ROW_MOD_TAP_RIGHT(ralt_en, &alt_en, tap-preferred)
-    HOME_ROW_MOD_TAP_RIGHT(rgui_en, &gui_en, tap-preferred)
-    HOME_ROW_MOD_TAP_RIGHT(rctl_en, &ctl_en, tap-preferred)
+    HOME_ROW_MOD_TAP_LEFT (lalt_ru, &alt_ru, balanced)
+    HOME_ROW_MOD_TAP_LEFT (lgui_ru, &gui_ru, balanced)
+    HOME_ROW_MOD_TAP_LEFT (lctl_ru, &ctl_ru, balanced)
+    HOME_ROW_MOD_TAP_RIGHT(ralt_ru, &alt_ru, balanced)
+    HOME_ROW_MOD_TAP_RIGHT(rgui_ru, &gui_ru, balanced)
+    HOME_ROW_MOD_TAP_RIGHT(rctl_ru, &ctl_ru, balanced)
+
+    HOME_ROW_MOD_TAP_LEFT (lalt_en, &alt_en, balanced)
+    HOME_ROW_MOD_TAP_LEFT (lgui_en, &gui_en, balanced)
+    HOME_ROW_MOD_TAP_LEFT (lctl_en, &ctl_en, balanced)
+    HOME_ROW_MOD_TAP_RIGHT(ralt_en, &alt_en, balanced)
+    HOME_ROW_MOD_TAP_RIGHT(rgui_en, &gui_en, balanced)
+    HOME_ROW_MOD_TAP_RIGHT(rctl_en, &ctl_en, balanced)
 
     HOME_ROW_MOD_TAP_LEFT(lshft, &shft, balanced)
     HOME_ROW_MOD_TAP_RIGHT(rshft, &shft, balanced)
@@ -275,10 +275,10 @@ keymap {
 // ======================================================================= ALPHA =======================================================================================
 alpha1 {
     bindings = <
-    _____             &lctl_en 0 L       &lalt_en 0 G  &lgui_en 0 D  _____            _____        &rgui_en 0 H      &ralt_en 0 U    &rctl_en 0 O     _____  
+    _____             &lctl_en 0 L       &lalt_en 0 G  &lgui_en 0 D  _____            _____        &rgui_en 0 H      &ralt_en 0 U    &rctl_en 0 O     _____
     &lshft 0 I        &mol NUM R         &mol FUN S    &mol MYS T    _____            _____        &mor NAV N        &mor FUN E      &mor NUM A       &rshft 0 C
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
-                                                       &lt NAV SPC   &num_shifted     _____        _____
+                                                       &lt NAV SPC   &num_shifted     &lt NAV SPC  &lt NAV SPC
                                                     //    &lt NAV SPC   &num_shifted     &sl_al3      &sl_al2
     >;
 };
@@ -295,7 +295,7 @@ alpha3 {
     _____             &kp LS(SQT)        &kp LS(LBKT)  &kp LS(RBKT)  _____            _____        &kp LS(BSLH)      &kp SEMI        &kp LS(SEMI)     _____
     &kp GRAVE         &kp SQT            &kp LBKT      &kp RBKT      _____            _____        &kp BSLH          &kp COMMA       &kp DOT          &kp FSLH
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
-                                                       &kp SPC       &none            &none        &to AL1 
+                                                       &kp SPC       &none            &none        &to AL1
     >;
 };
 
@@ -306,7 +306,7 @@ alpha1rus {
     _____             &lctl_ru 0 K       &lalt_ru 0 D  &lgui_ru 0 L _____            _____        &rgui_ru 0 V      &ralt_ru 0 E    &rctl_ru 0 J     _____
     &lshft 0 B        &mol NUM H         &mol FUN C    &mol MYS N   _____            _____        &mor NAV Y        &mor FUN T      &mor NUM F       &rshft 0 R
     _____             _____              _____         _____        _____            _____        _____             _____           _____            _____
-                                                       &lt NAV SPC   &num_shifted    _____        _____
+                                                       &lt NAV SPC   &num_shifted    &lt NAV SPC  &lt NAV SPC
                                                     //    &lt NAV SPC   &num_shifted     &sl_ar3      &sl_ar2
     >;
 };
@@ -323,7 +323,7 @@ alpha3rus {
     _____             &none              &none         &kp RBKT      _____            _____        &kp NUBS          &kp LS(N4)      &kp LS(N6)       _____
     &kp GRAVE         &kp SQT            &kp I         &kp O         _____            _____        &kp BSLH          &kp LS(FSLH)    &kp FSLH         &kp Z
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
-                                                       &kp SPC       &none            &none        &to AR1 
+                                                       &kp SPC       &none            &none        &to AR1
     >;
 };
 
@@ -361,7 +361,7 @@ system {
     _____             &kp C_BRI_UP       &bt BT_SEL 3  &bt BT_SEL 4  _____            _____        &kp C_MUTE        &kp C_VOL_DN    &kp C_VOL_UP     _____
     &kp C_BRI_DN      &bt BT_SEL 0       &bt BT_SEL 1  &bt BT_SEL 2  _____            _____        &kp C_PREV        &kp C_PP        &kp C_NEXT       &out OUT_TOG
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
-                                                       &bt BT_DISC 1 &bt BT_CLR       &bootloader  &bt BT_CLR                                                                      
+                                                       &bt BT_DISC 1 &bt BT_CLR       &bootloader  &bt BT_CLR
     >;
 };
 
