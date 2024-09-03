@@ -96,8 +96,8 @@ combos {
     toggle_device      { key-positions = < KEY_H KEY_U KEY_O >; bindings = <&bt BT_SEL 255>;    timeout-ms = < COMBO_TIMEOUT_3 >; layers = < AL1 AR1 >; };
 
     shift_lock         { key-positions = < KEY_G KEY_S >;       bindings = <&kt LSHFT>;         timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
-    alt_esc            { key-positions = < KEY_I KEY_R >;       bindings = <&kp LA(ESC)>;       timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
-    shift_alt_esc      { key-positions = < KEY_I KEY_R KEY_S >; bindings = <&kp LS(LA(ESC))>;   timeout-ms = < COMBO_TIMEOUT_3 >; layers = < AL1 AR1 >; };
+    hyper_left         { key-positions = < KEY_S KEY_T >;       bindings = <&kp LS(LA(LG(LCTRL)))>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
+    hyper_right        { key-positions = < KEY_N KEY_E >;       bindings = <&kp LS(LA(LG(LCTRL)))>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
 
     copy_cut           { key-positions = < KEY_R KEY_T >;       bindings = <&td_copy_cut>;      timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
     paste              { key-positions = < KEY_L KEY_D >;       bindings = <&kp LG(V)>;         timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
@@ -278,7 +278,7 @@ alpha1 {
     _____             &lctl_en 0 L       &lalt_en 0 G  &lgui_en 0 D  _____            _____        &rgui_en 0 H      &ralt_en 0 U    &rctl_en 0 O     _____
     &lshft 0 I        &mol NUM R         &mol FUN S    &mol MYS T    _____            _____        &mor NAV N        &mor FUN E      &mor NUM A       &rshft 0 C
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
-                                                       &lt NAV SPC   &num_shifted     &lt NAV SPC  &lt NAV SPC
+                                                       &lt NAV SPC   &num_shifted     &mt LC(LGUI) LG(LS(SPC))  &lt NAV SPC
                                                     //    &lt NAV SPC   &num_shifted     &sl_al3      &sl_al2
     >;
 };
@@ -306,7 +306,7 @@ alpha1rus {
     _____             &lctl_ru 0 K       &lalt_ru 0 D  &lgui_ru 0 L _____            _____        &rgui_ru 0 V      &ralt_ru 0 E    &rctl_ru 0 J     _____
     &lshft 0 B        &mol NUM H         &mol FUN C    &mol MYS N   _____            _____        &mor NAV Y        &mor FUN T      &mor NUM F       &rshft 0 R
     _____             _____              _____         _____        _____            _____        _____             _____           _____            _____
-                                                       &lt NAV SPC   &num_shifted    &lt NAV SPC  &lt NAV SPC
+                                                       &lt NAV SPC   &num_shifted    &mt LC(LGUI) LG(LS(SPC))  &lt NAV SPC
                                                     //    &lt NAV SPC   &num_shifted     &sl_ar3      &sl_ar2
     >;
 };
@@ -352,7 +352,7 @@ function {
     _____             &kp LCTL           &kp LALT      &lgui_en 0 F5 _____            _____        &lgui_en 0 F6     &lalt_en 0 F11  &lctl_en 0 F12   _____
     &lshft 0 F1       &kp F2             &kp F3        &kp F4        _____            _____        &kp F7            &kp F8          &kp F9           &rshft 0 F10
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
-                                                       &kp C_EJECT   &kp PRINTSCREEN  &kp K_APP    &mo SYS
+                                                       &kp C_EJECT   &kp PRINTSCREEN  &kp K_APP    &kp CAPS
     >;
 };
 
