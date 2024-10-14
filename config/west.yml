@@ -6,10 +6,10 @@ manifest:
       url-base: https://github.com/zmkfirmware
   projects:
     - name: zmk
-      # remote: zmkfirmware
-      # revision: main
-      remote: petejohanson
-      revision: feat/pointers-move-scroll
+      remote: zmkfirmware
+      revision: main
+      # remote: petejohanson
+      # revision: feat/pointers-move-scroll
       import: app/west.yml
   self:
     path: config
