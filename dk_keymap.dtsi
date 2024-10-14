@@ -102,6 +102,8 @@ combos {
     to_eng             { key-positions = < KEY_R KEY_S KEY_T >; bindings = <&eng>;              timeout-ms = < COMBO_TIMEOUT_3 >; layers = < AL1 AR1 >; };
     to_rus             { key-positions = < KEY_N KEY_E KEY_A >; bindings = <&rus>;              timeout-ms = < COMBO_TIMEOUT_3 >; layers = < AL1 AR1 >; };
     toggle_device      { key-positions = < KEY_H KEY_U KEY_O >; bindings = <&bt BT_SEL 255>;    timeout-ms = < COMBO_TIMEOUT_3 >; layers = < AL1 AR1 >; };
+    studio_unlock      { key-positions = < KEY_H KEY_U KEY_O >; bindings = <&studio_unlock>;    timeout-ms = < COMBO_TIMEOUT_3 >; layers = < FUN >; };
+
 
     shift_lock         { key-positions = < KEY_G KEY_S >;       bindings = <&kt LSHFT>;         timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
     hyper_left         { key-positions = < KEY_S KEY_T >;       bindings = <&sk LS(LA(LG(LCTRL)))>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
@@ -301,6 +303,7 @@ keymap {
 
 // ======================================================================= ALPHA =======================================================================================
 alpha1 {
+    display-name = "Alpha";
     bindings = <
     _____             &lctl_en 0 L       &lalt_en 0 G  &lgui_en 0 D  _____            _____        &rgui_en 0 H      &ralt_en 0 U    &rctl_en 0 O     _____
     &lshft 0 I        &mol NUM R         &mol FUN S    &mol MYS T    _____            _____        &mor NAV N        &mor FUN E      &mor NUM A       &rshft 0 C
@@ -310,6 +313,7 @@ alpha1 {
     >;
 };
 alpha2 {
+    display-name = "Alpha 2";
     bindings = <
     _____             &kp V              &kp W         &kp M         _____            _____        &kp F             &kp NUBS        &kp MINUS        _____
     &kp Q             &kp J              &kp P         &kp K         _____            _____        &kp B             &kp Z           &kp X            &kp Y
@@ -318,6 +322,7 @@ alpha2 {
     >;
 };
 alpha3 {
+    display-name = "Alpha 3";
     bindings = <
     _____             &kp LS(SQT)        &kp LS(LBKT)  &kp LS(RBKT)  _____            _____        &kp LS(BSLH)      &kp SEMI        &kp LS(SEMI)     _____
     &kp GRAVE         &kp SQT            &kp LBKT      &kp RBKT      _____            _____        &kp BSLH          &kp COMMA       &kp DOT          &kp FSLH
@@ -329,6 +334,7 @@ alpha3 {
 // ======================================================================= ALPHA RUS =======================================================================================
 
 alpha1rus {
+    display-name = "Alpha RU";
     bindings = <
     _____             &lctl_ru 0 K       &lalt_ru 0 D  &lgui_ru 0 L _____            _____        &rgui_ru 0 V      &ralt_ru 0 E    &rctl_ru 0 J     _____
     &lshft 0 B        &mol NUM H         &mol FUN C    &mol MYS N   _____            _____        &mor NAV Y        &mor FUN T      &mor NUM F       &rshft 0 R
@@ -338,6 +344,7 @@ alpha1rus {
     >;
 };
 alpha2rus {
+    display-name = "Alpha 2 RU";
     bindings = <
     _____             &kp SEMI           &kp U         &kp LBKT      _____            _____        &kp A             &kp X           &kp MINUS        _____
     &kp DOT           &kp Q              &kp G         &kp W         _____            _____        &kp COMMA         &kp P           &kp M            &kp S
@@ -346,6 +353,7 @@ alpha2rus {
     >;
 };
 alpha3rus {
+    display-name = "Alpha 3 RU";
     bindings = <
     _____             &none              &none         &kp RBKT      _____            _____        &kp NUBS          &kp LS(N4)      &kp LS(N6)       _____
     &kp GRAVE         &kp SQT            &kp I         &kp O         _____            _____        &kp BSLH          &kp LS(FSLH)    &kp FSLH         &kp Z
@@ -357,6 +365,7 @@ alpha3rus {
 // ======================================================================= ADDINIONAL =======================================================================================
 
 numbers {
+    display-name = "Numbers";
     bindings = <
     _____          &kp KP_DIVIDE     &kp KP_PLUS       &kp N5        _____            _____        &kp N6            &kp MINUS       &kp EQUAL        _____
     &kp N1         &kp N2            &kp N3            &kp N4        _____            _____        &kp N7            &kp N8          &kp N9           &kp N0
@@ -366,6 +375,7 @@ numbers {
 };
 
 navigation {
+    display-name = "Navigation";
     bindings = <
     _____             &kp LCTL           &kp LALT      &kp LGUI      _____            _____        &kp PG_DN         &kp UP          &kp PG_UP        _____
     &kp LSHFT         &kp TAB            &kp HOME      &kp END       _____            _____        &kp LEFT          &kp DOWN        &kp RIGHT        &kp BACKSPACE
@@ -375,6 +385,7 @@ navigation {
 };
 
 function {
+    display-name = "Functional";
     bindings = <
     _____             &kp LCTL           &kp LALT      &lgui_en 0 F5 _____            _____        &lgui_en 0 F6     &lalt_en 0 F11  &lctl_en 0 F12   _____
     &lshft 0 F1       &kp F2             &kp F3        &kp F4        _____            _____        &kp F7            &kp F8          &kp F9           &rshft 0 F10
@@ -384,6 +395,7 @@ function {
 };
 
 system {
+    display-name = "System";
     bindings = <
     _____             &kp C_BRI_UP       &bt BT_SEL 3  &bt BT_SEL 4  _____            _____        &kp C_MUTE        &kp C_VOL_DN    &kp C_VOL_UP     _____
     &kp C_BRI_DN      &bt BT_SEL 0       &bt BT_SEL 1  &bt BT_SEL 2  _____            _____        &kp C_PREV        &kp C_PP        &kp C_NEXT       &out OUT_TOG
@@ -393,9 +405,12 @@ system {
 };
 
 mouse {
+    display-name = "Mouse (WIP)";
     bindings = <
-    _____             &kp LCTL           &kp LALT      &kp LGUI      _____            _____        &msc SCRL_DOWN    &mmv MOVE_UP    &msc SCRL_UP     _____
-    &kp LSHFT         &kp LG(SQT)        &kp LG(GRAVE) &none         _____            _____        &mmv MOVE_LEFT    &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &none
+    _____             &kp LCTL           &kp LALT      &kp LGUI      _____            _____        &none  &none  &none     _____
+    &kp LSHFT         &kp LG(SQT)        &kp LG(GRAVE) &none         _____            _____        &none  &none  &none     _____
+    // _____             &kp LCTL           &kp LALT      &kp LGUI      _____            _____        &msc SCRL_DOWN    &mmv MOVE_UP    &msc SCRL_UP     _____
+    // &kp LSHFT         &kp LG(SQT)        &kp LG(GRAVE) &none         _____            _____        &mmv MOVE_LEFT    &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &none
     _____             _____              _____         _____         _____            _____        _____             _____           _____            _____
                                                        &mkp MB1      &mkp MB2         &none        &mkp MB3
     >;
