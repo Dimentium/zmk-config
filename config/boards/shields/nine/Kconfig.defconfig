@@ -26,4 +26,7 @@ if SHIELD_NINE_LEFT || SHIELD_NINE_RIGHT
 config ZMK_SPLIT
     default y
 
+config ZMK_BEHAVIOR_METADATA
+    default y
+
 endif

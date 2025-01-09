@@ -12,6 +12,7 @@
   chosen {
     zmk,kscan = &kscan0;
     // zmk,matrix_transform = &default_transform;
+    wakeup-source;
     zmk,physical-layout = &default_layout;
   };
 
@@ -26,7 +27,10 @@ default_transform:
   };
 
 kscan0:
-  kscan { compatible = "zmk,kscan-gpio-direct"; };
+  kscan { 
+    compatible = "zmk,kscan-gpio-direct";
+    wakeup-source;
+  };
 
 default_layout:
   default_layout {
