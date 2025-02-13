@@ -139,7 +139,7 @@ combos {
     enter_left         { key-positions = < KEY_R KEY_S >;       bindings = <&kp ENTER>;         timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
     enter_right        { key-positions = < KEY_E KEY_A >;       bindings = <&kp ENTER>;         timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 NAV >; };
     backspace_left     { key-positions = < KEY_G KEY_T >;       bindings = <&kp BACKSPACE>;     timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
-    backspace_right    { key-positions = < KEY_N KEY_U >;       bindings = <&kp BACKSPACE>;     timeout-ms = < COMBO_TIMEOUT_2 >; };
+    backspace_right    { key-positions = < KEY_N KEY_U >;       bindings = <&kp BACKSPACE>;     timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
     alt_backspace_left { key-positions = < KEY_L KEY_G KEY_T >; bindings = <&kp LA(BACKSPACE)>; timeout-ms = < COMBO_TIMEOUT_3 >; layers = < AL1 AR1 >; };
     alt_backspace_right{ key-positions = < KEY_N KEY_U KEY_O >; bindings = <&kp LA(BACKSPACE)>; timeout-ms = < COMBO_TIMEOUT_3 >; layers = < AL1 AR1 >; };
     delete_left        { key-positions = < KEY_G KEY_R >;       bindings = <&kp DEL>;           timeout-ms = < COMBO_TIMEOUT_2 >; layers = < AL1 AR1 >; };
