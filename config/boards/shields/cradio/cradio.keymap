@@ -1,0 +1,196 @@
+// Copyright (c) 2022 The ZMK Contributors
+// SPDX-License-Identifier: MIT
+
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+
+
+#define KEY_Q 0
+#define KEY_W 1
+#define KEY_E 2
+#define KEY_R 3
+#define KEY_T 4
+
+#define KEY_Y 5
+#define KEY_U 6
+#define KEY_I 7
+#define KEY_O 8
+#define KEY_P 9
+
+#define KEY_A 10
+#define KEY_S 11
+#define KEY_D 12
+#define KEY_F 13
+#define KEY_G 14
+
+#define KEY_H 15
+#define KEY_J 16
+#define KEY_K 17
+#define KEY_L 18
+#define KEY_QUOTE 19
+
+#define KEY_Z 20
+#define KEY_X 21
+#define KEY_C 22
+#define KEY_V 23
+#define KEY_B 24
+
+#define KEY_N 25
+#define KEY_M 26
+#define KEY_COMMA 27
+#define KEY_DOT   28
+#define KEY_FSLH  29
+
+#define THUMB_LL 30
+#define THUMB_LR 31
+#define THUMB_RL 32
+#define THUMB_RR 33
+
+#define LEFT_HALF   0  1  2  3  4 10 11 12 13 14 20 21 22 23 24 
+#define RIGHT_HALF  5  6  7  8  9 15 16 17 18 19 25 26 27 28 29
+#define THUMBS     30 31 32 33
+
+// Aliases
+#define _ &kp
+#define ___ &none
+#define ______ &trans
+
+// Layers
+#define DEF  0
+#define NAV   1
+#define SYM   2
+#define AR1   3
+#define AR2   4
+#define AR3   5
+#define NUM   6
+#define NA2   7
+#define FUN   8
+#define SYS   9
+#define MYS  10
+#define FN2  11
+
+// Constants
+#define TAPPING_TERM    300  // tapping-term-ms = <300>;
+#define QUICK_TAP_TERM  250  // tapping-term-ms = <300>;
+#define COMBO_TIMEOUT_2  50  // timeout-ms for 2 fingers cofbos
+#define COMBO_TIMEOUT_3  80  // timeout-ms for 2 fingers combos
+
+/ {
+combos {
+    compatible = "zmk,combos";
+    studio_unlock      { key-positions = < 0 1 2 >;             bindings = <&studio_unlock>;    timeout-ms = < COMBO_TIMEOUT_3 >; layers = < DEF >; };
+
+    copy_cut           { key-positions = < KEY_S KEY_F >;       bindings = <&td_copy_cut>;      timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
+    paste              { key-positions = < KEY_W KEY_R >;       bindings = <&kp LG(V)>;         timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
+    undo               { key-positions = < KEY_A KEY_F >;       bindings = <&kp LG(Z)>;         timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
+    redo               { key-positions = < KEY_Q KEY_R >;       bindings = <&kp LS(LG(Z))>;     timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
+
+    escape_left        { key-positions = < KEY_W KEY_F >;       bindings = <&kp ESC>;           timeout-ms = < COMBO_TIMEOUT_2 >; };
+    escape_right       { key-positions = < KEY_I KEY_O >;       bindings = <&kp ESC>;           timeout-ms = < COMBO_TIMEOUT_2 >; };
+    enter_left         { key-positions = < KEY_S KEY_D >;       bindings = <&kp ENTER>;         timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
+    enter_right        { key-positions = < KEY_K KEY_L >;       bindings = <&kp ENTER>;         timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
+    backspace_left     { key-positions = < KEY_E KEY_F >;       bindings = <&kp BACKSPACE>;     timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
+    backspace_right    { key-positions = < KEY_J KEY_I >;       bindings = <&kp BACKSPACE>;     timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
+    alt_backspace_left { key-positions = < KEY_W KEY_E KEY_F >; bindings = <&kp LA(BACKSPACE)>; timeout-ms = < COMBO_TIMEOUT_3 >; layers = < DEF >; };
+    alt_backspace_right{ key-positions = < KEY_J KEY_I KEY_O >; bindings = <&kp LA(BACKSPACE)>; timeout-ms = < COMBO_TIMEOUT_3 >; layers = < DEF >; };
+    delete_left        { key-positions = < KEY_S KEY_E >;       bindings = <&kp DEL>;           timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
+    delete_right       { key-positions = < KEY_I KEY_L >;       bindings = <&kp DEL>;           timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
+    tab_left           { key-positions = < KEY_E KEY_R >;       bindings = <&kp TAB>;           timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
+    tab_right          { key-positions = < KEY_U KEY_I >;       bindings = <&kp TAB>;           timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
+};
+
+behaviors {
+    ht: hold_tap {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        flavor = "tap-preferred";
+        tapping-term-ms = <220>;
+        quick-tap-ms = <150>;
+        require-prior-idle-ms = <100>;
+        bindings = <&kp>, <&kp>;
+    };
+    td_copy_cut: tap_dance_copy_cut {
+        compatible = "zmk,behavior-tap-dance";
+        #binding-cells = <0>;
+        tapping-term-ms = <300>;
+        bindings = <&kp LG(C)>, <&kp LG(X)>;
+    };
+};
+
+conditional_layers {
+    compatible = "zmk,conditional-layers";
+    tri_layer {
+        if-layers = <1 2>;
+        then-layer = <3>;
+    };
+};
+
+
+
+keymap {
+    compatible = "zmk,keymap";
+    default_layer {
+        bindings = <
+_ Q          _ W          _ E          _ R         _ T             _ Y          _ U          _ I          _ O          _ P
+_ A          _ S          _ D          _ F         _ G             _ H          _ J          _ K          _ L          _ SQT
+_ Z          _ X          _ C          _ V         _ B             _ N          _ M          _ COMMA      _ DOT        _ FSLH
+                                       _ SPACE     &lt 1         &lt 2      _ LSFT
+        >;
+    };
+
+    right_layer {
+        bindings = <
+        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+        //│ INSERT   │  1       │  2       │  3       │          │   │ HOME     │ PAGE DN  │ PAGE UP  │ END      │  :       │
+            &kp INS    &kp N1     &kp N2     &kp N3     &trans         &kp HOME   &kp PG_DN  &kp PG_UP  &kp END    &kp COLON
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│ DELETE   │  4       │  5       │  6       │          │   │ LEFT     │ DOWN     │ UP       │ RIGHT    │  ;       │
+            &kp DEL    &kp N4     &kp N5     &kp N6     &trans         &kp LEFT   &kp DOWN   &kp UP   &kp RIGHT   &kp SEMI
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│ CAPS     │  7       │  8       │  9       │  0       │   │          │          │          │          │          │
+           &caps_word  &kp N7     &kp N8     &kp N9     &kp N0         &trans     &trans     &trans     &trans     &trans
+        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
+                                             &trans     &kp ESC        &studio_unlock  &trans
+        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+            >;
+        };
+
+        left_layer {
+            bindings = <
+        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+        //│          │  [       │  {       │  }       │          │   │  ^       │  (       │  )       │  ]       │  ~       │
+            &trans     &kp LBKT   &kp LBRC   &kp RBRC   &trans         &kp CARET  &kp LPAR   &kp RPAR   &kp RBKT   &kp TILDE
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│  !       │  @       │  #       │  $       │  %       │   │  *       │  -       │  =       │  \       │  `       │
+            &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT      &kp ASTRK  &kp MINUS  &kp EQUAL  &kp BSLH   &kp GRAVE
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│          │          │          │          │          │   │  &       │  _       │  +       │  │       │          │
+            &trans     &trans     &trans     &trans     &trans         &kp AMPS   &kp UNDER  &kp PLUS   &kp PIPE   &trans
+        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
+                                             &trans     &trans         &trans     &trans
+        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+            >;
+        };
+
+        tri_layer {
+            bindings = <
+        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+        //│ RESET    │          │          │          │PROFILE 0 │   │          │          │          │          │  RESET   │
+           &sys_reset  &trans     &trans     &trans    &bt BT_SEL 0    &trans     &trans     &trans     &trans    &sys_reset
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│BOOTLOADER│          │          │          │PROFILE 1 │   │          │          │          │          │BOOTLOADER│
+          &bootloader  &trans     &trans     &trans    &bt BT_SEL 1    &trans     &trans     &trans     &trans    &bootloader
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│          │          │          │ CLEAR BT │PROFILE 2 │   │          │          │          │          │          │
+            &trans     &trans     &trans    &bt BT_CLR &bt BT_SEL 2    &trans     &trans     &trans     &trans     &trans
+        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
+                                             &trans     &trans         &trans     &trans
+        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+            >;
+        };
+    };
+};

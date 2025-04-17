@@ -1,0 +1,12 @@
+file_format: "1"
+id: cradio
+name: Cradio/Sweep
+type: shield
+url: https://github.com/davidphilipbarr/Sweep
+requires: [nice_nano_v2]
+features:
+  - keys
+  - mouse
+siblings:
+  - cradio_left
+  - cradio_right
