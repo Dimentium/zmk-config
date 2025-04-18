@@ -44,3 +44,24 @@
 #define LEFT_HALF   0  1  2  3  4 10 11 12 13 14 20 21 22 23 24 
 #define RIGHT_HALF  5  6  7  8  9 15 16 17 18 19 25 26 27 28 29
 #define THUMBS     30 31 32 33
+
+#define COMBO(NAME, BINDINGS, KEYPOS, LAYERS) \
+  combo_##NAME { \
+    timeout-ms = <65>; \
+    bindings = <BINDINGS>; \
+    key-positions = <KEYPOS>; \
+    layers = <LAYERS>; \
+};
+
+#define MOD_MACRO(name, mod)                            \
+name: name## {                                    \
+    compatible = "zmk,behavior-macro";              \
+    #binding-cells = <0>;                           \
+    wait-ms = <0>;                                  \
+    bindings                                            \
+        = <&macro_press &kp mod>                        \
+        , <&macro_pause_for_release>                    \
+        , <&macro_release &kp mod>;                     \
+ };
+
+// EOF
