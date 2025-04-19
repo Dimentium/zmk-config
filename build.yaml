@@ -1,11 +1,11 @@
 ---
 include:
   - board:  nice_nano_v2
-    shield: nine_left
+    shield: cradio_left
   - board:  nice_nano_v2
-    shield: nine_right
-  - board:  seeeduino_xiao_ble
-    shield: zaphod_lite
+    shield: cradio_right
+  # - board:  seeeduino_xiao_ble
+  #   shield: zaphod_lite
   # - board: nice_nano_v2
   #   shield: cradio_left
   # - board: nice_nano_v2
