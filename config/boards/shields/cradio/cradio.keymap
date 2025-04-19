@@ -51,7 +51,7 @@ combos {
     undo               { key-positions = < 10 13 >;  bindings = <&kp LG(Z)>;         timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
     redo               { key-positions = < 0 3 >;    bindings = <&kp LS(LG(Z))>;     timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
 
-    escape_left        { key-positions = < 1 13 >;   bindings = <&kp ESC>;           timeout-ms = < COMBO_TIMEOUT_2 >; };
+    escape_left        { key-positions = < 1 2 >;   bindings = <&kp ESC>;           timeout-ms = < COMBO_TIMEOUT_2 >; };
     escape_right       { key-positions = < 7 8 >;    bindings = <&kp ESC>;           timeout-ms = < COMBO_TIMEOUT_2 >; };
     enter_left         { key-positions = < 11 12 >;  bindings = <&kp ENTER>;         timeout-ms = < COMBO_TIMEOUT_2 >; };
     enter_right        { key-positions = < 17 18 >;  bindings = <&kp ENTER>;         timeout-ms = < COMBO_TIMEOUT_2 >; };
