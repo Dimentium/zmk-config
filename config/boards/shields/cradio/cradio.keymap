@@ -53,16 +53,16 @@ combos {
 
     escape_left        { key-positions = < 1 13 >;   bindings = <&kp ESC>;           timeout-ms = < COMBO_TIMEOUT_2 >; };
     escape_right       { key-positions = < 7 8 >;    bindings = <&kp ESC>;           timeout-ms = < COMBO_TIMEOUT_2 >; };
-    enter_left         { key-positions = < 11 12 >;  bindings = <&kp ENTER>;         timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
-    enter_right        { key-positions = < 17 18 >;  bindings = <&kp ENTER>;         timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
-    backspace_left     { key-positions = < 2 13 >;   bindings = <&kp BACKSPACE>;     timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
-    backspace_right    { key-positions = < 16 7 >;   bindings = <&kp BACKSPACE>;     timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
-    alt_backspace_left { key-positions = < 1 2 13 >; bindings = <&kp LA(BACKSPACE)>; timeout-ms = < COMBO_TIMEOUT_3 >; layers = < DEF >; };
-    alt_backspace_right{ key-positions = < 16 7 8 >; bindings = <&kp LA(BACKSPACE)>; timeout-ms = < COMBO_TIMEOUT_3 >; layers = < DEF >; };
-    delete_left        { key-positions = < 11 2 >;   bindings = <&kp DEL>;           timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
-    delete_right       { key-positions = < 7 18 >;   bindings = <&kp DEL>;           timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
-    tab_left           { key-positions = < 2 3 >;    bindings = <&kp TAB>;           timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
-    tab_right          { key-positions = < 6 7 >;    bindings = <&kp TAB>;           timeout-ms = < COMBO_TIMEOUT_2 >; layers = < DEF >; };
+    enter_left         { key-positions = < 11 12 >;  bindings = <&kp ENTER>;         timeout-ms = < COMBO_TIMEOUT_2 >; };
+    enter_right        { key-positions = < 17 18 >;  bindings = <&kp ENTER>;         timeout-ms = < COMBO_TIMEOUT_2 >; };
+    backspace_left     { key-positions = < 2 13 >;   bindings = <&kp BACKSPACE>;     timeout-ms = < COMBO_TIMEOUT_2 >; };
+    backspace_right    { key-positions = < 16 7 >;   bindings = <&kp BACKSPACE>;     timeout-ms = < COMBO_TIMEOUT_2 >; };
+    alt_backspace_left { key-positions = < 1 2 13 >; bindings = <&kp LA(BACKSPACE)>; timeout-ms = < COMBO_TIMEOUT_3 >; };
+    alt_backspace_right{ key-positions = < 16 7 8 >; bindings = <&kp LA(BACKSPACE)>; timeout-ms = < COMBO_TIMEOUT_3 >; };
+    delete_left        { key-positions = < 11 2 >;   bindings = <&kp DEL>;           timeout-ms = < COMBO_TIMEOUT_2 >; };
+    delete_right       { key-positions = < 7 18 >;   bindings = <&kp DEL>;           timeout-ms = < COMBO_TIMEOUT_2 >; };
+    tab_left           { key-positions = < 2 3 >;    bindings = <&kp TAB>;           timeout-ms = < COMBO_TIMEOUT_2 >; };
+    tab_right          { key-positions = < 6 7 >;    bindings = <&kp TAB>;           timeout-ms = < COMBO_TIMEOUT_2 >; };
 };
 
 behaviors {
@@ -121,7 +121,7 @@ keymap {
         display-name = "Ext";
         bindings = <
 &kp NUBS       &kp SQT        &none          &none         &none           &none          &kp MINUS      &kp EQUAL      &kp LBKT       &kp RBKT
-&hml LSHFT N1  &kp N2         &kp N3         &kp N4        &kp N5          &kp N6         &kp N7         &kp N8         &kp N9         &kp N0
+&hml LSHFT N1  &kp N2         &kp N3         &kp N4        &kp N5          &kp N6         &kp N7         &kp N8         &kp N9         &hmr RSHFT N0
 &kp GRAVE      &kp LCTRL      &kp LALT       &kp LGUI      &none           &none          &kp RGUI       &kp RALT       &kp RCTRL      &kp BSLH
                                              &kp SPACE     &none           &mo 3          &kp ENTER
         >;
@@ -141,7 +141,7 @@ keymap {
         display-name = "Fun";
         bindings = <
 &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3  &reset_or_boot  &reset_or_boot &kp F11        &kp F12        &none          &none
-&hml LSHFT F1  &kp F2         &kp F3         &kp F4        &kp F5          &kp F6         &kp F7         &kp F8         &kp F9         &kp F10
+&hml LSHFT F1  &kp F2         &kp F3         &kp F4        &kp F5          &kp F6         &kp F7         &kp F8         &kp F9         &hmr RSHFT F10
 &kp GLOBE      &kp LCTRL      &kp LALT       &kp LGUI      &bt BT_CLR      &none          &kp RGUI       &kp RALT       &kp RCTRL      &none
                                              &none         &none           &none          &none
         >;
