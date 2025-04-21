@@ -20,9 +20,9 @@
 
 // Constants
 #define TAPPING_TERM    300  // tapping-term-ms = <300>;
-#define QUICK_TAP_TERM  250  // quick-tap-ms = <300>;
+#define QUICK_TAP_TERM  250  // quick-tap-ms = <250>;
 #define COMBO_TIMEOUT_2  50  // timeout-ms for 2 fingers cofbos
-#define COMBO_TIMEOUT_3  80  // timeout-ms for 2 fingers combos
+#define COMBO_TIMEOUT_3  80  // timeout-ms for 3 fingers combos
 
 // Tune-up built-in behaviors
 &sk {
