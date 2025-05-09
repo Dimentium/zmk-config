@@ -1,0 +1,12 @@
+if SHIELD_ANIOTE
+
+config ZMK_KEYBOARD_NAME
+    default "Aniote"
+
+config ZMK_USB
+    default n
+
+config ZMK_BEHAVIOR_METADATA
+    default y
+
+endif

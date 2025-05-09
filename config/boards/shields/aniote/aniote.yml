@@ -1,0 +1,9 @@
+file_format: "1"
+id: aniote
+name: aniote
+type: shield
+url: https://github.com/dimentium/anisote
+requires: [seeeduino_xiao_ble]
+features:
+  - keys
+  - mouse
