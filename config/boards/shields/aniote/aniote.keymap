@@ -167,27 +167,16 @@
 #define L_LAT 0
 #define L_RUS 1
 #define L_LTR 0 1
-#define L_NUM 2
-#define L_TXT 2
-#define L_SYM 3
-#define L_ADD 4
-#define L_NAV 5
-#define L_FUN 6
-#define L_SYS 7
-#define L_ALL 0 1 2 3 4 5 6 7
+#define L_NAV 2
+#define L_ALL 0 1 2
 
-#define R_LAT 8
-#define R_RUS 9
-#define R_LTR 8 9
-#define R_NUM 10
-#define R_SYM 11
-#define R_ADD 12
-#define R_NAV 13
-#define R_FUN 14
-#define R_SYS 15
-#define R_ALL 9 10 11 12 13 14 15
+#define R_LAT 3
+#define R_RUS 4
+#define R_LTR 3 4
+#define R_NAV 5
+#define R_ALL 3 4 5
 
-#define BLE 16
+#define BLE 6
 
 // tune-up default behaviors
 &sk { release-after-ms = <TIMEOUT_SK>; quick-release; };
@@ -282,11 +271,12 @@
 
         COMBO( to_eng_left , &to_eng_l        , D1 D2 D3 D5       , L_LTR R_LTR )
         COMBO( to_rus_left , &to_rus_l        , U1 U2 U3 D5       , L_LTR R_LTR )
-        // COMBO( to_eng_right, &to_eng_r        , D1R D2R D3R D5R   , L_LTR R_LTR )
-        // COMBO( to_rus_right, &to_rus_r        , U1R U2R U3R D5R   , L_LTR R_LTR )
+        COMBO( to_eng_right, &to_eng_r        , D1R D2R D3R D5R   , L_LTR R_LTR )
+        COMBO( to_rus_right, &to_rus_r        , U1R U2R U3R D5R   , L_LTR R_LTR )
 
-        // COMBO( sl_ble      , &sl BLE          , U1 U5 D1 D5       , L_LTR R_LTR )
-        // COMBO( clear_ble   , &bt BT_CLR       , U2 U3 D4 D2 D3 D4 , L_LTR R_LTR )
+        COMBO( sl_ble      , &mo BLE          , U1 U5 D1 D5       , L_LTR R_LTR )
+        COMBO( clear_ble   , &bt BT_CLR       , U3 D3             , BLE )
+        COMBO( capslock    , &kp CAPSLOCK     , U1 U2 U3 U4 U5    , L_LTR R_LTR )
 
         // COMBO( copy_cut    , &td_copy_cut     , D2 D4             , L_NAV R_NAV )
         // COMBO( paste       , &kp LG(V)        , U2 U4             , L_NAV R_NAV )
@@ -306,18 +296,18 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&to L_RUS &kp F19>;};
-        // to_eng_r: to_eng_r {
-        //     compatible = "zmk,behavior-macro";
-        //     #binding-cells = <0>;
-        //     bindings = <&to R_LAT &kp F18>;};
+        to_eng_r: to_eng_r {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to R_LAT &kp F18>;};
         // to_eng_lock_r: to_eng_lock_r {
         //     compatible = "zmk,behavior-macro";
         //     #binding-cells = <0>;
         //     bindings = <&to R_LAT &kp F18 &kp LC(LG(Q))>;};
-        // to_rus_r: to_rus_r {
-        //     compatible = "zmk,behavior-macro";
-        //     #binding-cells = <0>;
-        //     bindings = <&to R_RUS &kp F19>;};
+        to_rus_r: to_rus_r {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to R_RUS &kp F19>;};
     };
 
     behaviors {
@@ -336,7 +326,7 @@
             display-name = "EN";
             bindings = <
                 &kp I           &kp A               &kp E               &kp O               &sk LSHFT
-                &kp R           &kp S               &kp T               &kp N               &lt L_TXT SPC
+                &kp R           &kp S               &kp T               &kp N               &lt L_NAV SPC
             >;
         };
 
@@ -344,15 +334,47 @@
             display-name = "RU";
             bindings = <
                 &kp I_RU        &kp A_RU            &kp E_RU            &kp O_RU            &sk LSHFT
-                &kp R_RU        &kp S_RU            &kp T_RU            &kp N_RU            &lt L_TXT SPC
+                &kp R_RU        &kp S_RU            &kp T_RU            &kp N_RU            &lt L_NAV SPC
             >;
         };
 
-        L_NUM {
-            display-name = "RU";
+        L_NAV {
+            display-name = "NAV";
             bindings = <
                 &sk LCTRL       &sk LALT            &kp UP              &sk LGUI            &kp BSPC
-                &sk LSHFT       &kp LEFT            &kp DOWN            &kp RIGHT           &lt L_TXT SPC
+                &sk LSHFT       &kp LEFT            &kp DOWN            &kp RIGHT           _____
+            >;
+        };
+        
+        R_LAT {
+            display-name = "EN";
+            bindings = <
+                &sk LSHFT       &kp O               &kp E               &kp A               &kp I
+                &lt R_NAV SPC   &kp N               &kp T               &kp S               &kp R
+            >;
+        };
+
+        R_RUS {
+            display-name = "RU";
+            bindings = <
+                &sk LSHFT       &kp O_RU            &kp E_RU            &kp A_RU            &kp I_RU
+                &lt R_NAV SPC   &kp N_RU            &kp T_RU            &kp S_RU            &kp R_RU
+            >;
+        };
+
+        R_NAV {
+            display-name = "NAV";
+            bindings = <
+                &kp BSPC        &sk LGUI            &kp UP              &sk LALT            &sk LCTRL
+                _____           &kp LEFT            &kp DOWN            &kp RIGHT           &sk LSFT
+            >;
+        };
+
+        BLE {
+            display-name = "BLE";
+            bindings = <
+                _____           &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2        _____
+                _____           _____               _____               _____               _____
             >;
         };
     };
