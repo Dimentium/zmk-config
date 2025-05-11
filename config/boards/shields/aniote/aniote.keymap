@@ -9,8 +9,7 @@
 #define TIMEOUT_TD 300
 #define TIMEOUT_SL 1000
 #define TIMEOUT_SK 5000
-#define TIMEOUT_COMBO 80
-
+#define TIMEOUT_COMBO 100
 
 #define COMBO_LETTER(ROW, BINDINGS, KEYPOS_LEFT, KEYPOS_RIGHT) \
   combo_left_##BINDINGS##_##ROW \
@@ -80,7 +79,7 @@
 
 
 /***************** Keyboard  ******************
-*    U1L  U2L  U3L  U4L  U5L       U5R  U4R  U3R  U2R  U1R 
+*   U1L  U2L  U3L  U4L  U5L       U5R  U4R  U3R  U2R  U1R 
 *    T_L  I_L  D3L  R_L  P_L       P_R  R_R  M_R  I_R  T_R 
 **********************************************/
 
@@ -94,6 +93,38 @@
 #define M_R  7
 #define R_R  8
 #define P_R  9
+
+#define X____ 5
+#define _x___ 6
+#define __x__ 7
+#define ___x_ 8
+#define ____x 9
+#define Xx___ 5 6
+#define X_x__ 5 7
+#define X__x_ 5 8
+#define X___x 5 9
+#define _xx__ 6 7
+#define _x_x_ 6 8
+#define _x__x 6 9
+#define __xx_ 7 8
+#define __x_x 7 9
+#define ___xx 8 9
+#define Xxx__ 5 6 7
+#define Xx_x_ 5 6 8
+#define Xx__x 5 6 9
+#define X_xx_ 5 7 8
+#define X_x_x 5 7 9
+#define X__xx 5 8 9
+#define _xxx_ 6 7 8
+#define _xx_x 6 7 9
+#define _x_xx 6 8 9
+#define __xxx 7 8 9
+#define Xxxx_ 5 6 7 8
+#define Xxx_x 5 6 7 9
+#define Xx_xx 5 6 8 9
+#define X_xxx 5 7 8 9
+#define _xxxx 6 7 8 9
+#define Xxxxx 5 6 7 8 9
 
 #define U1L  4
 #define U2L  3
@@ -159,10 +190,19 @@
 
 #define SPC_RU SPC
 
-#define THUMB &kp SPACE
-#define _____ &none
+#define THUMB  &kp SPACE
+#define _____  &none
+#define REPEAT &key_repeat
+#define RESET  &rst
 
 // Layers
+
+#define BASE 0
+#define ARPEGGIO 1
+#define PUNCT 2
+#define DIGIT 3
+#define ALTGR 4
+#define FUNCT 5
 
 #define R_LAT 0
 #define R_RUS 1
@@ -178,6 +218,25 @@
 
 #define BLE 6
 
+#define SL1 7
+#define SL2 8
+#define SL3 9
+#define SL4 10
+#define SL5 11
+
+
+#define CMB(CHORD, BASE_BIND, PUNCT_BIND, DIGIT_BIND, ALTGR_BIND, FUNCT_BIND, SL1_BIND, SL2_BIND, SL3_BIND, SL4_BIND, SL5_BIND) \
+combo_base_##CHORD  { timeout-ms = <TIMEOUT_COMBO>; bindings = <BASE_BIND> ; key-positions = <CHORD>; layers = <BASE>;  }; \
+combo_punct_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <PUNCT_BIND>; key-positions = <CHORD>; layers = <PUNCT>; }; \
+combo_digit_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <DIGIT_BIND>; key-positions = <CHORD>; layers = <DIGIT>; }; \
+combo_altgr_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <ALTGR_BIND>; key-positions = <CHORD>; layers = <ALTGR>; }; \
+combo_funct_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <FUNCT_BIND>; key-positions = <CHORD>; layers = <FUNCT>; }; \
+combo_sl1_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL1_BIND>; key-positions = <CHORD>; layers = <SL1>; }; \
+combo_sl2_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL2_BIND>; key-positions = <CHORD>; layers = <SL2>; }; \
+combo_sl3_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL3_BIND>; key-positions = <CHORD>; layers = <SL3>; }; \
+combo_sl4_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL4_BIND>; key-positions = <CHORD>; layers = <SL4>; }; \
+combo_sl5_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL5_BIND>; key-positions = <CHORD>; layers = <SL5>; };
+
 // tune-up default behaviors
 &sk { release-after-ms = <TIMEOUT_SK>; quick-release; };
 &sl { release-after-ms = <TIMEOUT_SL>; };
@@ -186,41 +245,55 @@
 / {
     combos {
         compatible = "zmk,combos";
+// SYS  combos 
+        COMBO ( to_eng_left  , &to_eng_l         , U1L  M_L  R_L  P_L        , L_LTR  R_LTR  )
+        COMBO ( to_rus_left  , &to_rus_l         , T_L  U3L  U4L  U5L        , L_LTR  R_LTR  )
+        COMBO ( to_eng_right , &to_eng_r         , U1R  M_R  R_R  P_R    , L_LTR  R_LTR  )
+        COMBO ( to_rus_right , &to_rus_r         , T_R  U3R  U4R  U5R    , L_LTR  R_LTR  )
+
+        COMBO ( sl_ble       , &mo  BLE           , U1L  U5L  T_L  P_L        , L_LTR  R_LTR  )
+        COMBO ( clear_ble    , &bt  BT_CLR        , U3L  M_L              , BLE  )
+        COMBO ( capslock     , &kp  CAPSLOCK      , U1L  U2L  U3L  U4L  U5L     , L_LTR  R_LTR  )
+
         combo_boot   { bindings = <&bootloader>; key-positions = < 0 2 4 5 7 9 >; timeout-ms = <TIMEOUT_COMBO>; };
         combo_studio { bindings = <&studio_unlock>; key-positions = < 1 2 3 6 7 8 >; timeout-ms = <TIMEOUT_COMBO>; };
-        // combo_repeat        { layers = <L_LTR>; timeout-ms = <T2>; key-positions = <U1L P_L>;         bindings = <&key_repeat>; };
-        // rcombo_repeat        { layers = <R_LTR>; timeout-ms = <T2>; key-positions = <U1R P_R>;         bindings = <&key_repeat>; };
 
-// Letters
-//                    Row   Key      Left chord                Right chord    
-     // COMBO_LETTER ( D  , SPC    , T_L                      , T_R                     )
-        
-        COMBO_LETTER ( D  ,  A     , T_L  R_L                 , T_R  R_R                )
-        COMBO_LETTER ( D  ,  B     , T_L  M_L  R_L            , T_R  M_R  R_R           )
-        COMBO_LETTER ( D  ,  C     , I_L  R_L                 , I_R  R_R                )
-        COMBO_LETTER ( D  ,  D     , T_L  P_L                 , T_R  P_R                )
-     // COMBO_LETTER ( D  ,  E     , M_L                      , M_R                     )
-        COMBO_LETTER ( D  ,  F     , T_L  I_L                 , T_R  I_R                )
-        COMBO_LETTER ( D  ,  G     , R_L  P_L                 , R_R  P_R                )
-        COMBO_LETTER ( D  ,  H     , T_L  I_L  P_L            , T_R  I_R  P_R           )
-     // COMBO_LETTER ( D  ,  I     , R_L                      , R_R                     )
-        COMBO_LETTER ( D  ,  J     , I_L  P_L                 , I_R  P_R                )
-        COMBO_LETTER ( D  ,  K     , I_L  M_L  R_L  P_L       , I_R  M_R  R_R  P_R      )
-        COMBO_LETTER ( D  ,  L     , I_L  M_L                 , I_R  M_R                )
-        COMBO_LETTER ( D  ,  M     , M_L  R_L  P_L            , M_R  R_R  P_R           )
-     // COMBO_LETTER ( D  ,  N     , P_L                      , P_R                     )
-        COMBO_LETTER ( D  ,  O     , M_L  R_L                 , M_R  R_R                )
-        COMBO_LETTER ( D  ,  P     , T_L  I_L  M_L  R_L       , T_R  I_R  M_R  R_R      )
-        COMBO_LETTER ( D  ,  Q     , T_L  I_L  R_L            , T_R  I_R  R_R           )
-        COMBO_LETTER ( D  ,  R     , T_L  M_L                 , T_R  M_R                )
-     // COMBO_LETTER ( D  ,  S     , I_L                      , I_R                     )
-        COMBO_LETTER ( D  ,  T     , T_L  M_L  R_L  P_L       , T_R  M_R  R_R  P_R      )
-        COMBO_LETTER ( D  ,  U     , I_L  M_L  R_L            , I_R  M_R  R_R           )
-        COMBO_LETTER ( D  ,  V     , I_L  R_L  P_L            , I_R  R_R  P_R           )
-        COMBO_LETTER ( D  ,  W     , T_L  I_L  M_L  R_L  P_L  , T_R  I_R  M_R  R_R  P_R )
-        COMBO_LETTER ( D  ,  X     , T_L  I_L  R_L  P_L       , T_R  I_R  R_R  P_R      )
-        COMBO_LETTER ( D  ,  Y     , T_L  R_L  P_L            , T_R  R_R  P_R           )
-        COMBO_LETTER ( D  ,  Z     , T_L  I_L  M_L            , T_R  I_R  M_R           )
+   //    CHORD   BASE          PUNCT        DIGIT        ALTGR        FUNCT        SL1          SL2          SL3          SL4          SL5
+   // --------------------------------------------------------------------------------------------------------------------------------------------
+   CMB (   U3R , &kp REPEAT  , &kp REPEAT , &kp REPEAT , &kp REPEAT , &kp REPEAT , &kp REPEAT , &kp REPEAT , &kp REPEAT , &kp REPEAT , &kp REPEAT)
+
+   CMB ( X____ , &lt SL1 SPC , &kp SPC    , &kp SPC    , &kp SPC    , &kp SPC    , _____      , &kt LSHFT  , &to PUNCT  , &to DIGIT  , &kt LCTRL )
+   CMB ( X__x_ , &kp A       , &kp GRAVE  , &kp N6     , _____      , &kp F6     , _____      , _____      , _____      , _____      , _____     )
+   CMB ( X_xx_ , &kp B       , &kp LS(LBKT),&kp LEFT   , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
+   CMB ( __x_x , &kp C       , &kp RBKT   , &kp COMMA  , _____      , &kp LG(C)  , _____      , _____      , _____      , _____      , _____     )
+   CMB ( X___x , &kp D       , &kp FSLH   , &kp DOT    , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
+   CMB ( __x__ , &lt SL3 E   , &kp LBKT   , &kp N2     , _____      , &kp F2     , &sl PUNCT  , &kp TAB    , _____      , _____      , _____     )
+   CMB ( Xx___ , &kp F       , &kp QMARK  , &kp N4     , _____      , &kp F4     , _____      , _____      , _____      , _____      , _____     )
+   CMB ( ___xx , &kp G       , &kp EQUAL  , &kp N9     , _____      , &kp F9     , _____      , _____      , _____      , _____      , _____     )
+   CMB ( Xx__x , &kp H       , &kp HASH   , &kp HOME   , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
+   CMB ( ___x_ , &lt SL4 I   , &kp EXCL   , &kp N3     , _____      , &kp F3     , &sl DIGIT  , &kp ENTER  , &sl FUNCT  , _____      , _____     )
+   CMB ( _x__x , &kp J       , &kp SEMI   , &kp COLON  , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
+   CMB ( _xxxx , &kp K       , &kp AT     , _____      , _____      , RESET      , _____      , _____      , _____      , _____      , _____     )
+   CMB ( _xx__ , &kp L       , &kp UNDER  , &kp N7     , _____      , &kp F7     , _____      , _____      , _____      , _____      , _____     )
+   CMB ( __xxx , &kp M       , &kp GT     , &kp MINUS  ,&kp LA(MINUS),&kp F12    , _____      , _____      , _____      , _____      , _____     )
+   CMB ( ____x , &lt SL5 N   , &kp RPAR   , &kp RIGHT  , _____      , _____      , &sk LCTRL  , &sk ALTGR  , _____      , _____      , _____     )
+   CMB ( __xx_ , &kp O       , &kp PIPE   , &kp N8     , _____      , &kp F8     , _____      , _____      , _____      , _____      , _____     )
+   CMB ( Xxxx_ , &kp P       , &kp LS(RBKT),&kp PLUS   , _____      , &kp LG(V)  , _____      , _____      , _____      , _____      , _____     )
+   CMB ( Xx_x_ , &kp Q       , &kp SQT    , &kp PGUP   , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
+   CMB ( X_x__ , &kp R       , &kp DOLLAR , &kp N5     , _____      , &kp F5     , _____      , _____      , _____      , _____      , _____     )
+   CMB ( _x___ , &lt SL2 S   , &kp STAR   , &kp N1     , _____      , &kp F1     , &sk LSHFT  , _____      , _____      , &kp ESC    , _____     )
+   CMB ( X_xxx , &kp T       , &kp PERCENT, &kp TILDE  , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
+   CMB ( _xxx_ , &kp U       , &kp AMPS   , &kp N0     , _____      , &kp F10    , _____      , _____      , _____      , _____      , _____     )
+   CMB ( _x_xx , &kp V       , &kp LPAR   , &kp DOWN   , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
+   CMB ( Xxxxx , &kp W       , &kp LT     , &kp INSERT , _____      , &kp LG(V)  , _____      , _____      , _____      , _____      , _____     )
+   CMB ( Xx_xx , &kp X       , &kp BSLH   , &kp PGDN   , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
+   CMB ( X__xx , &kp Y       , &kp CARET  , &kp UP     , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
+   CMB ( Xxx__ , &kp Z       , &kp DQT    , &kp END    , _____      , &kp F11    , _____      , _____      , _____      , _____      , _____     )
+   // CMB ( __x_x , &kp         , &kp     , &kp     , _____       , _____        , _____      , _____      , _____      , _____      , _____      )
+   // CMB ( _xx_x , &kp         , &kp     , &kp     , _____       , _____        , _____      , _____      , _____      , _____      , _____      )
+   // CMB ( X_x_x , &kp         , &kp     , &kp     , _____       , _____        , _____      , _____      , _____      , _____      , _____      )
+   // CMB ( Xxx_x , &kp         , &kp     , &kp     , _____       , _____        , _____      , _____      , _____      , _____      , _____      )
+
 
         // COMBO_LETTER ( CH    , T_L  U4L        , T_R  U4R          )
         // COMBO_LETTER ( SH    , U2L  R_L        , U2R  R_R          )
@@ -262,26 +335,17 @@
         // COMBO_KEY ( BSPC     , U3L  R_L        , U3R  R_R          , LTR  )
         // COMBO_KEY ( DEL      , U3L  I_L        , U3R  I_R          , LTR  )
 
-        COMBO_KEY ( TAB      , U2L  I_L        , U2R  I_R          , LTR  )
-        COMBO_KEY ( ESC      , U1L  T_L        , U1R  T_R          , LTR  )
-        COMBO_KEY ( ENTER    , U4L  R_L        , U4R  R_R          , LTR  )
+        // COMBO_KEY ( TAB      , U2L  I_L        , U2R  I_R          , LTR  )
+        // COMBO_KEY ( ESC      , U1L  T_L        , U1R  T_R          , LTR  )
+        // COMBO_KEY ( ENTER    , U4L  R_L        , U4R  R_R          , LTR  )
 
         // COMBO_SYS ( BSPC_W   , &kp  LA (BACKSPACE ), U2L  U3L  R_L     , U2R  U3R  R_R      , LTR  )
         // COMBO_SYS ( DEL_W    , &kp  LA (DELETE    ), U3L  U4L  I_L     , U3R  U4R  I_R      , LTR  )
-        COMBO_SYS ( SHFTLOCK , &kt  LSHFT         , U3L  M_L        , U3R  M_R          , LTR  )
+        
         // COMBO_SYS ( LCTRL    , &sk  LCTRL         , U2L  I_L        , U2R  I_R          , LTR  )
         // COMBO_SYS ( LALT     , &sk  LALT          , U3L  M_L        , U3R  M_R          , LTR  )
         // COMBO_SYS ( LGUI     , &sk  LGUI          , U4L  R_L        , U4R  R_R          , LTR  )
 
-// SYS  combos 
-        COMBO ( to_eng_left  , &to_eng_l         , U1L  M_L  R_L  P_L        , L_LTR  R_LTR  )
-        COMBO ( to_rus_left  , &to_rus_l         , T_L  U3L  U4L  U5L        , L_LTR  R_LTR  )
-        COMBO ( to_eng_right , &to_eng_r         , U1R  M_R  R_R  P_R    , L_LTR  R_LTR  )
-        COMBO ( to_rus_right , &to_rus_r         , T_R  U3R  U4R  U5R    , L_LTR  R_LTR  )
-
-        COMBO ( sl_ble       , &mo  BLE           , U1L  U5L  T_L  P_L        , L_LTR  R_LTR  )
-        COMBO ( clear_ble    , &bt  BT_CLR        , U3L  M_L              , BLE  )
-        COMBO ( capslock     , &kp  CAPSLOCK      , U1L  U2L  U3L  U4L  U5L     , L_LTR  R_LTR  )
 
         // COMBO ( copy_cut     , &td_copy_cut      , I_L  R_L              , L_NAV  R_NAV  )
         // COMBO ( paste        , &kp  LG (V )        , U2L  U4L              , L_NAV  R_NAV  )
@@ -293,10 +357,6 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&to L_LAT &kp F18 &kp CAPSLOCK>;};
-        // to_eng_lock_l: to_eng_lock_l {
-        //     compatible = "zmk,behavior-macro";
-        //     #binding-cells = <0>;
-        //     bindings = <&to L_LAT &kp F18 &kp LC(LG(Q))>;};
         to_rus_l: to_rus_l {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -305,14 +365,14 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&to R_LAT &kp F18 &kp CAPSLOCK>;};
-        // to_eng_lock_r: to_eng_lock_r {
-        //     compatible = "zmk,behavior-macro";
-        //     #binding-cells = <0>;
-        //     bindings = <&to R_LAT &kp F18 &kp LC(LG(Q))>;};
         to_rus_r: to_rus_r {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&to R_RUS &kp F19 &kp CAPSLOCK>;};
+        rst: rst {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to 0 &kt_off LSHFT &kt_off LCTRL &kt_off LALT &kt_off LGUI>;};
     };
 
     behaviors {
@@ -322,60 +382,59 @@
             tapping-term-ms = < TIMEOUT_TD >;
             bindings = <&kp LG(C)>, <&kp LG(X)>;};
     };
+        kt_off: key_toggle_off_only {
+            compatible = "zmk,behavior-key-toggle";
+            #binding-cells = <1>;
+            display-name = "Key Toggle OFF";
+            toggle-mode = "off";
+        };
 };
 
 / {
     keymap {
         compatible = "zmk,keymap";
 
-        RIGHT_LAT {
-            display-name = "EN";
+        BASE {
+            display-name = "BASE";
             bindings = <
                 _____           _____               _____               _____               _____
-                &lt R_NAV SPC   &kp S               &kp E               &kp I               &kp N
+                _____           _____               _____               _____               _____
             >;
         };
 
-        RIGHT_RUS {
-            display-name = "RU";
+        PUNCT {
+            display-name = "PUNCT";
             bindings = <
                 _____           _____               _____               _____               _____
-                &lt R_NAV SPC   &kp S_RU            &kp E_RU            &kp I_RU            &kp N_RU
+                _____           _____               _____               _____               _____
           >;
         };
 
-        RIGHT_NAV {
-            display-name = "NAV";
+        DIGIT {
+            display-name = "DIGIT";
             bindings = <
-                &kp BSPC        &sk LGUI            &kp UP              &sk LALT            &sk LCTRL
-                _____           &kp LEFT            &kp DOWN            &kp RIGHT           &sk LSFT
+                _____           _____               _____               _____               _____
+                _____           _____               _____               _____               _____
             >;
         };
 
         
-        LEFT_LAT {
-            display-name = "EN";
+        ALTGR {
+            display-name = "ALTGR";
             bindings = <
                 _____           _____               _____               _____               _____
-                &kp N           &kp I               &kp E               &kp S               &lt L_NAV SPC
+                _____           _____               _____               _____               _____
             >;
         };
 
-        LEFT_RUS {
-            display-name = "RU";
+        FUNCT {
+            display-name = "FUNCT";
             bindings = <
                 _____           _____               _____               _____               _____
-                &kp N_RU        &kp I_RU            &kp E_RU            &kp S_RU            &lt L_NAV SPC
+                _____           _____               _____               _____               _____
             >;
         };
-
-        LEFT_NAV {
-            display-name = "NAV";
-            bindings = <
-                &sk LCTRL       &sk LALT            &kp UP              &sk LGUI            &kp BSPC
-                &sk LSHFT       &kp LEFT            &kp DOWN            &kp RIGHT           _____
-            >;
-        };
+        
         
         BLE {
             display-name = "BLE";
@@ -384,6 +443,47 @@
                 _____           _____               _____               _____               _____
             >;
         };
+
+        SL1 {
+            display-name = "RESERV";
+            bindings = <
+                _____           _____               _____               _____               _____
+                _____           _____               _____               _____               _____
+            >;
+        };
+
+        SL2 {
+            display-name = "RESERV";
+            bindings = <
+                _____           _____               _____               _____               _____
+                _____           _____               _____               _____               _____
+            >;
+        };
+
+        SL3 {
+            display-name = "RESERV";
+            bindings = <
+                _____           _____               _____               _____               _____
+                _____           _____               _____               _____               _____
+            >;
+        };
+
+        SL4 {
+            display-name = "RESERV";
+            bindings = <
+                _____           _____               _____               _____               _____
+                _____           _____               _____               _____               _____
+            >;
+        };
+
+        SL5 {
+            display-name = "RESERV";
+            bindings = <
+                _____           _____               _____               _____               _____
+                _____           _____               _____               _____               _____
+            >;
+        };
+
     };
 };
     
