@@ -9,33 +9,36 @@
 #define TIMEOUT_TD 300
 #define TIMEOUT_SL 1000
 #define TIMEOUT_SK 5000
-#define TIMEOUT_COMBO 70
+#define TIMEOUT_COMBO 80
 
-#define COMBO_LETTER(BINDINGS, KEYPOS_LEFT, KEYPOS_RIGHT) \
-  combo_left_##BINDINGS { \
+
+#define COMBO_LETTER(ROW, BINDINGS, KEYPOS_LEFT, KEYPOS_RIGHT) \
+  combo_left_##BINDINGS##_##ROW \
+  { \
     bindings      = <&kp BINDINGS>; \
     key-positions = <KEYPOS_LEFT>; \
     layers        = <L_LAT>; \
     timeout-ms    = <TIMEOUT_COMBO>; \
   }; \
-  combo_right_##BINDINGS { \
+  combo_right_##BINDINGS##_##ROW { \
     bindings      = <&kp BINDINGS>; \
     key-positions = <KEYPOS_RIGHT>; \
     layers        = <R_LAT>; \
     timeout-ms    = <TIMEOUT_COMBO>; \
   }; \
-  combo_left_##BINDINGS##_ru { \
+  combo_left_##BINDINGS##_##ROW##_ru { \
     bindings      = <&kp BINDINGS ## _RU>; \
     key-positions = <KEYPOS_LEFT>; \
     layers        = <L_RUS>; \
     timeout-ms    = <TIMEOUT_COMBO>; \
   }; \
-  combo_right_##BINDINGS##_ru { \
+  combo_right_##BINDINGS##_##ROW##_ru {\
     bindings      = <&kp BINDINGS ## _RU>; \
     key-positions = <KEYPOS_RIGHT>; \
     layers        = <R_RUS>; \
     timeout-ms    = <TIMEOUT_COMBO>; \
   };
+
 
 #define COMBO_KEY(BINDINGS, KEYPOS_LEFT, KEYPOS_RIGHT, LAYER) \
   combo_left_##BINDINGS { \
@@ -49,65 +52,57 @@
     key-positions = <KEYPOS_RIGHT>; \
     layers        = <R_ ## LAYER>; \
     timeout-ms    = <TIMEOUT_COMBO>; \
-  };
+  }; 
 
 #define COMBO_SYS(NAME, BINDINGS, KEYPOS_LEFT, KEYPOS_RIGHT, LAYER) \
-  combo_left_##NAME { \
+  combo_left_##NAME{ \
     bindings      = <BINDINGS>; \
     key-positions = <KEYPOS_LEFT>; \
     layers        = <L_ ## LAYER>; \
     timeout-ms    = <TIMEOUT_COMBO>; \
   }; \
-  combo_right_##NAME { \
+  combo_right_##NAME{ \
     bindings      = <BINDINGS>; \
     key-positions = <KEYPOS_RIGHT>; \
     layers        = <R_ ## LAYER>; \
     timeout-ms    = <TIMEOUT_COMBO>; \
-  };
+  }; 
 
 #define COMBO(NAME, BINDINGS, KEYPOS, LAYERS) \
-  combo_left_##NAME { \
+  combo_left_##NAME{ \
     bindings      = <BINDINGS>; \
     key-positions = <KEYPOS>; \
     layers        = <LAYERS>; \
     timeout-ms    = <TIMEOUT_COMBO>; \
-  };
+  }; 
 
-/***************** Keyboard ******************
-*    U1 U2 U3 U4 U5      U5R U4R U3R U2R U1R
-*    D1 D2 D3 D4 D5      D5R D4R D3R D2R D1R
+
+
+/***************** Keyboard  ******************
+*    U1L  U2L  U3L  U4L  U5L       U5R  U4R  U3R  U2R  U1R 
+*    D1L  D2L  D3L  D4L  D5L       D5R  D4R  D3R  D2R  D1R 
 **********************************************/
-#define U1  0
-#define U2  1
-#define U3  2
-#define U4  3
-#define U5  4
-#define D1  5
-#define D2  6
-#define D3  7
-#define D4  8
-#define D5  9
-
-#define U1R  4
-#define PFU  4
-#define U2R  3
-#define RFU  3
+#define U1R  0
+#define U2R  1
 #define U3R  2
-#define MFU  2
-#define U4R  1
-#define IFU  1
-#define U5R  0
-#define TFU  0
-#define D1R  9
-#define PFD  9
-#define D2R  8
-#define RFD  8
+#define U4R  3
+#define U5R  4
+#define D1R  5
+#define D2R  6
 #define D3R  7
-#define MFD  7
-#define D4R  6
-#define IFD  6
-#define D5R  5
-#define TFD  5
+#define D4R  8
+#define D5R  9
+
+#define U1L  4
+#define U2L  3
+#define U3L  2
+#define U4L  1
+#define U5L  0
+#define D1L  9
+#define D2L  8
+#define D3L  7
+#define D4L  6
+#define D5L  5
 
 #define A_RU F
 #define B_RU COMMA
@@ -160,6 +155,8 @@
 #define SQT_RU   LA(O)
 #define DQT_RU   LS(N2)
 
+#define SPC_RU SPC
+
 #define THUMB &kp SPACE
 #define _____ &none
 
@@ -188,106 +185,123 @@
         compatible = "zmk,combos";
         combo_boot   { bindings = <&bootloader>; key-positions = < 0 2 4 5 7 9 >; timeout-ms = <TIMEOUT_COMBO>; };
         combo_studio { bindings = <&studio_unlock>; key-positions = < 1 2 3 6 7 8 >; timeout-ms = <TIMEOUT_COMBO>; };
-        // combo_repeat        { layers = <L_LTR>; timeout-ms = <T2>; key-positions = <U1 D5>;         bindings = <&key_repeat>; };   rcombo_repeat        { layers = <R_LTR>; timeout-ms = <T2>; key-positions = <U1R D5R>;         bindings = <&key_repeat>; };
+        // combo_repeat        { layers = <L_LTR>; timeout-ms = <T2>; key-positions = <U1L D5L>;         bindings = <&key_repeat>; };
+        // rcombo_repeat        { layers = <R_LTR>; timeout-ms = <T2>; key-positions = <U1R D5R>;         bindings = <&key_repeat>; };
 
 // Letters
-        // single_a
-        COMBO_LETTER( B    , U1 D4       , U1R D4R         ) //
-        COMBO_LETTER( C    , D3 U4       , D3R U4R         ) //
-        COMBO_LETTER( D    , U1 U2       , U1R U2R         ) //
-        // single_e
-        COMBO_LETTER( F    , U3 D4       , U3R D4R         ) //
-        COMBO_LETTER( G    , U1 U3       , U1R U3R         ) //
-        COMBO_LETTER( H    , D2 U4       , D2R U4R         ) //
-        // single_i
-        COMBO_LETTER( J    , U1 D3       , U1R D3R         ) //
-        COMBO_LETTER( K    , D1 D2       , D1R D2R         ) //
-        COMBO_LETTER( L    , D1 D4       , D1R D4R         ) //
-        COMBO_LETTER( M    , D3 D4       , D3R D4R         ) //
-        // single_n
-        // single_o
-        COMBO_LETTER( P    , U3 U4       , U3R U4R         ) //
-        COMBO_LETTER( Q    , U1 D2       , U1R D2R         ) //
-        // COMBO_LETTER( R    , D3 D5       , D3R D5R         )
-        // single_s
-        // single_t
-        COMBO_LETTER( U    , D2 D3       , D2R D3R         ) //
-        COMBO_LETTER( V    , U1 U4       , U1R U4R         ) //
-        COMBO_LETTER( W    , D1 U3       , D1R U3R         ) //
-        COMBO_LETTER( X    , U2 U3       , U2R U3R         ) //
-        COMBO_LETTER( Y    , D1 D3       , D1R D3R         ) //
-        COMBO_LETTER( Z    , U2 U4       , U2R U4R         ) //
+//                    Row   Key      Left chord                Right chord    
+        COMBO_LETTER ( D  , SPC    , D1L                      , D1R                     )
+        
+        COMBO_LETTER ( D  ,  A     , D1L  D4L                 , D1R  D4R                )
+        COMBO_LETTER ( U  ,  A     , U4L                      , U4R                     )
+        COMBO_LETTER ( D  ,  B     , D1L  D3L  D4L            , D1R  D3R  D4R           )
+        COMBO_LETTER ( U  ,  B     , U3L  U4L                 , U3R  U4R                )
+        COMBO_LETTER ( D  ,  C     , D2L  D4L                 , D2R  D4R                )
+        COMBO_LETTER ( D  ,  D     , D1L  D5L                 , D1R  D5R                )
+        COMBO_LETTER ( U  ,  D     , U5L                      , U5R                     )
+        COMBO_LETTER ( D  ,  E     , D3L                      , D3R                     )
+        COMBO_LETTER ( D  ,  F     , D1L  D2L                 , D1R  D2R                )
+        COMBO_LETTER ( U  ,  F     , U2L                      , U2R                     )
+        COMBO_LETTER ( D  ,  G     , D4L  D5L                 , D4R  D5R                )
+        COMBO_LETTER ( D  ,  H     , D1L  D2L  D5L            , D1R  D2R  D5R           )
+        COMBO_LETTER ( U  ,  H     , U2L  U5L                 , U2R  U5R                )
+        COMBO_LETTER ( D  ,  I     , D4L                      , D4R                     )
+        COMBO_LETTER ( D  ,  J     , D2L  D5L                 , D2R  D5R                )
+        COMBO_LETTER ( D  ,  K     , D2L  D3L  D4L  D5L       , D2R  D3R  D4R  D5R      )
+        COMBO_LETTER ( D  ,  L     , D2L  D3L                 , D2R  D3R                )
+        COMBO_LETTER ( D  ,  M     , D3L  D4L  D5L            , D3R  D4R  D5R           )
+        COMBO_LETTER ( D  ,  N     , D5L                      , D5R                     )
+        COMBO_LETTER ( D  ,  O     , D3L  D4L                 , D3R  D4R                )
+        COMBO_LETTER ( D  ,  P     , D1L  D2L  D3L  D4L       , D1R  D2R  D3R  D4R      )
+        COMBO_LETTER ( U  ,  P     , U2L  U3L  U4L            , U2R  U3R  U4R           )
+        COMBO_LETTER ( D  ,  Q     , D1L  D2L  D4L            , D1R  D2R  D4R           )
+        COMBO_LETTER ( U  ,  Q     , U2L  U4L                 , U2R  U4R                )
+        COMBO_LETTER ( D  ,  R     , D1L  D3L                 , D1R  D3R                )
+        COMBO_LETTER ( U  ,  R     , U3L                      , U3R                     )
+        COMBO_LETTER ( D  ,  S     , D2L                      , D2R                     )
+        COMBO_LETTER ( D  ,  T     , D1L  D3L  D4L  D5L       , D1R  D3R  D4R  D5R      )
+        COMBO_LETTER ( U  ,  T     , U3L  U4L  U5L            , U3R  U4R  U5R           )
+        COMBO_LETTER ( D  ,  U     , D2L  D3L  D4L            , D2R  D3R  D4R           )
+        COMBO_LETTER ( D  ,  V     , D2L  D4L  D5L            , D2R  D4R  D5R           )
+        COMBO_LETTER ( D  ,  W     , D1L  D2L  D3L  D4L  D5L  , D1R  D2R  D3R  D4R  D5R )
+        COMBO_LETTER ( U  ,  W     , U2L  U3L  U4L  U5L       , U2R  U3R  U4R  U5R      )
+        COMBO_LETTER ( D  ,  X     , D1L  D2L  D4L  D5L       , D1R  D2R  D4R  D5R      )
+        COMBO_LETTER ( U  ,  X     , U2L  U4L  U5L            , U2R  U4R  U5R           )
+        COMBO_LETTER ( D  ,  Y     , D1L  D4L  D5L            , D1R  D4R  D5R           )
+        COMBO_LETTER ( U  ,  Y     , U4L  U5L                 , U4R  U5R                )
+        COMBO_LETTER ( D  ,  Z     , D1L  D2L  D3L            , D1R  D2R  D3R           )
+        COMBO_LETTER ( U  ,  Z     , U2L  U3L                 , U2R  U3R                )
 
-        COMBO_LETTER( CH   , D1 U4       , D1R U4R         ) //
-        COMBO_LETTER( SH   , U2 D4       , U2R D4R         ) //
-        COMBO_LETTER( SCH  , U2 D3       , U2R D3R         ) //
-        COMBO_LETTER( SOFT , D2 D4       , D2R D4R         ) //
-        COMBO_LETTER( HARD , D1 U2       , D1R U2R         ) //
-        COMBO_LETTER( YO   , U2 U3 U4    , U2R U3R U4R     ) //
-        COMBO_LETTER( AE   , D2 U3       , D2R U3R         ) //
+        // COMBO_LETTER ( CH    , D1L  U4L        , D1R  U4R          )
+        // COMBO_LETTER ( SH    , U2L  D4L        , U2R  D4R          )
+        // COMBO_LETTER ( SCH   , U2L  D3L        , U2R  D3R          )
+        // COMBO_LETTER ( SOFT  , D2L  D4L        , D2R  D4R          )
+        // COMBO_LETTER ( HARD  , D1L  U2L        , D1R  U2R          )
+        // COMBO_LETTER ( YO    , U2L  U3L  U4L     , U2R  U3R  U4R      )
+        // COMBO_LETTER ( AE    , D2L  U3L        , D2R  U3R          )
 
-// Punctuation
-        COMBO_LETTER( COMMA, D3 D5       , D3R D5R         ) //
-        COMBO_LETTER( SEMI , U3 D5       , U3R D5R         ) //
-        COMBO_LETTER( DOT  , D2 D5       , D2R D5R         ) //
-        COMBO_LETTER( COLON, U2 D5       , U2R D5R         ) //
-        COMBO_LETTER( FSLH , D1 D5       , D1R D5R         ) //
-        COMBO_LETTER( QMARK, U1 D5       , U1R D5R         ) //
-        COMBO_LETTER( SQT  , D4 D5       , D4R D5R         ) //
-        COMBO_LETTER( DQT  , U4 D5       , U4R D5R         ) //
+// Punctuation 
+        // COMBO_LETTER ( COMMA , D3L  D5L        , D3R  D5R          )
+        // COMBO_LETTER ( SEMI  , U3L  D5L        , U3R  D5R          )
+        // COMBO_LETTER ( DOT   , D2L  D5L        , D2R  D5R          )
+        // COMBO_LETTER ( COLON , U2L  D5L        , U2R  D5R          )
+        // COMBO_LETTER ( FSLH  , D1L  D5L        , D1R  D5R          )
+        // COMBO_LETTER ( QMARK , U1L  D5L        , U1R  D5R          )
+        // COMBO_LETTER ( SQT   , D4L  D5L        , D4R  D5R          )
+        // COMBO_LETTER ( DQT   , U4L  D5L        , U4R  D5R          )
 
- // NUM layer
-        // COMBO_KEY( N7      , U3 U4       , U3R U4R         , NUM )
-        // COMBO_KEY( N8      , U2 U3       , U2R U3R         , NUM )
-        // COMBO_KEY( N9      , D3 D4       , D3R D4R         , NUM )
-        // COMBO_KEY( N0      , D2 D3       , D2R D3R         , NUM )
-        // COMBO_KEY( MINUS   , U2 U4       , U2R U4R         , NUM )
-        // COMBO_KEY( EQUAL   , D2 D4       , D2R D4R         , NUM )
- // FUN layer
-        // COMBO_KEY( F7      , U3 U4       , U3R U4R         , FUN )
-        // COMBO_KEY( F8      , U2 U3       , U2R U3R         , FUN )
-        // COMBO_KEY( F9      , D3 D4       , D3R D4R         , FUN )
-        // COMBO_KEY( F10     , D2 D3       , D2R D3R         , FUN )
-        // COMBO_KEY( F11     , U2 U4       , U2R U4R         , FUN )
-        // COMBO_KEY( F12     , D2 D4       , D2R D4R         , FUN )
+ // NUM  layer 
+        // COMBO_KEY ( N7       , U3L  U4L        , U3R  U4R          , NUM  )
+        // COMBO_KEY ( N8       , U2L  U3L        , U2R  U3R          , NUM  )
+        // COMBO_KEY ( N9       , D3L  D4L        , D3R  D4R          , NUM  )
+        // COMBO_KEY ( N0       , D2L  D3L        , D2R  D3R          , NUM  )
+        // COMBO_KEY ( MINUS    , U2L  U4L        , U2R  U4R          , NUM  )
+        // COMBO_KEY ( EQUAL    , D2L  D4L        , D2R  D4R          , NUM  )
+ // FUN  layer 
+        // COMBO_KEY ( F7       , U3L  U4L        , U3R  U4R          , FUN  )
+        // COMBO_KEY ( F8       , U2L  U3L        , U2R  U3R          , FUN  )
+        // COMBO_KEY ( F9       , D3L  D4L        , D3R  D4R          , FUN  )
+        // COMBO_KEY ( F10      , D2L  D3L        , D2R  D3R          , FUN  )
+        // COMBO_KEY ( F11      , U2L  U4L        , U2R  U4R          , FUN  )
+        // COMBO_KEY ( F12      , D2L  D4L        , D2R  D4R          , FUN  )
 
-// NAV layer
-        // COMBO_KEY( PG_UP   , U3 U4       , U3R U4R         , NAV )
-        // COMBO_KEY( PG_DN   , D3 D4       , D3R D4R         , NAV )
-        // COMBO_KEY( SPC     , D2 D3 D4    , D2R D3R D4R     , LTR )
-        // COMBO_KEY( BSPC    , U3 D4       , U3R D4R         , LTR )
-        // COMBO_KEY( DEL     , U3 D2       , U3R D2R         , LTR )
-        COMBO_KEY( TAB     , U2 D2       , U2R D2R         , LTR ) //
-        COMBO_KEY( ESC     , U1 D1       , U1R D1R         , LTR ) //
-        COMBO_KEY( ENTER   , U4 D4       , U4R D4R         , LTR ) //
+// NAV  layer 
+        // COMBO_KEY ( PG_UP    , U3L  U4L        , U3R  U4R          , NAV  )
+        // COMBO_KEY ( PG_DN    , D3L  D4L        , D3R  D4R          , NAV  )
+        // COMBO_KEY ( SPC      , D2L  D3L  D4L     , D2R  D3R  D4R      , LTR  )
+        // COMBO_KEY ( BSPC     , U3L  D4L        , U3R  D4R          , LTR  )
+        // COMBO_KEY ( DEL      , U3L  D2L        , U3R  D2R          , LTR  )
+        COMBO_KEY ( TAB      , U2L  D2L        , U2R  D2R          , LTR  )
+        COMBO_KEY ( ESC      , U1L  D1L        , U1R  D1R          , LTR  )
+        COMBO_KEY ( ENTER    , U4L  D4L        , U4R  D4R          , LTR  )
 
-// SYS combos
-        // COMBO_SYS( BSPC_W  , &kp LA(BACKSPACE), U2 U3 D4    , U2R U3R D4R     , LTR )
-        // COMBO_SYS( DEL_W   , &kp LA(DELETE   ), U3 U4 D2    , U3R U4R D2R     , LTR )
-        COMBO_SYS( SHFTLOCK, &kt LSHFT        , U3 D3       , U3R D3R         , LTR ) //
-        // COMBO_SYS( LCTRL   , &sk LCTRL        , U2 D2       , U2R D2R         , LTR )
-        // COMBO_SYS( LALT    , &sk LALT         , U3 D3       , U3R D3R         , LTR )
-        // COMBO_SYS( LGUI    , &sk LGUI         , U4 D4       , U4R D4R         , LTR )
+// SYS  combos 
+        // COMBO_SYS ( BSPC_W   , &kp  LA (BACKSPACE ), U2L  U3L  D4L     , U2R  U3R  D4R      , LTR  )
+        // COMBO_SYS ( DEL_W    , &kp  LA (DELETE    ), U3L  U4L  D2L     , U3R  U4R  D2R      , LTR  )
+        COMBO_SYS ( SHFTLOCK , &kt  LSHFT         , U3L  D3L        , U3R  D3R          , LTR  )
+        // COMBO_SYS ( LCTRL    , &sk  LCTRL         , U2L  D2L        , U2R  D2R          , LTR  )
+        // COMBO_SYS ( LALT     , &sk  LALT          , U3L  D3L        , U3R  D3R          , LTR  )
+        // COMBO_SYS ( LGUI     , &sk  LGUI          , U4L  D4L        , U4R  D4R          , LTR  )
 
-        COMBO( to_eng_left , &to_eng_l        , D1 D2 D3 D5       , L_LTR R_LTR )
-        COMBO( to_rus_left , &to_rus_l        , U1 U2 U3 D5       , L_LTR R_LTR )
-        COMBO( to_eng_right, &to_eng_r        , D1R D2R D3R D5R   , L_LTR R_LTR )
-        COMBO( to_rus_right, &to_rus_r        , U1R U2R U3R D5R   , L_LTR R_LTR )
+        COMBO ( to_eng_left  , &to_eng_l         , U1L  D3L  D4L  D5L        , L_LTR  R_LTR  )
+        COMBO ( to_rus_left  , &to_rus_l         , D1L  U3L  U4L  U5L        , L_LTR  R_LTR  )
+        COMBO ( to_eng_right , &to_eng_r         , U1R  D3R  D4R  D5R    , L_LTR  R_LTR  )
+        COMBO ( to_rus_right , &to_rus_r         , D1R  U3R  U4R  U5R    , L_LTR  R_LTR  )
 
-        COMBO( sl_ble      , &mo BLE          , U1 U5 D1 D5       , L_LTR R_LTR )
-        COMBO( clear_ble   , &bt BT_CLR       , U3 D3             , BLE )
-        COMBO( capslock    , &kp CAPSLOCK     , U1 U2 U3 U4 U5    , L_LTR R_LTR )
+        COMBO ( sl_ble       , &mo  BLE           , U1L  U5L  D1L  D5L        , L_LTR  R_LTR  )
+        COMBO ( clear_ble    , &bt  BT_CLR        , U3L  D3L              , BLE  )
+        COMBO ( capslock     , &kp  CAPSLOCK      , U1L  U2L  U3L  U4L  U5L     , L_LTR  R_LTR  )
 
-        // COMBO( copy_cut    , &td_copy_cut     , D2 D4             , L_NAV R_NAV )
-        // COMBO( paste       , &kp LG(V)        , U2 U4             , L_NAV R_NAV )
-        // COMBO( undo        , &kp LG(Z)        , U3 D2 D4          , L_NAV R_NAV )
+        // COMBO ( copy_cut     , &td_copy_cut      , D2L  D4L              , L_NAV  R_NAV  )
+        // COMBO ( paste        , &kp  LG (V )        , U2L  U4L              , L_NAV  R_NAV  )
+        // COMBO ( undo         , &kp  LG (Z )        , U3L  D2L  D4L           , L_NAV  R_NAV  )
     };
 
     macros {
         to_eng_l: to_eng_l {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&to L_LAT &kp F18>;};
+            bindings = <&to L_LAT &kp F18 &kp CAPSLOCK>;};
         // to_eng_lock_l: to_eng_lock_l {
         //     compatible = "zmk,behavior-macro";
         //     #binding-cells = <0>;
@@ -295,11 +309,11 @@
         to_rus_l: to_rus_l {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&to L_RUS &kp F19>;};
+            bindings = <&to L_RUS &kp F19 &kp CAPSLOCK>;};
         to_eng_r: to_eng_r {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&to R_LAT &kp F18>;};
+            bindings = <&to R_LAT &kp F18 &kp CAPSLOCK>;};
         // to_eng_lock_r: to_eng_lock_r {
         //     compatible = "zmk,behavior-macro";
         //     #binding-cells = <0>;
@@ -307,7 +321,7 @@
         to_rus_r: to_rus_r {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&to R_RUS &kp F19>;};
+            bindings = <&to R_RUS &kp F19 &kp CAPSLOCK>;};
     };
 
     behaviors {
@@ -322,6 +336,8 @@
 / {
     keymap {
         compatible = "zmk,keymap";
+
+        
         L_LAT {
             display-name = "EN";
             bindings = <
@@ -379,3 +395,4 @@
         };
     };
 };
+    
