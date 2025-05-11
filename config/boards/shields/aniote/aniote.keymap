@@ -97,20 +97,20 @@
 #define Y_RU S
 #define Z_RU P
 
+#define SOFT    M
+#define SOFT_RU M
 #define CH      X
 #define CH_RU   X
 #define SH      I
 #define SH_RU   I
 #define SCH     O
 #define SCH_RU  O
-#define SOFT    M
-#define SOFT_RU M
+#define AE      SQT
+#define AE_RU   SQT
 #define HARD    RBKT
 #define HARD_RU RBKT
 #define YO      GRAVE
 #define YO_RU   GRAVE
-#define AE      SQT
-#define AE_RU   SQT
 
 #define COMMA_RU LS(FSLH)
 #define DOT_RU   FSLH
@@ -120,50 +120,94 @@
 #define QMARK_RU LS(N7)
 #define SQT_RU   LA(O)
 #define DQT_RU   LS(N2)
-
 #define SPC_RU SPC
+
+#define GRAVE_RU GRAVE
+#define N6_RU N6
+#define LBRC_RU LBRC
+#define LEFT_RU LEFT
+#define RBKT_RU RBKT
+#define LBKT_RU LBKT
+#define N2_RU N2
+#define N4_RU N4
+#define EQUAL_RU EQUAL 
+#define N9_RU N9
+#define HASH_RU HASH
+#define HOME_RU HOME
+#define EXCL_RU EXCL
+#define N3_RU N3
+#define AT_RU AT
+#define UNDER_RU UNDER 
+#define N7_RU N7
+#define GT_RU GT
+#define MINUS_RU MINUS
+#define RPAR_RU RPAR
+#define RIGHT_RU RIGHT
+#define PIPE_RU PIPE
+#define N8_RU N8
+#define RBRC_RU RBRC
+#define PLUS_RU PLUS
+#define PGUP_RU PGUP
+#define DOLLAR_RU DOLLAR
+#define N5_RU N5
+#define STAR_RU STAR
+#define N1_RU N1
+#define PERCENT_RU PERCENT 
+#define TILDE_RU TILDE
+#define AMPS_RU AMPS
+#define N0_RU N0
+#define LPAR_RU LPAR
+#define DOWN_RU DOWN
+#define LT_RU LT
+#define INSERT_RU INSERT
+#define BSLH_RU BSLH
+#define PGDN_RU PGDN
+#define CARET_RU CARET 
+#define UP_RU UP
+#define END_RU END
+#define LCTRL_RU LCTRL
+#define LSHFT_RU LSHFT
 
 #define THUMB  &kp SPACE
 #define _____  &none
+#define ______RU  &none
 #define REPEAT &key_repeat
 #define RESET  &rst
+#define BT_USB &bt_usb BLE OUT_TOG
 
 // Layers
 
 #define BASE 0
-#define ARPEGGIO 1
+#define BASE_RU 1
 #define PUNCT 2
-#define DIGIT 3
-#define ALTGR 4
-#define FUNCT 5
+#define PUNCT_RU 3
+#define DIGIT 4
+#define DIGIT_RU 5
+#define ALTGR 6
+#define FUNCT 7
 
-#define R_LAT 0
-#define R_RUS 1
-#define R_LTR 0 1
-#define R_NAV 2
-#define R_ALL 0 1 2
+#define BLE 8
 
-#define L_LAT 3
-#define L_RUS 4
-#define L_LTR 3 4
-#define L_NAV 5
-#define L_ALL 3 4 5
+#define SL1 9
+#define SL1_RU 10
+#define SL2 11
+#define SL3 12
+#define SL4 13
+#define SL5 14
 
-#define BLE 6
-
-#define SL1 7
-#define SL2 8
-#define SL3 9
-#define SL4 10
-#define SL5 11
+#define PENTI 0 1 2 3 4 5 6 7 9 10 11 12 13
 
 #define CMB(CHORD, BASE_BIND, PUNCT_BIND, DIGIT_BIND, ALTGR_BIND, FUNCT_BIND, SL1_BIND, SL2_BIND, SL3_BIND, SL4_BIND, SL5_BIND) \
-combo_base_##CHORD  { timeout-ms = <TIMEOUT_COMBO>; bindings = <BASE_BIND> ; key-positions = <CHORD>; layers = <BASE>;  }; \
-combo_punct_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <PUNCT_BIND>; key-positions = <CHORD>; layers = <PUNCT>; }; \
-combo_digit_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <DIGIT_BIND>; key-positions = <CHORD>; layers = <DIGIT>; }; \
-combo_altgr_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <ALTGR_BIND>; key-positions = <CHORD>; layers = <ALTGR>; }; \
-combo_funct_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <FUNCT_BIND>; key-positions = <CHORD>; layers = <FUNCT>; }; \
-combo_sl1_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL1_BIND>; key-positions = <CHORD>; layers = <SL1>; }; \
+combo_base_##CHORD      { timeout-ms = <TIMEOUT_COMBO>; bindings = <BASE_BIND>      ; key-positions = <CHORD>; layers = <BASE>;  }; \
+combo_base_##CHORD##RU  { timeout-ms = <TIMEOUT_COMBO>; bindings = <BASE_BIND##_RU> ; key-positions = <CHORD>; layers = <BASE_RU>;  }; \
+combo_punct_##CHORD     { timeout-ms = <TIMEOUT_COMBO>; bindings = <PUNCT_BIND>     ; key-positions = <CHORD>; layers = <PUNCT>; }; \
+combo_punct_##CHORD##RU { timeout-ms = <TIMEOUT_COMBO>; bindings = <PUNCT_BIND##_RU>; key-positions = <CHORD>; layers = <PUNCT_RU>; }; \
+combo_digit_##CHORD     { timeout-ms = <TIMEOUT_COMBO>; bindings = <DIGIT_BIND>     ; key-positions = <CHORD>; layers = <DIGIT>; }; \
+combo_digit_##CHORD##RU { timeout-ms = <TIMEOUT_COMBO>; bindings = <DIGIT_BIND##_RU>; key-positions = <CHORD>; layers = <DIGIT_RU>; }; \
+combo_altgr_##CHORD     { timeout-ms = <TIMEOUT_COMBO>; bindings = <ALTGR_BIND>     ; key-positions = <CHORD>; layers = <ALTGR>; }; \
+combo_funct_##CHORD     { timeout-ms = <TIMEOUT_COMBO>; bindings = <FUNCT_BIND>     ; key-positions = <CHORD>; layers = <FUNCT>; }; \
+combo_sl1_##CHORD       { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL1_BIND>       ; key-positions = <CHORD>; layers = <SL1>; }; \
+combo_sl1_##CHORD##RU   { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL1_BIND##_RU>  ; key-positions = <CHORD>; layers = <SL1_RU>; }; \
 combo_sl2_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL2_BIND>; key-positions = <CHORD>; layers = <SL2>; }; \
 combo_sl3_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL3_BIND>; key-positions = <CHORD>; layers = <SL3>; }; \
 combo_sl4_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL4_BIND>; key-positions = <CHORD>; layers = <SL4>; }; \
@@ -178,27 +222,27 @@ combo_sl5_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL5_BIND>; key-pos
     combos {
         compatible = "zmk,combos";
 
-        combo_boot   { bindings = <&bootloader>   ; key-positions = < 0 2 4 5 7 9 >; timeout-ms = <TIMEOUT_COMBO>; };
-        combo_studio { bindings = <&studio_unlock>; key-positions = < 1 2 3 6 7 8 >; timeout-ms = <TIMEOUT_COMBO>; };
-        combo_ble    { bindings = <&mo BLE>       ; key-positions = < 0 4 5 9 >    ; timeout-ms = <TIMEOUT_COMBO>; };
-        combo_caps   { bindings = <&kp CAPSLOCK>  ; key-positions = < 0 1 2 3 4 >  ; timeout-ms = <TIMEOUT_COMBO>; };
+        combo_boot   { bindings = <&bootloader>    ; key-positions = < 0 2 4 5 7 9 >; timeout-ms = <TIMEOUT_COMBO>; };
+        combo_studio { bindings = <&studio_unlock> ; key-positions = < 1 2 3 6 7 8 >; timeout-ms = <TIMEOUT_COMBO>; };
+        combo_ble    { bindings = <BT_USB>         ; key-positions = < 4 >          ; timeout-ms = <TIMEOUT_COMBO>; };
+        combo_caps   { bindings = <&kp CAPSLOCK>   ; key-positions = < 0 1 2 3 4 >  ; timeout-ms = <TIMEOUT_COMBO>; };
 
-        combo_eng_r  { bindings = <&to_eng_r>      ; key-positions = < 5 2 3 4 >   ; timeout-ms = <TIMEOUT_COMBO>; };
-        combo_rus_r  { bindings = <&to_rus_r>      ; key-positions = < 0 7 8 9 >   ; timeout-ms = <TIMEOUT_COMBO>; };
-        combo_eng_l  { bindings = <&to_eng_l>      ; key-positions = < 9 0 1 2 >   ; timeout-ms = <TIMEOUT_COMBO>; };
-        combo_rus_l  { bindings = <&to_rus_r>      ; key-positions = < 4 5 6 7 >   ; timeout-ms = <TIMEOUT_COMBO>; };
+        combo_eng_r  { bindings = <&to_eng_r>      ; key-positions = < 5 2 3 4 >    ; timeout-ms = <TIMEOUT_COMBO>; };
+        combo_rus_r  { bindings = <&to_rus_r>      ; key-positions = < 0 7 8 9 >    ; timeout-ms = <TIMEOUT_COMBO>; };
+        combo_eng_l  { bindings = <&to_eng_l>      ; key-positions = < 9 0 1 2 >    ; timeout-ms = <TIMEOUT_COMBO>; };
+        combo_rus_l  { bindings = <&to_rus_r>      ; key-positions = < 4 5 6 7 >    ; timeout-ms = <TIMEOUT_COMBO>; };
+
+        combo_repeat  { bindings = <&key_repeat>   ; key-positions = < 2 >          ; timeout-ms = <TIMEOUT_COMBO>; layers = < PENTI > ; };
+        combo_reset   { bindings = <&rst>          ; key-positions = < 0 >          ; timeout-ms = <TIMEOUT_COMBO>; layers = < PENTI > ; };
 
         //    CHORD   BASE          PUNCT         DIGIT        ALTGR        FUNCT        SL1          SL2          SL3          SL4          SL5
         // ---------------------------------------------------------------------------------------------------------------------------------------------
-        CMB (   U3R , REPEAT      , REPEAT      , REPEAT     , REPEAT     , REPEAT     , REPEAT     , REPEAT     , REPEAT     , REPEAT     , REPEAT    )
-        CMB (   U1R , RESET       , RESET       , RESET      , RESET      , RESET      , RESET      , RESET      , RESET      , RESET      , RESET     )
-
         CMB ( X____ , &lt SL1 SPC , &lt SL1 SPC , &lt SL1 SPC, &lt SL1 SPC, &lt SL1 SPC, _____      , &kt LSHFT  , &to_punct  , &to_digit  , &kt LCTRL )
         CMB ( X__x_ , &kp A       , &kp GRAVE   , &kp N6     , _____      , &kp F6     , _____      , _____      , _____      , _____      , _____     )
-        CMB ( X_xx_ , &kp B       , &kp LS(LBKT),&kp LEFT    , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
+        CMB ( X_xx_ , &kp B       , &kp LBRC    , &kp LEFT   , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
         CMB ( _x_x_ , &kp C       , &kp RBKT    , &kp COMMA  , _____      , &kp LG(C)  , _____      , _____      , _____      , _____      , _____     )
         CMB ( X___x , &kp D       , &kp FSLH    , &kp DOT    , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
-        CMB ( __x__ , &lt SL3 E   , &lt SL3 LBKT, &lt SL3 N2 , &mo SL3    , &lt SL3 F2 , &sl PUNCT  , &kp BSPC   , _____      , &sl FUNCT  , _____     )
+        CMB ( __x__ , &lt SL3 E   , &lt SL3 LBKT, &lt SL3 N2 , &lt SL3 YO , &lt SL3 F2 , &sl PUNCT  , &kp BSPC   , _____      , &sl FUNCT  , _____     )
         CMB ( Xx___ , &kp F       , &kp QMARK   , &kp N4     , _____      , &kp F4     , _____      , _____      , _____      , _____      , _____     )
         CMB ( ___xx , &kp G       , &kp EQUAL   , &kp N9     , _____      , &kp F9     , _____      , _____      , _____      , _____      , _____     )
         CMB ( Xx__x , &kp H       , &kp HASH    , &kp HOME   , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
@@ -207,9 +251,9 @@ combo_sl5_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL5_BIND>; key-pos
         CMB ( _xxxx , &kp K       , &kp AT      , _____      , _____      , RESET      , _____      , _____      , _____      , _____      , _____     )
         CMB ( _xx__ , &kp L       , &kp UNDER   , &kp N7     , _____      , &kp F7     , _____      , _____      , _____      , _____      , _____     )
         CMB ( __xxx , &kp M       , &kp GT      , &kp MINUS  ,&kp LA(MINUS),&kp F12    , _____      , _____      , _____      , _____      , _____     )
-        CMB ( ____x , &lt SL5 N   , &lt SL5 RPAR, &lt SL5 RIGHT,&mo SL5   , &mo SL5    , &sk LCTRL  , &sk ALTGR  , _____      , _____      , _____     )
+        CMB ( ____x , &lt SL1_RU N, &lt SL5 RPAR, &lt SL5 RIGHT,&mo SL5   , &mo SL5    , &sk LCTRL  , &sk ALTGR  , _____      , _____      , _____     )
         CMB ( __xx_ , &kp O       , &kp PIPE    , &kp N8     , _____      , &kp F8     , _____      , _____      , _____      , _____      , _____     )
-        CMB ( Xxxx_ , &kp P       , &kp LS(RBKT), &kp PLUS   , _____      , &kp LG(V)  , _____      , _____      , _____      , _____      , _____     )
+        CMB ( Xxxx_ , &kp P       , &kp RBRC    , &kp PLUS   , _____      , &kp LG(V)  , _____      , _____      , _____      , _____      , _____     )
         CMB ( Xx_x_ , &kp Q       , &kp SQT     , &kp PGUP   , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
         CMB ( X_x__ , &kp R       , &kp DOLLAR  , &kp N5     , _____      , &kp F5     , _____      , _____      , _____      , _____      , _____     )
         CMB ( _x___ , &lt SL2 S   , &lt SL2 STAR, &lt SL2 N1 , &mo SL2    , &lt SL2 F1 , &sk LSHFT  , _____      , &kp TAB    , &kp ESC    , _____     )
@@ -220,29 +264,29 @@ combo_sl5_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL5_BIND>; key-pos
         CMB ( Xx_xx , &kp X       , &kp BSLH    , &kp PGDN   , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
         CMB ( X__xx , &kp Y       , &kp CARET   , &kp UP     , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
         CMB ( Xxx__ , &kp Z       , &kp DQT     , &kp END    , _____      , &kp F11    , _____      , _____      , _____      , _____      , _____     )
-        // CMB ( __x_x , &kp         , &kp      , &kp     , _____       , _____        , _____      , _____      , _____      , _____      , _____      )
-        // CMB ( _xx_x , &kp         , &kp      , &kp     , _____       , _____        , _____      , _____      , _____      , _____      , _____      )
-        // CMB ( X_x_x , &kp         , &kp      , &kp     , _____       , _____        , _____      , _____      , _____      , _____      , _____      )
-        // CMB ( Xxx_x , &kp         , &kp      , &kp     , _____       , _____        , _____      , _____      , _____      , _____      , _____      )
+        CMB ( __x_x , &kp SOFT    , &kp HARD    , _____      , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
+        CMB ( _xx_x , &kp CH      , _____       , _____      , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
+        CMB ( X_x_x , &kp SH      , &kp SCH     , _____      , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
+        CMB ( Xxx_x , &kp AE      , _____       , _____      , _____      , _____      , _____      , _____      , _____      , _____      , _____     )
     };
 
     macros {
         to_eng_l: to_eng_l {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&to L_LAT &kp F18 &kp CAPSLOCK>;};
+            bindings = <&to BASE &kp F18 &kp CAPSLOCK>;};
         to_rus_l: to_rus_l {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&to L_RUS &kp F19 &kp CAPSLOCK>;};
+            bindings = <&to BASE_RU &kp F19 &kp CAPSLOCK>;};
         to_eng_r: to_eng_r {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&to R_LAT &kp F18 &kp CAPSLOCK>;};
+            bindings = <&to BASE &kp F18 &kp CAPSLOCK>;};
         to_rus_r: to_rus_r {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&to R_RUS &kp F19 &kp CAPSLOCK>;};
+            bindings = <&to BASE_RU &kp F19>;};
         rst: rst {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -273,6 +317,12 @@ combo_sl5_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL5_BIND>; key-pos
             #binding-cells = <1>;
             display-name = "Toggle Layer OFF";
             toggle-mode = "off";};
+         bt_usb: behavior_mo_tog {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&out>; };
     };
 };
 
@@ -288,6 +338,14 @@ combo_sl5_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL5_BIND>; key-pos
             >;
         };
 
+        BASE_RU {
+            display-name = "BASE";
+            bindings = <
+                _____           _____               _____               _____               _____
+                _____           _____               _____               _____               _____
+            >;
+        };
+
         PUNCT {
             display-name = "PUNCT";
             bindings = <
@@ -296,7 +354,23 @@ combo_sl5_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL5_BIND>; key-pos
           >;
         };
 
+        PUNCT_RU {
+            display-name = "PUNCT";
+            bindings = <
+                _____           _____               _____               _____               _____
+                _____           _____               _____               _____               _____
+          >;
+        };
+
         DIGIT {
+            display-name = "DIGIT";
+            bindings = <
+                _____           _____               _____               _____               _____
+                _____           _____               _____               _____               _____
+            >;
+        };
+
+        DIGIT_RU {
             display-name = "DIGIT";
             bindings = <
                 _____           _____               _____               _____               _____
@@ -320,17 +394,24 @@ combo_sl5_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL5_BIND>; key-pos
                 _____           _____               _____               _____               _____
             >;
         };
-        
-        
+                
         BLE {
             display-name = "BLE";
             bindings = <
                 _____           &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2        _____
-                _____           _____               _____               &bt BT_CLR          _____
+                _____           _____               &kp TILDE           &bt BT_CLR          _____
             >;
         };
 
         SL1 {
+            display-name = "RESERV";
+            bindings = <
+                _____           _____               _____               _____               _____
+                _____           _____               _____               _____               _____
+            >;
+        };
+
+        SL1_RU {
             display-name = "RESERV";
             bindings = <
                 _____           _____               _____               _____               _____
