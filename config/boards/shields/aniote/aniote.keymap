@@ -5,11 +5,11 @@
 #include <dt-bindings/zmk/mouse.h>
 
 // Timeouts
-#define TIMEOUT_LT 300
-#define TIMEOUT_TD 300
-#define TIMEOUT_SL 1000
+#define TIMEOUT_LT 200
+#define TIMEOUT_TD 200
+#define TIMEOUT_SL 3000
 #define TIMEOUT_SK 5000
-#define TIMEOUT_COMBO 100
+#define TIMEOUT_COMBO 80
 
 /***************** Keyboard  ******************
 *   U1L  U2L  U3L  U4L  U5L       U5R  U4R  U3R  U2R  U1R 
@@ -169,6 +169,7 @@
 #define LSHFT_RU LSHFT
 
 #define THUMB  &kp SPACE
+#define _  &none
 #define _____  &none
 #define ______RU  &none
 #define REPEAT &key_repeat
@@ -216,7 +217,8 @@ combo_sl5_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL5_BIND>; key-pos
 // tune-up default behaviors
 &sk { release-after-ms = <TIMEOUT_SK>; quick-release; };
 &sl { release-after-ms = <TIMEOUT_SL>; };
-&lt { tapping-term-ms  = <TIMEOUT_LT>; flavor = "tap-preferred";} ;
+&lt { tapping-term-ms  = <TIMEOUT_LT>; flavor = "balanced"; retro-tap;} ;
+
 
 / {
     combos {
@@ -338,13 +340,7 @@ combo_sl5_##CHORD { timeout-ms = <TIMEOUT_COMBO>; bindings = <SL5_BIND>; key-pos
             >;
         };
 
-        BASE_RU {
-            display-name = "BASE";
-            bindings = <
-                _____           _____               _____               _____               _____
-                _____           _____               _____               _____               _____
-            >;
-        };
+        BASE_RU { bindings = < _ _ _ _ _ _ _ _  >; };
 
         PUNCT {
             display-name = "PUNCT";
