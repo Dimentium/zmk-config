@@ -42,6 +42,8 @@
 #define FUN 5 // Function
 #define MYS 6 // Mice
 
+#define AS(keycode) &as LS(keycode) keycode     // Autoshift Macro
+
 #define A_RU F
 #define B_RU COMMA
 #define C_RU W
@@ -149,15 +151,23 @@ name: name##_mod_tap_righthand {                        \
 combos { compatible = "zmk,combos";
     lock         { bindings = <&kp LG(LC(Q))>; key-positions = < 11 23 35 >; timeout-ms = < COMBO_TIMEOUT_2 >; };
 
-    left_escape  { bindings = <&kp ESC>; key-positions = <2 3>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    right_escape { bindings = <&kp ESC>; key-positions = <8 9>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    left_enter   { bindings = <&kp ENTER>; key-positions = <26 27>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    right_enter  { bindings = <&kp ENTER>; key-positions = <32 33>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    right_enter2 { bindings = <&kp ENTER>; key-positions = <7  19>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    right_bspc   { bindings = <&kp BACKSPACE>; key-positions = <8 19>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    right_del    { bindings = <&kp DELETE>; key-positions = <8 21>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    right_tab    { bindings = <&kp TAB>; key-positions = <7  8>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    right_tab2   { bindings = <&kp TAB>; key-positions = <6 18>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    escape_left  { bindings = <&kp ESC>; key-positions = <2 3>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    escape_right { bindings = <&kp ESC>; key-positions = <8 9>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+
+    enter_left   { bindings = <&kp ENTER>; key-positions = <4 16>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    enter_right  { bindings = <&kp ENTER>; key-positions = <32 33>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    enter_right2 { bindings = <&kp ENTER>; key-positions = <7  19>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+
+    bspc_left    { bindings = <&kp BACKSPACE>; key-positions = <3 16>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    bspc_right   { bindings = <&kp BACKSPACE>; key-positions = <8 19>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    
+    del_left     { bindings = <&kp DELETE>; key-positions = <3 14>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    del_right    { bindings = <&kp DELETE>; key-positions = <8 21>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+
+    tab_left     { bindings = <&kp TAB>; key-positions = <3 4>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    tab_right    { bindings = <&kp TAB>; key-positions = <7  8>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    tab_left_2   { bindings = <&kp TAB>; key-positions = <5 17>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    tab_right_2  { bindings = <&kp TAB>; key-positions = <6 18>; timeout-ms = < COMBO_TIMEOUT_2 >; };
 
     copy_cut     { bindings = <&td_copy_cut>; key-positions = < 14 16 >; timeout-ms = < COMBO_TIMEOUT_2 >; };
     paste        { bindings = <&kp LG(V)>; key-positions = < 2 4 >; timeout-ms = < COMBO_TIMEOUT_2 >; };
@@ -182,6 +192,12 @@ macros {
             <&macro_press &mo QWE &kp F21 >,
             <&macro_pause_for_release>,
             <&macro_release &kp F21 &mo QWE >;
+        };
+    f20: f20 { compatible = "zmk,behavior-macro"; #binding-cells = <0>;
+        bindings =
+            <&macro_press &mo QWE &kp F20 >,
+            <&macro_pause_for_release>,
+            <&macro_release &kp F20 &mo QWE >;
         };
 };
 
@@ -233,7 +249,6 @@ behaviors {
 
     rt: rt {
         compatible = "zmk,behavior-hold-tap";
-        label = "retro-mod-tap";
         #binding-cells = <2>;
         flavor = "balanced";
         tapping-term-ms = < TAPPING_TERM >;
@@ -314,6 +329,22 @@ behaviors {
         flavor = "hold-preferred";
         bindings = <&f21>, <&kp>;
     };
+    mo_f20: mo_f20 {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        tapping-term-ms = < TAPPING_TERM >;
+        retro-tap;
+        flavor = "hold-preferred";
+        bindings = <&f20>, <&kp>;
+    };
+    as: auto_shift {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping_term_ms = <135>;
+            quick_tap_ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+    };
 };
 };
 
@@ -321,51 +352,51 @@ behaviors {
 keymap { compatible = "zmk,keymap";
 
 engram { bindings = <
-_____         &kp B         hrlC(Y)       hrlA(O)       hrlG(U)       &kp SQT            &kp GRAVE     hrrG(L)          hrrA(D)         hrrC(W)         &kp V           &kp Z
-_____         hrlS(C)       &mol EXT I    &kp E         &mol MYS A    &comma             &dot          &kp H            &kp T           &mor EXT S      hrrS(N)         &kp Q
-_____         &kp G         &kp X         &kp J         &kp K         &kp BSLH           &qmark        &kp R            &kp M           &kp F           &kp P           _____
-                                          &mo FUN       &lt NAV SPC          &lt EXT SPC               &mo_f21 0 SPC    &f21
+_____         &kp B         hrlC(Y)       hrlA(O)       hrlG(U)       &kp SQT            &kp Q         hrrG(L)          hrrA(D)         hrrC(W)         &kp V           _____
+_____         hrlS(C)       &mol EXT I    &kp E         &mol MYS A    &comma             &dot          &kp H            &kp T           &mor EXT S      hrrS(N)         _____
+_____         &kp G         &kp X         &kp J         &kp K         &kp FSLH           &kp Z         &kp R            &kp M           &kp F           &kp P           _____
+                                          &mo FUN       &lt NAV SPC          &lt EXT SPC               &mo_f21 0 SPC    &mo_f20 0 LG(LS(SPC))
 >;};
 
 rulemak { bindings = <
 &kp JO_RU     &kp Q_RU      hrlC(V_RU)    hrlA(B_RU)    hrlG(P_RU)    &kp F_RU           &kp J_RU      hrrG(L_RU)       hrrA(U_RU)      hrrC(Y_RU)      &kp SH_RU       &kp SCH_RU
 &kp CH_RU     hrlS(A_RU)    &kp R_RU      &kp S_RU      &kp T_RU      &kp G_RU           &kp M_RU      &kp N_RU         &kp E_RU        &kp I_RU        hrrS(O_RU)      &kp JE_RU
 &fslh_ru      &kp Z_RU      &kp X_RU      &kp C_RU      &kp D_RU      &kp W_RU           &kp H_RU      &kp K_RU         &comma_ru       &dot_ru         &kp SOFT_RU     &kp HARD_RU
-                                          &trans        &trans               &trans                    &trans           &trans
+                                          &trans        &trans                 &trans                  &trans           &trans
 >;};
 
 qwerty { bindings = <
-_____         &kp Q         hrlC(W)       &kp E         &kp R         &kp T              &kp Y         &kp U            &kp I           hrrC(O)         &kp P           &kp LBKT
-_____         hrlS(A)       &kp S         &kp D         &kp F         &kp G              &kp H         &kp J            &kp K           &kp L           hrrS(SEMI)      &kp SQT
-_____         &kp Z         &kp X         &kp C         &kp V         &kp B              &kp N         &kp M            &kp COMMA       &kp DOT         &kp SLASH       &kp RBKT
-                                          &trans        &trans               &trans                    &trans           &trans
+_____         &kp Q         hrlC(W)       hrlA(E)       hrlG(R)       &kp T              &kp Y         hrrG(U)          hrrA(I)         hrrC(O)         &kp P           _____
+_____         hrlS(A)       &kp S         &kp D         &kp F         &kp G              &kp H         &kp J            &kp K           &kp L           hrrS(SEMI)      _____
+_____         &kp Z         &kp X         &kp C         &kp V         &kp B              &kp N         &kp M            &kp COMMA       &kp DOT         &kp FSLH        _____
+                                          &trans        &trans                 &trans                  &trans           &trans
 >;};
 
 extended { bindings = <
-&kp LS(EQUAL) &kp LS(N1)    &kp LS(N2)    &kp LS(N3)    &kp LS(N4)    &kp LS(N5)         &kp LS(N6)    &kp LS(N7)       &kp LS(N8)      &kp LS(N9)      &kp LS(N0)    &kp LS(MINUS)
-&kp EQUAL     hrlS(N1)      &kp N2        &kp N3        hrlS(N4)      &kp N5             &kp N6        hrrS(N7)         &kp N8          &kp N9          hrrS(N0)      &kp MINUS
-_____         _____         &kp SQT       _____         _____         &kp NUHS           &kp NUBS      &kp TILDE        &kp FSLH        &kp LBKT        &kp RBKT      &kp BSLH
-                                          &kp F20       &mo NAV             &rt LSHFT SPC              &mo FUN          &kp F20
+_____         &kp LS(N1)    hrlC(LS(N2))  hrlA(LS(N3))  hrlG(LS(N4))  &kp LS(N5)         &kp LS(N6)    hrrG(LS(N7))     hrrA(LS(N8))    hrrC(LS(N9))    &kp LS(N0)      _____
+_____         hrlS(N1)      AS(N2)        AS(N3)        AS(N4)        AS(N5)             AS(N6)        AS(N7)           AS(N8)          AS(N9)          hrrS(N0)        _____
+_____         &kp NUBS      &kp GRAVE     &kp FSLH      AS(EQUAL)     &kp LS(EQUAL)      &kp LS(MINUS) AS(MINUS)        &kp BSLH        &kp LBKT        &kp RBKT        _____
+                                          &kp F20       &mo NAV                 &kp SPC                &mo FUN          &kp F20
 >;};
 
 navigation { bindings = <
-&none         &kp C_EJECT   &none         &none         &none         &none              &kp PG_UP     &kp HOME         &kp UP          &kp END         &kp DEL         &none
-&none         &kp LSHFT     &kp LCTRL     &kp LALT      &kp LGUI      &kp K_APP          &kp PG_DN     &kp LEFT         &kp DOWN        &kp RIGHT       &kp BSPC        &none
-&none         &none         &none         &none         &none         &none              &kp INS       &kp TAB          &none           &none           &none           &none
-                                          &kp F20       &mo FUN             &lt EXT SPC                &none            &kp F20
+_____         &kp C_EJECT   &kp LCTRL     &kp LALT      &kp LGUI      _____              &kp PG_UP     &kp HOME         &kp UP          &kp END         &kp DEL         _____
+_____         &kp LSHFT     _____         _____         _____         &kp K_APP          &kp PG_DN     &kp LEFT         &kp DOWN        &kp RIGHT       &kp BSPC        _____
+_____         _____         _____         _____         _____         _____              &kp INS       &kp TAB          _____           _____           _____           _____
+                                          &kp F20       &mo FUN             &lt EXT SPC                _____            &kp F20
 >;};
 
 function { bindings = <
-&bt BT_SEL 0  &kp F9        &kp F10       &kp F11       &kp F12       &bt BT_SEL 3       &kp KP_NUM    &kp PRINTSCREEN  &kp SCROLLLOCK  &kp PAUSE_BREAK &kp CAPS        &none
-&bt BT_SEL 1  &kp F1        &kp F2        &kp F3        &kp F4        &bt BT_SEL 4       &none         &kp LGUI         &kp LALT        &kp LCTRL       &kp LSHFT       &none
+&bt BT_SEL 0  &kp F9        &kp F10       &kp F11       &kp F12       &bt BT_SEL 3       &kp KP_NUM    &kp PRINTSCREEN  &kp SCROLLLOCK  &kp PAUSE_BREAK &kp CAPS        _____
+&bt BT_SEL 1  &kp F1        &kp F2        &kp F3        &kp F4        &bt BT_SEL 4       _____         &kp LGUI         &kp LALT        &kp LCTRL       &kp LSHFT       _____
 &bt BT_SEL 2  &kp F5        &kp F6        &kp F7        &kp F8        &bt BT_CLR         &sys_reset    &kp C_PLAY_PAUSE &kp C_VOL_DN    &kp C_VOL_UP    &kp C_MUTE      &bootloader
-                                          &none         &none                   &none                  &none            &none
+                                          _____         _____                   _____                  _____            _____
 >;};
 
 mice { bindings = <
-&none         &kp C_EJECT   &kp LCTL      &kp LALT      &kp LGUI      _____              _____         &msc SCRL_UP     &mmv MOVE_UP    &msc SCRL_DOWN  _____           &none
-&none         &kp LSHFT     &mkp MB1      &mkp MB2      &none         _____              _____         &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT &mkp MB3        &none
-&none         &none         &none         &none         &none         &none              _____         _____            &none           &none           &none           &none
+_____         &kp C_EJECT   &kp LCTL      &kp LALT      &kp LGUI      _____              _____         &msc SCRL_UP     &mmv MOVE_UP    &msc SCRL_DOWN  _____           _____
+_____         &kp LSHFT     &mkp MB1      &mkp MB2      _____         _____              _____         &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT &mkp MB3        _____
+_____         _____         _____         _____         _____         _____              _____         _____            _____           _____           _____           _____
                                           _____         &mkp MB1      &rt LSHFT SPC      &mkp MB2      _____
 >;};
 
