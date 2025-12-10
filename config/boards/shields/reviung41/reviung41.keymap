@@ -351,12 +351,19 @@ behaviors {
 / {
 keymap { compatible = "zmk,keymap";
 
-engram { bindings = <
-_____         &kp B         hrlC(Y)       hrlA(O)       hrlG(U)       &kp SQT            &kp Q         hrrG(L)          hrrA(D)         hrrC(W)         &kp V           _____
-_____         hrlS(C)       &mol EXT I    &kp E         &mol MYS A    &comma             &dot          &kp H            &kp T           &mor EXT S      hrrS(N)         _____
-_____         &kp G         &kp X         &kp J         &kp K         &kp FSLH           &kp Z         &kp R            &kp M           &kp F           &kp P           _____
-                                          &mo FUN       &lt NAV SPC          &lt EXT SPC               &mo_f21 0 SPC    &mo_f20 0 LG(LS(SPC))
+colemak{ bindings = <
+_____         &kp Q         hrlC(W)       hrlA(F)       hrlG(P)       &kp B              &kp J         hrrG(L)          hrrA(U)         hrrC(Y)         &kp SQT         _____
+_____         hrlS(A)       &mol EXT R    &kp S         &mol MYS T    &kp G              &kp M         &kp N            &kp E           &mor EXT I      hrrS(O)         _____
+_____         &kp Z         &kp X         &kp C         &kp D         &kp V              &kp K         &kp H            &comma          &dot            &kp FSLH        _____
+                                          &mo FUN       &lt NAV SPC          &lt EXT SPC               &mo_f20 0 LG(LS(SPC))  &lt NAV SPC
 >;};
+
+// gralmak{ bindings = <
+// _____         &kp B         hrlC(L)       hrlA(D)       hrlG(W)       &kp Q              &kp J         hrrG(F)          hrrA(O)         hrrC(U)         &kp SQT         _____
+// _____         hrlS(N)       &mol EXT R    &kp T         &mol MYS S    &kp G              &kp Y         &kp H            &kp A           &mor EXT E      hrrS(I)         _____
+// _____         &kp Z         &kp X         &kp M         &kp C         &kp V              &kp K         &kp P            &comma          &dot            &kp FSLH        _____
+//                                           &mo FUN       &lt NAV SPC          &lt EXT SPC               &mo_f20 0 LG(LS(SPC))  &lt NAV SPC
+// >;};
 
 rulemak { bindings = <
 &kp JO_RU     &kp Q_RU      hrlC(V_RU)    hrlA(B_RU)    hrlG(P_RU)    &kp F_RU           &kp J_RU      hrrG(L_RU)       hrrA(U_RU)      hrrC(Y_RU)      &kp SH_RU       &kp SCH_RU
@@ -374,8 +381,8 @@ _____         &kp Z         &kp X         &kp C         &kp V         &kp B     
 
 extended { bindings = <
 _____         &kp LS(N1)    hrlC(LS(N2))  hrlA(LS(N3))  hrlG(LS(N4))  &kp LS(N5)         &kp LS(N6)    hrrG(LS(N7))     hrrA(LS(N8))    hrrC(LS(N9))    &kp LS(N0)      _____
-_____         hrlS(N1)      AS(N2)        AS(N3)        AS(N4)        AS(N5)             AS(N6)        AS(N7)           AS(N8)          AS(N9)          hrrS(N0)        _____
-_____         &kp NUBS      &kp GRAVE     &kp FSLH      AS(EQUAL)     &kp LS(EQUAL)      &kp LS(MINUS) AS(MINUS)        &kp BSLH        &kp LBKT        &kp RBKT        _____
+_____         hrlS(N1)      &kp N2        &kp N3        &kp N4        &kp N5             &kp N6        &kp N7           &kp N8          &kp N9          hrrS(N0)        _____
+_____         &kp NUBS      &kp GRAVE     &kp FSLH      &kp EQUAL     &kp LS(EQUAL)      &kp LS(MINUS) &kp MINUS        &kp BSLH        &kp LBKT        &kp RBKT        _____
                                           &kp F20       &mo NAV                 &kp SPC                &mo FUN          &kp F20
 >;};
 
@@ -387,9 +394,9 @@ _____         _____         _____         _____         _____         _____     
 >;};
 
 function { bindings = <
-&bt BT_SEL 0  &kp F9        &kp F10       &kp F11       &kp F12       &bt BT_SEL 3       &kp KP_NUM    &kp PRINTSCREEN  &kp SCROLLLOCK  &kp PAUSE_BREAK &kp CAPS        _____
-&bt BT_SEL 1  &kp F1        &kp F2        &kp F3        &kp F4        &bt BT_SEL 4       _____         &kp LGUI         &kp LALT        &kp LCTRL       &kp LSHFT       _____
-&bt BT_SEL 2  &kp F5        &kp F6        &kp F7        &kp F8        &bt BT_CLR         &sys_reset    &kp C_PLAY_PAUSE &kp C_VOL_DN    &kp C_VOL_UP    &kp C_MUTE      &bootloader
+&bt BT_SEL 0  &kp LSHFT     &kp LCTRL     &kp LALT      &kp LGUI      _____              _____         &kp LGUI         hrrA(F11)       hrrC(F12)       &kp LSHFT       &bt BT_CLR 
+&bt BT_SEL 1  hrlS(F1)      &kp F2        &kp F3        &kp F4        &kp F5             &kp F6        &kp F7           &kp F8          &kp F9          hrrS(F10)       &sys_reset    
+&bt BT_SEL 2  &kp KP_NUM    &kp PSCRN     &kp SLCK      &kp PAUSE_BREAK &kp CAPS         _____         &kp C_PLAY_PAUSE &kp C_VOL_DN    &kp C_VOL_UP    &kp C_MUTE      &bootloader
                                           _____         _____                   _____                  _____            _____
 >;};
 
