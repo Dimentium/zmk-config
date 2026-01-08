@@ -89,17 +89,29 @@
 #define hrlA_RU(KEY) &lalt_ru 0 KEY // mods temporary toggled layer to ALPHA_LAT
 #define hrrA_RU(KEY) &ralt_ru 0 KEY // mods temporary toggled layer to ALPHA_LAT
 
+#define THUMBS_ROW _____ &lt NAV SPC &mo QWE &f20 _____
+
+#define ALPHA(NAME, \
+ T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, \
+ M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, \
+ B1, B2, B3, B4, B5, B6, B7, B8, B9, B10) \
+NAME { bindings = < \
+_____ &kp T1   hrlC(T2)     hrlA(T3)     hrlG(T4)     &kp T5      &kp T6  hrrG(T7)     hrrA(T8)     hrrC(T9)     &kp T10    _____ \
+_____ hrlS(M1) &mol EXT M2  &mol FUN M3  &mol MYS M4  &kp M5      &kp M6  &kp M7       &mor FUN M8  &mor EXT M9  hrrS(M10)  _____ \
+_____ &kp B1   &kp B2       &kp B3       &kp B4       &kp B5      &kp B6  &kp B7       &B8          &B9          &kp B10    _____ \
+                                                           THUMBS_ROW \
+>;};
+
 #define ALPHA_RU(NAME, \
  T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, \
  M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, \
  B1, B2, B3, B4, B5, B6, B7, B8, B9, B10) \
 NAME { bindings = < \
 _____ &kp T1##_RU   hrlC_RU(T2##_RU)  hrlA_RU(T3##_RU)  hrlG_RU(T4##_RU)  &kp T5##_RU      &kp T6##_RU  hrrG_RU(T7##_RU)  hrrA_RU(T8##_RU)  hrrC_RU(T9##_RU)  &kp T10##_RU    _____ \
-_____ hrlS(M1##_RU) &mol EXT M2##_RU  &mol FUN M3##_RU  &mol MYS M4##_RU  &kp M5##_RU      &kp M6##_RU  &kp M7##_RU       &mol FUN M8##_RU  &mor EXT M9##_RU  hrrS(M10##_RU)  _____ \
+_____ hrlS(M1##_RU) &mol EXT M2##_RU  &mol FUN M3##_RU  &mol MYS M4##_RU  &kp M5##_RU      &kp M6##_RU  &kp M7##_RU       &mor FUN M8##_RU  &mor EXT M9##_RU  hrrS(M10##_RU)  _____ \
 _____ &kp B1##_RU   &kp B2##_RU       &kp B3##_RU       &kp B4##_RU       &kp B5##_RU      &kp B6##_RU  &kp B7##_RU       &B8##_RU          &B9##_RU          &kp B10##_RU    _____ \
-                                          &mo FUN       &lt NAV SPC          &lt EXT SPC                 &f20             &lt NAV SPC \
+                                                           THUMBS_ROW \
 >;};
-
 
 #define MOD_MACRO(name, mod)                            \
 name: name##_macro {                                    \
@@ -352,17 +364,15 @@ behaviors {
 
 keymap { compatible = "zmk,keymap";
 
-colemak{ bindings = <
-_____         &kp Q         hrlC(W)       hrlA(F)       hrlG(P)       &kp B              &kp J           hrrG(L)          hrrA(U)         hrrC(Y)         &kp SQT         _____
-_____         hrlS(A)       &mol EXT R    &kp S         &mol MYS T    &kp G              &kp M           &kp N            &kp E           &mor EXT I      hrrS(O)         _____
-_____         &kp Z         &kp X         &kp C         &kp D         &kp V              &kp K           &kp H            &comma          &dot            &kp FSLH        _____
-                                          &mo FUN       &lt NAV SPC          &lt EXT SPC                 &f20             &lt NAV SPC
->;};
+ALPHA(COLEMAK, \
+         Q, W, F, P, B,  J, L, U, Y, SQT, \
+         A, R, S, T, G,  M, N, E, I, O, \
+         Z, X, C, D, V,  K, H, comma, dot, FSLH)
 
 ALPHA_RU(RULEMAK, \
          Q, W, F, P, B,  J, L, U, Y, SH, \
          A, R, S, T, G,  M, N, E, I, O, \
-         Z, X, C, D, V,  K, H, comma, dot, SOFT)
+         X, Z, C, D, V,  K, H, comma, dot, SOFT)
 
 qwerty { bindings = <
 _____         &kp Q         hrlC(W)       hrlA(E)       hrlG(R)       &kp T              &kp Y           hrrG(U)          hrrA(I)         hrrC(O)         &kp P           _____
@@ -375,28 +385,28 @@ extended { bindings = <
 _____         &kp LS(N1)    hrlC(LS(N2))  hrlA(LS(N3))  hrlG(LS(N4))  &kp LS(N5)         &kp LS(N6)      hrrG(LS(N7))     hrrA(LS(N8))    hrrC(LS(N9))    &kp LS(N0)      _____
 _____         hrlS(N1)      &kp N2        &kp N3        &kp N4        &kp N5             &kp N6          &kp N7           &kp N8          &kp N9          hrrS(N0)        _____
 _____         &kp NUBS      &kp GRAVE     &kp FSLH      &kp EQUAL     &kp LS(EQUAL)      &kp LS(MINUS)   &kp MINUS        &kp BSLH        &kp LBKT        &kp RBKT        _____
-                                          &kp F20       &mo NAV                 &kp SPC                  &mo FUN          &kp F20
+                                          &trans        &trans               &kp JE_RU                   &trans           &trans
 >;};
 
 navigation { bindings = <
 _____         &kp C_EJECT   &kp LCTRL     &kp LALT      &kp LGUI      _____              &kp PG_UP       &kp HOME         &kp UP          &kp END         &kp DEL         _____
 _____         &kp LSHFT     _____         _____         _____         &kp K_APP          &kp PG_DN       &kp LEFT         &kp DOWN        &kp RIGHT       &kp BSPC        _____
 _____         _____         _____         _____         _____         _____              &kp INS         &kp TAB          &kp LS(COMMA)   &kp LS(DOT)     &kp MINUS       _____
-                                          &kp F20       &mo FUN             &lt EXT SPC                  _____            &kp F20
+                                          &trans        &trans                 &trans                    &trans           &trans
 >;};
 
 function { bindings = <
-_____  &kp LSHFT     &kp LCTRL     &kp LALT      &kp LGUI      &bootloader        _____           &kp LGUI         hrrA(F11)       hrrC(F12)       &kp LSHFT       _____
-_____  hrlS(F1)      &kp F2        &kp F3        &kp F4        &kp F5             &kp F6          &kp F7           &kp F8          &kp F9          hrrS(F10)       &sys_reset    
-_____  &kp KP_NUM    &kp PSCRN     &kp SLCK      &kp PAUSE_BREAK &kp CAPS         _____           &kp C_PLAY_PAUSE &kp C_VOL_DN    &kp C_VOL_UP    &kp C_MUTE      &bootloader
-                                          _____         _____                   _____                    _____            _____
+_____         &kp LSHFT     &kp LCTRL     &kp LALT      &kp LGUI      &bootloader        _____           &kp LGUI         hrrA(F11)       hrrC(F12)       &kp LSHFT       _____
+_____         hrlS(F1)      &kp F2        &kp F3        &kp F4        &kp F5             &kp F6          &kp F7           &kp F8          &kp F9          hrrS(F10)       _____
+_____         &kp KP_NUM    &kp PSCRN     &kp SLCK      &kp PAUSE_BREAK &kp CAPS         _____           &kp C_PLAY_PAUSE &kp C_VOL_DN    &kp C_VOL_UP    &kp C_MUTE      _____
+                                          &trans        &trans                 &trans                    &trans           &trans
 >;};
 
 mice { bindings = <
 _____         &kp C_EJECT   &kp LCTL      &kp LALT      &kp LGUI      _____              &msc SCRL_DOWN  &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT _____           _____
 _____         &kp LSHFT     &mkp MB1      &mkp MB2      _____         _____              &msc SCRL_UP    &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT &mkp MB3        _____
 _____         _____         _____         _____         _____         _____              _____           _____            _____           _____           _____           _____
-                                          _____         &mkp MB1      &rt LSHFT SPC      &mkp MB2        _____
+                                          _____         &mkp MB1              &mkp MB3   &mkp MB2        _____
 >;};
 
 };};
