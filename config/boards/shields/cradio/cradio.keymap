@@ -1,0 +1,429 @@
+/*
+* Copyright (c) 2020 The ZMK Contributors
+*
+* SPDX-License-Identifier: MIT
+*/
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+
+// #define ZMK_POINTING_DEFAULT_MOVE_VAL 1500  // default: 600
+// #define ZMK_POINTING_DEFAULT_SCRL_VAL 10    // default: 10
+
+#include <dt-bindings/zmk/pointing.h>
+
+// // Tune-up default behaviours
+// &mmv {
+//     x-input-code = <INPUT_REL_X>;
+//     y-input-code = <INPUT_REL_Y>;
+//     time-to-max-speed-ms = <1200>;
+//     acceleration-exponent = <1>;
+// };
+// &msc {
+//     x-input-code = <INPUT_REL_HWHEEL>;
+//     y-input-code = <INPUT_REL_WHEEL>;
+//     time-to-max-speed-ms = <300>;
+//     acceleration-exponent = <0>;
+// };
+
+// Keys
+#define LEFT_HALF   0  1  2  3  4   10 11 12 13 14    20 21 22 23 24
+#define RIGHT_HALF  5  6  7  8  9   15 16 17 18 19    25 26 27 28 29
+#define THUMBS     30 31 32 33
+
+// Layers
+#define ENG 0 // Engram
+#define RUL 1 // Rulemak
+#define QWE 2 // Qwerty
+#define EXT 3 // Extended
+#define NAV 4 // Navigation
+#define FUN 5 // Function
+#define MYS 6 // Mice
+
+#define A_RU F
+#define B_RU COMMA
+#define C_RU W
+#define D_RU L
+#define E_RU T
+#define F_RU A
+#define G_RU U
+#define H_RU LBKT
+#define I_RU B
+#define J_RU Q    // ij
+#define K_RU R
+#define L_RU K
+#define M_RU V
+#define N_RU Y
+#define O_RU J
+#define P_RU G
+#define Q_RU DOT  // yu
+#define R_RU H
+#define S_RU C
+#define T_RU N
+#define U_RU E
+#define V_RU D
+#define W_RU SEMI // zh
+#define X_RU Z    // ya
+#define Y_RU S
+#define Z_RU P
+
+#define CH_RU   X
+#define SH_RU   I
+#define SCH_RU  O
+#define SOFT_RU M
+#define HARD_RU RBKT
+#define JO_RU   GRAVE
+#define JE_RU   SQT
+
+#define COMMA_RU LS(FSLH)
+#define SEMI_RU  LS(N4)
+#define DOT_RU   FSLH
+#define COLON_RU LS(N6)
+
+// Bindings
+#define _____ &none
+
+#define TAPPING_TERM    500  // tapping-term-ms = <300>;
+#define QUICK_TAP_TERM  250  // tapping-term-ms = <300>;
+#define COMBO_TIMEOUT_2  50  // timeout-ms for 2 fingers cofbos
+#define COMBO_TIMEOUT_3  80  // timeout-ms for 3 fingers combos
+
+#define hrlG(key) &lgui_en 0 key
+#define hrrG(KEY) &rgui_en 0 KEY
+#define hrlC(KEY) &lctl_en 0 KEY
+#define hrrC(KEY) &rctl_en 0 KEY
+#define hrlS(key) &lshft 0 key
+#define hrrS(key) &rshft 0 key
+#define hrlA(KEY) &lalt_en 0 KEY
+#define hrrA(KEY) &ralt_en 0 KEY
+
+#define hrlG_RU(key) &lgui_ru 0 key
+#define hrrG_RU(KEY) &rgui_ru 0 KEY
+#define hrlC_RU(KEY) &lctl_ru 0 KEY
+#define hrrC_RU(KEY) &rctl_ru 0 KEY
+#define hrlA_RU(KEY) &lalt_ru 0 KEY
+#define hrrA_RU(KEY) &ralt_ru 0 KEY
+
+#define MOD_MACRO(name, mod)                            \
+name: name##_macro {                                    \
+    compatible = "zmk,behavior-macro";              \
+    #binding-cells = <0>;                           \
+    wait-ms = <0>;                                  \
+    bindings                                            \
+        = <&macro_press &kp mod>                        \
+        , <&macro_pause_for_release>                    \
+        , <&macro_release &kp mod>;                     \
+ };
+#define LAT_MOD_MACRO(name, mod, base_layer, mod_layer) \
+name: name##_macro {                                    \
+    compatible = "zmk,behavior-macro";              \
+    #binding-cells = <0>;                           \
+    wait-ms = <0>;                                  \
+    bindings                                            \
+        = <&macro_press &kp mod>                        \
+        , <&macro_tap &to mod_layer>                    \
+        , <&macro_pause_for_release>                    \
+        , <&macro_tap &to base_layer>                   \
+        , <&macro_release &kp mod>;                     \
+ };
+#define HOME_ROW_MOD_TAP_LEFT(name, macro, flavortype)  \
+name: name##_mod_tap_lefthand {                         \
+    compatible = "zmk,behavior-hold-tap";               \
+    #binding-cells = <2>;                               \
+    flavor = #flavortype;                               \
+    tapping-term-ms = <TAPPING_TERM>;                   \
+    quick-tap-ms = <QUICK_TAP_TERM>;                    \
+    bindings = <macro>, <&kp>;                          \
+    hold-trigger-key-positions = < RIGHT_HALF THUMBS >; \
+};
+#define HOME_ROW_MOD_TAP_RIGHT(name, macro, flavortype) \
+name: name##_mod_tap_righthand {                        \
+    compatible = "zmk,behavior-hold-tap";               \
+    #binding-cells = <2>;                               \
+    flavor = #flavortype;                               \
+    tapping-term-ms = <TAPPING_TERM>;                   \
+    quick-tap-ms = <QUICK_TAP_TERM>;                    \
+    bindings = <macro>, <&kp>;                          \
+    hold-trigger-key-positions = < LEFT_HALF THUMBS >;  \
+};
+
+&sk {
+    release-after-ms = <1500>;
+    quick-release;
+};
+&lt {
+    tapping-term-ms = <500>;
+    quick-tap-ms = <200>;
+    flavor = "balanced";
+ };
+&mt {
+    tapping-term-ms = <200>;
+    quick-tap-ms = <200>;
+    flavor = "balanced";
+ };
+
+/ {
+combos { compatible = "zmk,combos";
+    lock         { bindings = <&kp LC(LG(Q))>; key-positions = < 1 2 3 >; timeout-ms = < COMBO_TIMEOUT_3 >; };
+
+    escape_left  { bindings = <&kp ESC>; key-positions = <1 2>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    escape_left2 { bindings = <&kp ESC>; key-positions = <1 11>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    escape_right { bindings = <&kp ESC>; key-positions = <7 9>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    escape_right2{ bindings = <&kp ESC>; key-positions = <8 18>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+
+    enter_left   { bindings = <&kp ENTER>; key-positions = <3  13>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    enter_right  { bindings = <&kp ENTER>; key-positions = <27 28>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    enter_right2 { bindings = <&kp ENTER>; key-positions = <6  16>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+
+    bspc_left    { bindings = <&kp BACKSPACE>; key-positions = <2 13>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    bspc_right   { bindings = <&kp BACKSPACE>; key-positions = <7 16>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    
+    del_left     { bindings = <&kp DELETE>; key-positions = <2 11>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    del_right    { bindings = <&kp DELETE>; key-positions = <7 18>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+
+    tab_left     { bindings = <&kp TAB>; key-positions = <2 3>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    tab_right    { bindings = <&kp TAB>; key-positions = <6 7>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    tab_left_2   { bindings = <&kp TAB>; key-positions = <2 12>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    tab_right_2  { bindings = <&kp TAB>; key-positions = <7 17>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+
+    copy_cut     { bindings = <&td_copy_cut>; key-positions = < 11 13 >; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    paste        { bindings = <&kp LG(V)>; key-positions = < 1 3 >; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    undo         { bindings = <&kp LG(Z)>; key-positions = < 10 13 >; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    redo         { bindings = <&kp LS(LG(Z))>; key-positions = < 0 3 >; timeout-ms = < COMBO_TIMEOUT_2 >; };
+
+    to_rus       { bindings = <&rus>; key-positions = < 16 17 18 >; timeout-ms = < COMBO_TIMEOUT_3 >; };
+    to_eng       { bindings = <&eng>; key-positions = < 11 12 13 >; timeout-ms = < COMBO_TIMEOUT_3 >; };
+
+    combo_sqt    { bindings = <&kp SQT>; key-positions = < 9 19 >; timeout-ms = < COMBO_TIMEOUT_3 >; };
+ };
+
+macros {
+    eng: eng { compatible = "zmk,behavior-macro";  #binding-cells = <0>; bindings = < &kp F18 &to 0 >; };
+    rus: rus { compatible = "zmk,behavior-macro";  #binding-cells = <0>; bindings = < &kp F19 &to 1 >; };
+    semi: semi { compatible = "zmk,behavior-macro"; tap-ms = <1>; wait-ms = <1>;  #binding-cells = <0>; bindings = < &kt_off LSHFT &kt_off RSHFT &kp SEMI >; };
+    hard: hard { compatible = "zmk,behavior-macro"; tap-ms = <1>; wait-ms = <1>;  #binding-cells = <0>; bindings = < &kt_off LALT &kt_off RALT &kp HARD_RU >; };
+    sch: sch { compatible = "zmk,behavior-macro"; tap-ms = <1>; wait-ms = <1>;  #binding-cells = <0>; bindings = < &kt_off LALT &kt_off RALT &kp SCH_RU >; };
+    MOD_MACRO(alt_en, LALT)
+    MOD_MACRO(gui_en, LGUI)
+    MOD_MACRO(ctl_en, LCTRL)
+    MOD_MACRO(shft,  LSHFT)
+    LAT_MOD_MACRO(alt_ru, LALT, 1, 0)
+    LAT_MOD_MACRO(gui_ru, LGUI, 1, 0)
+    LAT_MOD_MACRO(ctl_ru, LCTRL, 1, 0)
+    LAT_MOD_MACRO(cmdctl_ru, LC(LGUI), 1, 0)
+    f20: f20 { compatible = "zmk,behavior-macro"; #binding-cells = <0>;
+        bindings =
+            <&macro_press &mo QWE &kp F20 >,
+            <&macro_pause_for_release>,
+            <&macro_release &kp F20 &mo QWE >;
+        };
+    mo0: mo0{
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+
+        bindings =
+            <&macro_tap &to 0 >,
+            <&macro_pause_for_release>,
+            <&macro_tap &to 1 >;
+    };
+};
+
+behaviors {
+    HOME_ROW_MOD_TAP_LEFT (lalt_en, &alt_en, balanced)
+    HOME_ROW_MOD_TAP_LEFT (lgui_en, &gui_en, balanced)
+    HOME_ROW_MOD_TAP_LEFT (lctl_en, &ctl_en, balanced)
+    HOME_ROW_MOD_TAP_RIGHT(ralt_en, &alt_en, balanced)
+    HOME_ROW_MOD_TAP_RIGHT(rgui_en, &gui_en, balanced)
+    HOME_ROW_MOD_TAP_RIGHT(rctl_en, &ctl_en, balanced)
+
+    HOME_ROW_MOD_TAP_LEFT (lalt_ru, &alt_ru, balanced)
+    HOME_ROW_MOD_TAP_LEFT (lgui_ru, &gui_ru, balanced)
+    HOME_ROW_MOD_TAP_LEFT (lctl_ru, &ctl_ru, balanced)
+    HOME_ROW_MOD_TAP_RIGHT(ralt_ru, &alt_ru, balanced)
+    HOME_ROW_MOD_TAP_RIGHT(rgui_ru, &gui_ru, balanced)
+    HOME_ROW_MOD_TAP_RIGHT(rctl_ru, &ctl_ru, balanced)
+
+    HOME_ROW_MOD_TAP_LEFT(lshft, &shft, balanced)
+    HOME_ROW_MOD_TAP_RIGHT(rshft, &shft, balanced)
+
+    mol: homerow_layers_left {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        tapping-term-ms = < TAPPING_TERM >;
+        quick-tap-ms = < QUICK_TAP_TERM >;
+        // flavor = "tap-preferred";
+        flavor = "balanced";
+        bindings = <&mo>, <&kp>;
+        hold-trigger-key-positions = < RIGHT_HALF THUMBS >;    // <---[[right-hand keys]]
+    };
+    mor: homerow_layers_right {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        tapping-term-ms = < TAPPING_TERM >;
+        quick-tap-ms = < QUICK_TAP_TERM >;
+        // flavor = "tap-preferred";
+        flavor = "balanced";
+        bindings = <&mo>, <&kp>;
+        hold-trigger-key-positions = < LEFT_HALF THUMBS >;    // <---[[left-hand keys]]
+    };
+
+    kt_off: key_toggle_on_only {
+        compatible = "zmk,behavior-key-toggle";
+        #binding-cells = <1>;
+        display-name = "Key Toggle Off";
+        toggle-mode = "off";
+    };
+
+    td_copy_cut: tap_dance_copy_cut {
+        compatible = "zmk,behavior-tap-dance";
+        #binding-cells = <0>;
+        tapping-term-ms = <300>;
+        bindings = <&kp LG(C)>, <&kp LG(X)>;
+    };
+
+    rt: rt {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        flavor = "balanced";
+        tapping-term-ms = < TAPPING_TERM >;
+        quick-tap-ms = <200>;
+        bindings = <&kp>, <&kp>;
+        retro-tap;
+    };
+
+    comma: comma_semi {
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&kp COMMA>, <&semi>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+        keep-mods = < 0 >;
+    };
+    dot: dot_colon {
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&kp DOT>, <&kp COLON>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    qmark: qmark_excl {
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&kp QMARK>, <&kp EXCL>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+
+    comma_ru: comma_semi_ru {
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&kp COMMA_RU>, <&kp SEMI_RU>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+        keep-mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    dot_ru: dot_colon_ru {
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&kp DOT_RU>, <&kp COLON_RU>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+        keep-mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    semi_ru: semi_colon_ru {
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&kp LS(N4)>, <&kp N6>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+        keep-mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    sqt_ru: sqt_ru {
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&kp LA(O)>, <&kp N2 >;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+        keep-mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    fslh_ru: fslh_ru {
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&kp KP_DIVIDE>, <&kp N7 >;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+        keep-mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    soft_ru: soft_ru {
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&kp SOFT_RU>, <&hard >;
+        mods = <(MOD_LALT|MOD_RALT)>;
+        keep-mods = < 0 >;
+    };
+    sh_ru: sh_ru {
+        compatible = "zmk,behavior-mod-morph";
+        #binding-cells = <0>;
+        bindings = <&kp SH_RU>, <&sch >;
+        mods = <(MOD_LALT|MOD_RALT)>;
+        keep-mods = < 0 >;
+    };
+    
+    ht: hold_tap {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        tapping-term-ms = <135>;
+        quick-tap-ms = <0>;
+        flavor = "tap-preferred";
+        bindings = <&kp>, <&kp>;
+    };
+};
+};
+
+/ {
+keymap { compatible = "zmk,keymap";
+
+colemak{ bindings = <
+&kp Q         hrlC(W)        hrlA(F)        hrlG(P)        &kp B               &kp J          hrrG(L)        hrrA(U)        hrrC(Y)        &kp SQT   
+hrlS(A)       &mol EXT R     &mol FUN S     &mol MYS T     &kp G               &kp M          &kp N          &mol FUN E     &mor EXT I     hrrS(O)   
+&kp Z         &kp X          &kp C          &kp D          &kp V               &kp K          &kp H          &comma         &dot           &kp FSLH  
+                                            &lt NAV SPC    &lt FUN SPC         &lt NAV SPC    &f20
+>;};
+
+rulemak { bindings = <
+&kp Q_RU      hrlC_RU(V_RU)  hrlA_RU(F_RU)  hrlG_RU(P_RU)  &kp B_RU            &kp J_RU       hrrG_RU(L_RU)  hrrA_RU(U_RU)  hrrC_RU(Y_RU)  &kp SH_RU    //  &kp JO_RU  &kp SCH_RU
+hrlS(A_RU)    &mol EXT R_RU  &mol FUN S_RU  &mol MYS T_RU  &kp G_RU            &kp M_RU       &kp N_RU       &mol FUN E_RU  &mor EXT I_RU  hrrS(O_RU)   //  &kp CH_RU  &kp JE_RU
+&kp X_RU      &kp Z_RU       &kp C_RU       &kp D_RU       &kp W_RU            &kp H_RU       &kp K_RU       &comma_ru      &dot_ru        &kp SOFT_RU  //  &fslh_ru   &kp HARD_RU
+                                            &trans         &mo QWE             &mo QWE        &trans
+>;};
+
+qwerty { bindings = <
+&kp Q         hrlC(W)        hrlA(E)        hrlG(R)        &kp T               &kp Y          hrrG(U)        hrrA(I)        hrrC(O)        &kp P     
+hrlS(A)       &kp S          &kp D          &kp F          &kp G               &kp H          &kp J          &kp K          &kp L          hrrS(SEMI)
+&kp Z         &kp X          &kp C          &kp V          &kp B               &kp N          &kp M          &kp COMMA      &kp DOT        &kp FSLH  
+                                            &trans         &trans              &trans         &trans
+>;};
+
+extended { bindings = <
+&kp LS(N1)    hrlC(LS(N2))   hrlA(LS(N3))   hrlG(LS(N4))   &kp LS(N5)          &kp LS(N6)     hrrG(LS(N7))   hrrA(LS(N8))   hrrC(LS(N9))   &kp LS(N0)
+hrlS(N1)      &kp N2         &kp N3         &kp N4         &kp N5              &kp N6         &kp N7         &kp N8         &kp N9         hrrS(N0)  
+&kp NUBS      &kp GRAVE      &kp FSLH       &kp EQUAL      &kp LS(EQUAL)       &kp LS(MINUS)  &kp MINUS      &kp BSLH       &kp LBKT       &kp RBKT  
+                                            &kp RALT       &kp RALT            &kp RALT       &kp RALT
+>;};
+
+navigation { bindings = <
+&kp C_EJECT   &kp LCTRL      &kp LALT       &kp LGUI       _____               &kp PG_UP      &kp HOME       &kp UP         &kp END        &kp DEL   
+&kp LSHFT     _____          _____          _____          &kp K_APP           &kp PG_DN      &kp LEFT       &kp DOWN       &kp RIGHT      &kp BSPC  
+_____         _____          _____          _____          _____               &kp INS        &kp TAB        &kp LS(COMMA)  &kp LS(DOT)    &kp MINUS 
+                                            &trans         &trans              &trans         &trans
+>;};
+
+function { bindings = <
+&kp LSHFT     &kp LCTRL      &kp LALT       &kp LGUI      _____                _____          &kp LGUI         hrrA(F11)    hrrC(F12)      &kp LSHFT 
+hrlS(F1)      &kp F2         &kp F3         &kp F4        &kp F5               &kp F6         &kp F7           &kp F8       &kp F9         hrrS(F10) 
+&kp KP_NUM    &kp PSCRN      &kp SLCK       &kp PAUSE_BREAK &kp CAPS           _____          &kp C_PLAY_PAUSE &kp C_VOL_DN &kp C_VOL_UP   &kp C_MUTE
+                                            &trans         &trans              &trans         &trans
+>;};
+
+mice { bindings = <
+&kp C_EJECT   &kp LCTL       &kp LALT       &kp LGUI       _____               &msc SCRL_DOWN &msc SCRL_LEFT &mmv MOVE_UP   &msc SCRL_RIGHT _____           
+&kp LSHFT     &mkp MB1       &mkp MB2       _____          &bootloader         &msc SCRL_UP   &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &mkp MB3        
+_____         _____          _____          _____          _____               _____          _____          _____          _____           _____           
+                                            _____          &mkp MB1            &mkp MB2       _____
+>;};
+
+};};
