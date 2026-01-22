@@ -427,11 +427,6 @@ behaviors {
 
 keymap { compatible = "zmk,keymap";
 
-// ALPHA(COLEMAK, 
-//      Q, W, F, P, B,  J, L, U, Y, SQT,
-//      A, R, S, T, G,  M, N, E, I, O,
-//      Z, X, C, D, V,  K, H, comma, dot, FSLH)
-
 ALPHA_LAT(COLEMAK, 
      Q, W, F, P, B,  J, L, U, Y, SQT,
      A, R, S, T, G,  M, N, E, I, O,
