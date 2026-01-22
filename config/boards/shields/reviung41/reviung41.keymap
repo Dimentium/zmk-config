@@ -16,6 +16,51 @@
 #define RIGHT_HALF  6  7  8  9 10 11 18 19 20 21 22 23 30 31 32 33 34 35
 #define THUMBS     36 37 38 39 40
 
+#define ___
+#define __ &none
+
+#define k0 
+#define k1 0
+#define k2 1
+#define k3 2
+#define k4 3
+#define k5 4
+
+#define k6 7
+#define k7 8
+#define k8 9
+#define k9 10
+#define k10 11
+#define k11 
+
+#define k12 
+#define k13 12
+#define k14 13
+#define k15 14
+#define k16 15
+#define k17 16
+
+#define k18 19
+#define k19 20
+#define k20 21
+#define k21 22
+#define k22 23
+#define k23 
+
+#define k24 
+#define k25 26
+#define k26 27
+#define k27 28
+#define k28 29
+#define k29 30
+
+#define k30 
+#define k31 32
+#define k32 33
+#define k33 34
+#define k34 35
+#define k35
+
 // Layers
 #define ENG 0 // Alpha LAT 
 #define RUL 1 // Alpha RUS
@@ -98,9 +143,9 @@
  M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, \
  B1, B2, B3, B4, B5, B6, B7, B8, B9, B10) \
 NAME { bindings = < \
-_____ &kp T1   hrlC(T2)     hrlA(T3)     hrlG(T4)     &kp T5      &kp T6  hrrG(T7)     hrrA(T8)     hrrC(T9)     &kp T10    _____ \
-_____ hrlS(M1) &mol EXT M2  &mol FUN M3  &mol MYS M4  &kp M5      &kp M6  &kp M7       &mor FUN M8  &mor EXT M9  hrrS(M10)  _____ \
-_____ &kp B1   &kp B2       &kp B3       &kp B4       &kp B5      &kp B6  &kp B7       &B8          &B9          &kp B10    _____ \
+___ &kp T1   hrlC(T2)     hrlA(T3)     hrlG(T4)     &kp T5   __ __   &kp T6  hrrG(T7)     hrrA(T8)     hrrC(T9)     &kp T10    ___ \
+___ hrlS(M1) &mol EXT M2  &mol FUN M3  &mol MYS M4  &kp M5   __ __   &kp M6  &kp M7       &mor FUN M8  &mor EXT M9  hrrS(M10)  ___ \
+___ &kp B1   &kp B2       &kp B3       &kp B4       &kp B5   __ __   &kp B6  &kp B7       &B8          &B9          &kp B10    ___ \
                                                            THUMBS_ROW \
 >;};
 
@@ -109,9 +154,9 @@ _____ &kp B1   &kp B2       &kp B3       &kp B4       &kp B5      &kp B6  &kp B7
  M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, \
  B1, B2, B3, B4, B5, B6, B7, B8, B9, B10) \
 NAME { bindings = < \
-_____ &kp T1##_RU   hrlC_RU(T2##_RU)  hrlA_RU(T3##_RU)  hrlG_RU(T4##_RU)  &kp T5##_RU      &kp T6##_RU  hrrG_RU(T7##_RU)  hrrA_RU(T8##_RU)  hrrC_RU(T9##_RU)  &kp T10##_RU    _____ \
-_____ hrlS(M1##_RU) &mol EXT M2##_RU  &mol FUN M3##_RU  &mol MYS M4##_RU  &kp M5##_RU      &kp M6##_RU  &kp M7##_RU       &mor FUN M8##_RU  &mor EXT M9##_RU  hrrS(M10##_RU)  _____ \
-_____ &kp B1##_RU   &kp B2##_RU       &kp B3##_RU       &kp B4##_RU       &kp B5##_RU      &kp B6##_RU  &kp B7##_RU       &B8##_RU          &B9##_RU          &kp B10##_RU    _____ \
+___ &kp T1##_RU   hrlC_RU(T2##_RU)  hrlA_RU(T3##_RU)  hrlG_RU(T4##_RU)  &kp T5##_RU   __ __   &kp T6##_RU  hrrG_RU(T7##_RU)  hrrA_RU(T8##_RU)  hrrC_RU(T9##_RU)  &kp T10##_RU    ___ \
+___ hrlS(M1##_RU) &mol EXT M2##_RU  &mol FUN M3##_RU  &mol MYS M4##_RU  &kp M5##_RU   __ __   &kp M6##_RU  &kp M7##_RU       &mor FUN M8##_RU  &mor EXT M9##_RU  hrrS(M10##_RU)  ___ \
+___ &kp B1##_RU   &kp B2##_RU       &kp B3##_RU       &kp B4##_RU       &kp B5##_RU   __ __   &kp B6##_RU  &kp B7##_RU       &B8##_RU          &B9##_RU          &kp B10##_RU    ___ \
                                                            THUMBS_ROW \
 >;};
 
@@ -120,15 +165,15 @@ _____ &kp B1##_RU   &kp B2##_RU       &kp B3##_RU       &kp B4##_RU       &kp B5
  M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, \
  B1, B2, B3, B4, B5, B6, B7, B8, B9, B10) \
 NAME { bindings = < \
-_____ &kp T1   hrlC(T2)     hrlA(T3)     hrlG(T4)     &kp T5      &kp T6  hrrG(T7)     hrrA(T8)     hrrC(T9)     &kp T10    _____ \
-_____ hrlS(M1) &mol EXT M2  &mol FUN M3  &mol MYS M4  &kp M5      &kp M6  &kp M7       &mor FUN M8  &mor EXT M9  hrrS(M10)  _____ \
-_____ &kp B1   &kp B2       &kp B3       &kp B4       &kp B5      &kp B6  &kp B7       &B8          &B9          &kp B10    _____ \
+___ &kp T1   hrlC(T2)     hrlA(T3)     hrlG(T4)     &kp T5   __ __   &kp T6  hrrG(T7)     hrrA(T8)     hrrC(T9)     &kp T10    ___ \
+___ hrlS(M1) &mol EXT M2  &mol FUN M3  &mol MYS M4  &kp M5   __ __   &kp M6  &kp M7       &mor FUN M8  &mor EXT M9  hrrS(M10)  ___ \
+___ &kp B1   &kp B2       &kp B3       &kp B4       &kp B5   __ __   &kp B6  &kp B7       &B8          &B9          &kp B10    ___ \
                                                            THUMBS_ROW \
 >;}; \
 NAME##_RU { bindings = < \
-_____ &kp T1##_RU   hrlC_RU(T2##_RU)  hrlA_RU(T3##_RU)  hrlG_RU(T4##_RU)  &kp T5##_RU      &kp T6##_RU  hrrG_RU(T7##_RU)  hrrA_RU(T8##_RU)  hrrC_RU(T9##_RU)  &kp T10##_RU    _____ \
-_____ hrlS(M1##_RU) &mol EXT M2##_RU  &mol FUN M3##_RU  &mol MYS M4##_RU  &kp M5##_RU      &kp M6##_RU  &kp M7##_RU       &mor FUN M8##_RU  &mor EXT M9##_RU  hrrS(M10##_RU)  _____ \
-_____ &kp B1##_RU   &kp B2##_RU       &kp B3##_RU       &kp B4##_RU       &kp B5##_RU      &kp B6##_RU  &kp B7##_RU       &B8##_RU          &B9##_RU          &kp B10##_RU    _____ \
+___ &kp T1##_RU   hrlC_RU(T2##_RU)  hrlA_RU(T3##_RU)  hrlG_RU(T4##_RU)  &kp T5##_RU   __ __   &kp T6##_RU  hrrG_RU(T7##_RU)  hrrA_RU(T8##_RU)  hrrC_RU(T9##_RU)  &kp T10##_RU    ___ \
+___ hrlS(M1##_RU) &mol EXT M2##_RU  &mol FUN M3##_RU  &mol MYS M4##_RU  &kp M5##_RU   __ __   &kp M6##_RU  &kp M7##_RU       &mor FUN M8##_RU  &mor EXT M9##_RU  hrrS(M10##_RU)  ___ \
+___ &kp B1##_RU   &kp B2##_RU       &kp B3##_RU       &kp B4##_RU       &kp B5##_RU   __ __   &kp B6##_RU  &kp B7##_RU       &B8##_RU          &B9##_RU          &kp B10##_RU    ___ \
                                                            THUMBS_ROW \
 >;};
 #define MOD_MACRO(name, mod)                            \
@@ -191,35 +236,35 @@ name: name##_mod_tap_righthand {                        \
 
 / {
 combos { compatible = "zmk,combos";
-    lock         { bindings = <&kp LC(LG(Q))>; key-positions = < 2 3 4 >; timeout-ms = < COMBO_TIMEOUT_3 >; };
+    lock         { bindings = <&kp LC(LG(Q))>; key-positions = < k2 k3 k4 >; timeout-ms = < COMBO_TIMEOUT_3 >; };
 
-    escape_left  { bindings = <&kp ESC>; key-positions = <2 3>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    escape_left2 { bindings = <&kp ESC>; key-positions = <2 14>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    escape_right { bindings = <&kp ESC>; key-positions = <8 9>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    escape_right2{ bindings = <&kp ESC>; key-positions = <9 21>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    escape_left  { bindings = <&kp ESC>; key-positions = <k2 k3>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    escape_left2 { bindings = <&kp ESC>; key-positions = <k2 k14>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    escape_right { bindings = <&kp ESC>; key-positions = <k8 k9>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    escape_right2{ bindings = <&kp ESC>; key-positions = <k9 k21>; timeout-ms = < COMBO_TIMEOUT_2 >; };
 
-    enter_left   { bindings = <&kp ENTER>; key-positions = <4 16>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    enter_right  { bindings = <&kp ENTER>; key-positions = <32 33>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    enter_right2 { bindings = <&kp ENTER>; key-positions = <7  19>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    enter_left   { bindings = <&kp ENTER>; key-positions = <k4 k16>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    enter_right  { bindings = <&kp ENTER>; key-positions = <k32 k33>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = <0 1 2 3> ;};
+    enter_right2 { bindings = <&kp ENTER>; key-positions = <k7  k19>; timeout-ms = < COMBO_TIMEOUT_2 >; };
 
-    bspc_left    { bindings = <&kp BACKSPACE>; key-positions = <3 16>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    bspc_right   { bindings = <&kp BACKSPACE>; key-positions = <8 19>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    bspc_left    { bindings = <&kp BACKSPACE>; key-positions = <k3 k16>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    bspc_right   { bindings = <&kp BACKSPACE>; key-positions = <k8 k19>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = <0 1 2 3> ;};
     
-    del_left     { bindings = <&kp DELETE>; key-positions = <3 14>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    del_right    { bindings = <&kp DELETE>; key-positions = <8 21>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    del_left     { bindings = <&kp DELETE>; key-positions = <k3 k14>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    del_right    { bindings = <&kp DELETE>; key-positions = <k8 k21>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = <0 1 2 3> ;};
 
-    tab_left     { bindings = <&kp TAB>; key-positions = <3 4>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    tab_right    { bindings = <&kp TAB>; key-positions = <7 8>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    tab_left_2   { bindings = <&kp TAB>; key-positions = <3 15>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    tab_right_2  { bindings = <&kp TAB>; key-positions = <8 20>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    tab_left     { bindings = <&kp TAB>; key-positions = <k3 k4>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    tab_right    { bindings = <&kp TAB>; key-positions = <k7 k8>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    tab_left_2   { bindings = <&kp TAB>; key-positions = <k3 k15>; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    tab_right_2  { bindings = <&kp TAB>; key-positions = <k8 k20>; timeout-ms = < COMBO_TIMEOUT_2 >; };
 
-    copy_cut     { bindings = <&td_copy_cut>; key-positions = < 14 16 >; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    paste        { bindings = <&kp LG(V)>; key-positions = < 2 4 >; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    undo         { bindings = <&kp LG(Z)>; key-positions = < 13 16 >; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    redo         { bindings = <&kp LS(LG(Z))>; key-positions = < 1 4 >; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    copy_cut     { bindings = <&td_copy_cut>; key-positions = < k14 k16 >; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    paste        { bindings = <&kp LG(V)>; key-positions = < k2 k4 >; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    undo         { bindings = <&kp LG(Z)>; key-positions = < k13 k16 >; timeout-ms = < COMBO_TIMEOUT_2 >; };
+    redo         { bindings = <&kp LS(LG(Z))>; key-positions = < k1 k4 >; timeout-ms = < COMBO_TIMEOUT_2 >; };
 
-    to_rus       { bindings = <&rus>; key-positions = < 19 20 21 >; timeout-ms = < COMBO_TIMEOUT_3 >; };
-    to_eng       { bindings = <&eng>; key-positions = < 14 15 16 >; timeout-ms = < COMBO_TIMEOUT_3 >; };
+    to_rus       { bindings = <&rus>; key-positions = < k19 k20 k21 >; timeout-ms = < COMBO_TIMEOUT_3 >; };
+    to_eng       { bindings = <&eng>; key-positions = < k14 k15 k16 >; timeout-ms = < COMBO_TIMEOUT_3 >; };
 
  };
 
@@ -387,15 +432,25 @@ keymap { compatible = "zmk,keymap";
 //      A, R, S, T, G,  M, N, E, I, O,
 //      Z, X, C, D, V,  K, H, comma, dot, FSLH)
 
+ALPHA_LAT(COLEMAK, 
+     Q, W, F, P, B,  J, L, U, Y, SQT,
+     A, R, S, T, G,  M, N, E, I, O,
+     Z, X, C, D, V,  K, H, comma, dot, FSLH)
+
+ALPHA_RUS(RULEMAK, 
+     Q, F, W, P, B,  J, L, U, Y, SQT,
+     A, R, S, T, G,  M, N, E, I, O,
+     X, Z, C, D, V,  H, K, comma, dot, FSLH)
+
 // ALPHA(SEMIMAK, 
 //     F, L, H, V, Z,  SQT, W, U, O, Y,
 //     S, R, N, T, K,    C, D, E, A, I,
 //     X, J, B, M, Q,    P, G, comma, dot, FSLH)
 
-ALPHA(GRALMAK, 
-    B, L, D, W, Q,    J, F, O, U, SQT,
-    N, R, T, S, G,    Y, H, A, E, I,
-    Z, X, M, C, V,    K, P, comma, dot, FSLH)
+// ALPHA(GRALMAK, 
+//     B, L, D, W, Q,    J, F, O, U, SQT,
+//     N, R, T, S, G,    Y, H, A, E, I,
+//     Z, X, M, C, V,    K, P, comma, dot, FSLH)
 
 // ALPHA_RUS(RULEMAK,
 //      Q, W, F, P, B,  J, L, U, Y, SH,
@@ -403,37 +458,37 @@ ALPHA(GRALMAK,
 //      X, Z, C, D, V,  K, H, comma, dot, SOFT)
 
 qwerty { bindings = <
-_____         &kp Q         hrlC(W)       hrlA(E)       hrlG(R)       &kp T              &kp Y           hrrG(U)          hrrA(I)         hrrC(O)         &kp P           _____
-_____         hrlS(A)       &kp S         &kp D         &kp F         &kp G              &kp H           &kp J            &kp K           &kp L           hrrS(SEMI)      _____
-_____         &kp Z         &kp X         &kp C         &kp V         &kp B              &kp N           &kp M            &kp COMMA       &kp DOT         &kp FSLH        _____
+___         &kp Q         hrlC(W)       hrlA(E)       hrlG(R)       &kp T     __ __    &kp Y           hrrG(U)          hrrA(I)         hrrC(O)         &kp P           ___
+___         hrlS(A)       &kp S         &kp D         &kp F         &kp G     __ __    &kp H           &kp J            &kp K           &kp L           hrrS(SEMI)      ___
+___         &kp Z         &kp X         &kp C         &kp V         &kp B     __ __    &kp N           &kp M            &kp COMMA       &kp DOT         &kp FSLH        ___
                                           &trans        &trans                 &trans                    &trans           &trans
 >;};
 
 extended { bindings = <
-_____         &kp LS(N1)    hrlC(LS(N2))  hrlA(LS(N3))  hrlG(LS(N4))  &kp LS(N5)         &kp LS(N6)      hrrG(LS(N7))     hrrA(LS(N8))    hrrC(LS(N9))    &kp LS(N0)      _____
-_____         hrlS(N1)      &kp N2        &kp N3        &kp N4        &kp N5             &kp N6          &kp N7           &kp N8          &kp N9          hrrS(N0)        _____
-_____         &kp NUBS      &kp GRAVE     &kp FSLH      &kp EQUAL     &kp LS(EQUAL)      &kp LS(MINUS)   &kp MINUS        &kp BSLH        &kp LBKT        &kp RBKT        _____
+___         &kp LS(N1)    hrlC(LS(N2))  hrlA(LS(N3))  hrlG(LS(N4))  &kp LS(N5) __ __   &kp LS(N6)      hrrG(LS(N7))     hrrA(LS(N8))    hrrC(LS(N9))    &kp LS(N0)      ___
+___         hrlS(N1)      &kp N2        &kp N3        &kp N4        &kp N5     __ __   &kp N6          &kp N7           &kp N8          &kp N9          hrrS(N0)        ___
+___         &kp NUBS      &kp GRAVE     &kp FSLH      &kp EQUAL     &kp LS(EQUAL) __ __ &kp LS(MINUS)   &kp MINUS        &kp BSLH        &kp LBKT        &kp RBKT        ___
                                           &trans        &trans                 &kp SQT                   &trans           &trans
 >;};
 
 navigation { bindings = <
-_____         &kp C_EJECT   &kp LCTRL     &kp LALT      &kp LGUI      _____              &kp PG_UP       &kp HOME         &kp UP          &kp END         &kp DEL         _____
-_____         &kp LSHFT     _____         _____         _____         &kp K_APP          &kp PG_DN       &kp LEFT         &kp DOWN        &kp RIGHT       &kp BSPC        _____
-_____         _____         _____         _____         _____         _____              &kp INS         &kp TAB          &kp LS(COMMA)   &kp LS(DOT)     &kp MINUS       _____
+___         &kp C_EJECT   &kp LCTRL     &kp LALT      &kp LGUI      _____     __ __    &kp PG_UP       &kp HOME         &kp UP          &kp END         &kp DEL         ___
+___         &kp LSHFT     _____         _____         _____         &kp K_APP __ __    &kp PG_DN       &kp LEFT         &kp DOWN        &kp RIGHT       &kp BSPC        ___
+___         _____         _____         _____         _____         _____     __ __    &kp INS         &kp TAB          &kp LS(COMMA)   &kp LS(DOT)     &kp MINUS       ___
                                           &trans        &trans                 &trans                    &trans           &trans
 >;};
 
 function { bindings = <
-_____         &kp LSHFT     &kp LCTRL     &kp LALT      &kp LGUI      &bootloader        _____           &kp LGUI         hrrA(F11)       hrrC(F12)       &kp LSHFT       _____
-_____         hrlS(F1)      &kp F2        &kp F3        &kp F4        &kp F5             &kp F6          &kp F7           &kp F8          &kp F9          hrrS(F10)       _____
-_____         &kp KP_NUM    &kp PSCRN     &kp SLCK      &kp PAUSE_BREAK &kp CAPS         _____           &kp C_PLAY_PAUSE &kp C_VOL_DN    &kp C_VOL_UP    &kp C_MUTE      _____
+___         &kp LSHFT     &kp LCTRL     &kp LALT      &kp LGUI      &bootloader __ __  _____           &kp LGUI         hrrA(F11)       hrrC(F12)       &kp LSHFT       ___
+___         hrlS(F1)      &kp F2        &kp F3        &kp F4        &kp F5      __ __  &kp F6          &kp F7           &kp F8          &kp F9          hrrS(F10)       ___
+___         &kp KP_NUM    &kp PSCRN     &kp SLCK      &kp PAUSE_BREAK &kp CAPS  __ __  _____           &kp C_PLAY_PAUSE &kp C_VOL_DN    &kp C_VOL_UP    &kp C_MUTE      ___
                                           &trans        &trans                 &trans                    &trans           &trans
 >;};
 
 mice { bindings = <
-_____         &kp C_EJECT   &kp LCTL      &kp LALT      &kp LGUI      _____              &msc SCRL_DOWN  &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT _____           _____
-_____         &kp LSHFT     &mkp MB1      &mkp MB2      _____         _____              &msc SCRL_UP    &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT &mkp MB3        _____
-_____         _____         _____         _____         _____         _____              _____           _____            _____           _____           _____           _____
+___         &kp C_EJECT   &kp LCTL      &kp LALT      &kp LGUI      _____    __ __     &msc SCRL_DOWN  &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT _____           ___
+___         &kp LSHFT     &mkp MB1      &mkp MB2      _____         _____    __ __     &msc SCRL_UP    &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT &mkp MB3        ___
+___         _____         _____         _____         _____         _____    __ __     _____           _____            _____           _____           _____           ___
                                           _____         &mkp MB1              &mkp MB3   &mkp MB2        _____
 >;};
 
