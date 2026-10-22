@@ -8,7 +8,7 @@ ZMK Studio включена и всегда разблокирована: `CONFI
 
 Миграция выполнена отдельно в ветке `modernize-reviung41`. Контрольный коммит до миграции: `2401eb9`. Остальные клавиатуры в `config/boards/shields/` пока не перенесены; из-за них ZMK ещё выводит общее предупреждение об устаревшем `config/boards`. Оно не относится к новому расположению Reviung41.
 
-Для RP2040 отключены неподдерживаемые sleep/soft-off, убраны неприменимые BLE-настройки. В локальном keymap `MIDDLE_TRANS` пустой: общий `THUMBS_TRANS` уже содержит пять `&trans`, соответствующих пяти нижним клавишам Reviung41. Общий `keymap_30.dtsi` не изменён.
+Для RP2040 в его цели сборки отключены неподдерживаемые sleep/soft-off и BLE. В локальном keymap `MIDDLE_TRANS` пустой: общий `THUMBS_TRANS` уже содержит пять `&trans`, соответствующих пяти нижним клавишам Reviung41. Общий `keymap_30.dtsi` не изменён.
 
 Результат сборки: `firmware/reviung41/reviung41-sparkfun_pro_micro_rp2040-studio.uf2`. Рядом контрольная сумма и manifest с точными версиями зависимостей. Сборка проверена 2026-10-22; испытания на физической плате не выполнялись.
 
@@ -22,3 +22,11 @@ west build -s zmk/app -d build/reviung41 -b sparkfun_pro_micro_rp2040//zmk \
   -DZMK_CONFIG="$HOME/git/zmk-config/config" \
   -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
 ```
+
+## nice!nano v2: USB + BLE
+
+В `build.yaml` добавлена отдельная цель `nice_nano//zmk` (ревизия 2.0.0 по умолчанию), shield `reviung41`, artifact `reviung41-nice_nano-studio`. Она использует ту же раскладку и всегда разблокированную Studio; USB и BLE включены одновременно. Также включены сон через 6000000 мс простоя и отчёт об аккумуляторе через штатный драйвер nice!nano. Studio имеет USB и BLE транспорты; для BLE использовать нативное приложение.
+
+Общий `config/reviung41.conf` больше не отключает BLE. Параметры контроллеров задаются отдельно в `cmake-args` соответствующих целей: nice!nano включает BLE/сон/батарею, RP2040 явно отключает BLE/сон/soft-off. Для локальной сборки необходимо передать те же аргументы из `build.yaml`.
+
+UF2 для nice!nano нельзя прошивать в RP2040 и наоборот. Сохранённые Studio настройки сохраняются при обычной перепрошивке. Для выбора USB/BLE выхода можно назначить `&out OUT_USB` / `&out OUT_BLE` в Studio; профили Bluetooth выбираются через `&bt BT_SEL`.
