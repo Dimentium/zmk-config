@@ -1,13 +1,13 @@
 ---
 include:
-  - board:  nice_nano_v2
-    shield: nine_left
-    snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y
-  - board:  nice_nano_v2
-    shield: nine_right
-  - board:  seeeduino_xiao_ble
-    shield: zaphod_lite
+  # - board:  nice_nano//zmk
+  #   shield: nine_left
+  #   snippet: studio-rpc-usb-uart
+  #   cmake-args: -DCONFIG_ZMK_STUDIO=y
+  # - board:  nice_nano//zmk
+  #   shield: nine_right
+  # - board:  xiao_ble//zmk
+  #   shield: zaphod_lite
   # - board: nice_nano_v2
   #   shield: cradio_left
   # - board: nice_nano_v2
@@ -19,6 +19,11 @@ include:
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
     artifact-name: reviung41-sparkfun_pro_micro_rp2040-studio
+  - board: nice_nano//zmk
+    shield: reviung41
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
+    artifact-name: reviung41-nice_nano-studio
   # - board: nice_nano_v2
   #   shield: corne_left
   # - board: nice_nano_v2
