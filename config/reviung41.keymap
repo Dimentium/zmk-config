@@ -1,2 +1,12 @@
-// Load the existing user keymap, including its shared keymap_30.dtsi.
-#include "boards/shields/reviung41/reviung41.keymap"
+#define THUMBS       36           37             38           39           40
+#define MIDDLE_ALPHA &mo QWE
+// Shared THUMBS_TRANS already supplies five transparent bindings for this board.
+#define MIDDLE_TRANS
+#define MIDDLE_QWE   &kp SQT
+#define MIDDLE_MOUSE &mkp MB3
+#define MIDDLE_SPC   &kp LALT
+
+#define MIDDLE(NAME) &kp NAME
+
+// Include main keymap
+#include "../keymap_30.dtsi"
