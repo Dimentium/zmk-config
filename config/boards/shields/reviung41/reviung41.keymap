@@ -1,6 +1,7 @@
 #define THUMBS       36           37             38           39           40
 #define MIDDLE_ALPHA &mo QWE
-#define MIDDLE_TRANS &trans
+// Shared THUMBS_TRANS already supplies five transparent bindings for this board.
+#define MIDDLE_TRANS
 #define MIDDLE_QWE   &kp SQT
 #define MIDDLE_MOUSE &mkp MB3
 #define MIDDLE_SPC   &kp LALT

@@ -1,0 +1,2 @@
+// Load the existing user keymap, including its shared keymap_30.dtsi.
+#include "boards/shields/reviung41/reviung41.keymap"
