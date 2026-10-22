@@ -15,12 +15,12 @@ include:
   - board: nice_nano//zmk
     shield: reviung41
     snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n -DCONFIG_ZMK_BLE=y -DCONFIG_ZMK_USB=y -DCONFIG_ZMK_SLEEP=y -DCONFIG_ZMK_IDLE_SLEEP_TIMEOUT=6000000 -DCONFIG_ZMK_BATTERY_REPORTING=y
+    cmake-args: -DEXTRA_CONF_FILE='${ZMK_CONFIG}/controllers/reviung41-nice_nano.conf'
     artifact-name: reviung41-nice_nano-studio
   - board: sparkfun_pro_micro_rp2040//zmk
     shield: reviung41
     snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n -DCONFIG_ZMK_BLE=n -DCONFIG_ZMK_SLEEP=n -DCONFIG_ZMK_PM_SOFT_OFF=n
+    cmake-args: -DEXTRA_CONF_FILE='${ZMK_CONFIG}/controllers/reviung41-rp2040.conf'
     artifact-name: reviung41-sparkfun_pro_micro_rp2040-studio
   # - board: nice_nano//zmk
   #   shield: corne_left
