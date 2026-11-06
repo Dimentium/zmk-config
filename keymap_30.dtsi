@@ -75,6 +75,7 @@
 #define GAM 7
 #define GAM2 8
 #define GAM3 9
+#define DEV 10 // Device controls; activation is assigned separately in Studio.
 #define NOTGAM 0 1 2 3 4 5 6
 
 #define A_RU F
@@ -147,7 +148,7 @@
  T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, \
  M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, \
  B1, B2, B3, B4, B5, B6, B7, B8, B9, B10) \
-NAME { bindings = < \
+NAME { display-name = #NAME; bindings = < \
 ___ &kp T1   hrlC(T2)     hrlA(T3)     hrlG(T4)     &kp T5      __ __   &kp T6      hrrG(T7)     hrrA(T8)     hrrC(T9)     &kp T10    ___ \
 ___ hrlS(M1) &mol EXT M2  &mol FUN M3  &mol QWE M4  &mol MYS M5 __ __   &mor MYS M6 &mor QWE M7  &mor FUN M8  &mor EXT M9  hrrS(M10)  ___ \
 ___ &kp B1   &kp B2       &kp B3       &kp B4       &kp B5      __ __   &kp B6      &kp B7       &B8          &B9          &kp B10    ___ \
@@ -158,7 +159,7 @@ ___ &kp B1   &kp B2       &kp B3       &kp B4       &kp B5      __ __   &kp B6  
  T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, \
  M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, \
  B1, B2, B3, B4, B5, B6, B7, B8, B9, B10) \
-NAME { bindings = < \
+NAME { display-name = #NAME; bindings = < \
 ___ &kp T1##_RU   hrlC_RU(T2##_RU)  hrlA_RU(T3##_RU)  hrlG_RU(T4##_RU)  &kp T5##_RU        __ __   &kp T6##_RU       hrrG_RU(T7##_RU)  hrrA_RU(T8##_RU)  hrrC_RU(T9##_RU)  &kp T10##_RU    ___ \
 ___ hrlS(M1##_RU) &mol EXT M2##_RU  &mol FUN M3##_RU  &mol QWE M4##_RU  &mol MYS M5##_RU   __ __   &mor MYS M6##_RU  &mor QWE M7##_RU  &mor FUN M8##_RU  &mor EXT M9##_RU  hrrS(M10##_RU)  ___ \
 ___ &kp B1##_RU   &kp B2##_RU       &kp B3##_RU       &kp B4##_RU       &kp B5##_RU        __ __   &kp B6##_RU       &kp B7##_RU       &B8##_RU          &B9##_RU          &kp B10##_RU    ___ \
@@ -453,62 +454,120 @@ ALPHA_RUS(RULEMAK,
 //      A, R, S, T, G,  M, N, E, I, O,
 //      X, Z, C, D, V,  K, H, comma, dot, SOFT)
 
-qwerty { bindings = <
+qwerty { display-name = "QWERTY"; bindings = <
 &kp Q         hrlC(W)       hrlA(E)       hrlG(R)       &kp T     __ __    &kp Y           hrrG(U)          hrrA(I)         hrrC(O)         &kp P
 hrlS(A)       &kp S         &kp D         &kp F         &kp G     __ __    &kp H           &kp J            &kp K           &kp L           hrrS(SEMI)
 &kp Z         &kp X         &kp C         &kp V         &kp B     __ __    &kp N           &kp M            &kp COMMA       &kp DOT         &kp FSLH
                                                               THUMBS_TRANS
 >;};
 
-extended { bindings = <
+extended { display-name = "Symbols"; bindings = <
 &kp LS(N1)    hrlC(LS(N2))  hrlA(LS(N3))  hrlG(LS(N4))  &kp LS(N5) __ __   &kp LS(N6)      hrrG(LS(N7))     hrrA(LS(N8))    hrrC(LS(N9))    &kp LS(N0)
 hrlS(N1)      &kp N2        &kp N3        &kp N4        &kp N5    __ __    &kp N6          &kp N7           &kp N8          &kp N9          hrrS(N0)
 &kp SQT       &kp GRAVE     &kp FSLH      &kp EQUAL     &kp PLUS  __ __    &kp LS(MINUS)   &kp MINUS        &kp BSLH        &kp LBKT        &kp RBKT
                                                               THUMBS_SQT
 >;};
 
-navigation { bindings = <
+navigation { display-name = "Navigation"; bindings = <
 &kp C_EJECT   &kp LCTRL     &kp LALT      &kp LGUI      _____     __ __    &kp PG_UP       &kp HOME         &kp UP          &kp END         &kp DEL
 &kp LSHFT     _____         _____         _____         &kp K_APP __ __    &kp PG_DN       &kp LEFT         &kp DOWN        &kp RIGHT       &kp BSPC
 _____         _____         _____         _____         _____     __ __    &kp INS         &kp TAB          &kp LS(COMMA)   &kp LS(DOT)     &kp MINUS
                                                               THUMBS_TRANS
 >;};
 
-function { bindings = <
+function { display-name = "Function"; bindings = <
 &kp LSHFT     &kp LCTRL     &kp LALT      &kp LGUI      _____     __ __    _____           &kp LGUI         hrrA(F11)       hrrC(F12)       &kp LSHFT
 hrlS(F1)      &kp F2        &kp F3        &kp F4        &kp F5    __ __    &kp F6          &kp F7           &kp F8          &kp F9          hrrS(F10)
 &kp KP_NUM    &kp PSCRN     &kp SLCK      &kp PAUSE     &kp CAPS  __ __    _____           &kp C_PLAY_PAUSE &kp C_VOL_DN    &kp C_VOL_UP    &kp C_MUTE
                                                               THUMBS_TRANS
 >;};
 
-mice { bindings = <
+mice { display-name = "Mouse"; bindings = <
 &kp C_EJECT   &kp LCTL      &kp LALT      &kp LGUI      _____     __ __    &msc SCRL_DOWN  &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT _____
 &kp LSHFT     &mkp MB1      &mkp MB2      _____         _____     __ __    &msc SCRL_UP    &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT &mkp MB3
-// _____         _____         _____         _____      &bootloader  __ __    _____           _____            _____           _____           _____
 &bt BT_CLR    &bt BT_SEL 0  _____         _____      &bootloader  __ __    _____           _____            _____           _____           _____
                                                               THUMBS_MOUSE
 >;};
 
-gaming { bindings = <
+gaming { display-name = "Gaming"; bindings = <
 &kp LSHFT     &kp A         &kp S         &kp D         &kp F     &kp G __     &kp G          &kp H            &kp J           &kp K           &kp L
 &kp TAB       &kp Q         &kp W         &kp E         &kp R     &kp T __     &kp T          &kp Y            &kp U           &kp I           &kp O
 &kp LCTRL     &kp Z         &kp X         &kp C         &kp V     &kp B __     &kp B          &kp N            &kp M           &kp SPC         &kp P
                                           &mo GAM2   &mo GAM3  MIDDLE(SPC)  &kp SPC        &kp GAM2
 >;};
 
-gamnum { bindings = <
+gamnum { display-name = "Gaming Numbers"; bindings = <
 &kp LA(N1)    &kp LA(N2)    &kp LA(N3)    &kp LA(N4)    __        __    __     &kp T          &kp Y            &kp U           &kp I           &kp O
 &kp N1        &kp N2        &kp N3        &kp N4        &kp N5    __    __     &kp G          &kp H            &kp J           &kp K           &kp L
 &kp Z         &kp X         &kp C         &kp V         __        __    __     &kp B          &kp N            &kp M           &kp SPC         &kp P
                                           &mo GAM2   &kp SPC  MIDDLE(LALT)  &kp SPC        &mo GAM2
 >;};
 
-gamfun { bindings = <
+gamfun { display-name = "Gaming Function"; bindings = <
 &kp LA(N1)    &kp LA(N2)    &kp LA(N3)    &kp LA(N4)    __        __    __     &kp T          &kp Y            &kp U           &kp I           &kp O
 &kp F1        &kp F2        &kp F3        &kp F4        &kp F5    __    __     &kp G          &kp H            &kp J           &kp K           &kp L
 &kp Z         &kp X         &kp C         &kp V         __        __    __     &kp B          &kp N            &kp M           &kp SPC         &kp P
                                           &mo GAM2   &kp SPC  MIDDLE(LALT)  &kp SPC        &mo GAM2
 >;};
 
+
+// Layer 10. Deliberately no activation binding: assign &mo DEV / &to DEV in Studio.
+device { display-name = "Device"; bindings = <
+&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 __ __ &out OUT_USB &out OUT_BLE &trans &trans &trans
+&bt BT_PRV   &bt BT_NXT   &trans      &trans      &trans       __ __ &trans       &trans       &trans &trans &trans
+&bt BT_CLR   &trans       &trans      &trans      &trans       __ __ &trans       &trans       &trans &trans &bootloader
+                                                              THUMBS_TRANS
+>;};
+
+// Reserved slots can be enabled and renamed in Studio without another flash.
+extra1 { display-name = "Extra 1"; status = "reserved"; };
+extra2 { display-name = "Extra 2"; status = "reserved"; };
+extra3 { display-name = "Extra 3"; status = "reserved"; };
+
 };};
 
+
+// Names shown in ZMK Studio; behavior implementation and timing are unchanged.
+&{/keymap/COLEMAK} { display-name = "Colemak"; };
+&{/keymap/RULEMAK} { display-name = "Russian"; };
+&eng { display-name = "Switch to English (F18)"; };
+&rus { display-name = "Switch to Russian (F19)"; };
+&semi { display-name = "Semicolon (temporarily release Shift)"; };
+&f20 { display-name = "QWERTY + F20 while held"; };
+&alt_en { display-name = "Hold Alt (Latin)"; };
+&gui_en { display-name = "Hold GUI (Latin)"; };
+&ctl_en { display-name = "Hold Ctrl (Latin)"; };
+&shft { display-name = "Hold Shift"; };
+&alt_ru { display-name = "Hold Alt + Latin layer (Russian)"; };
+&gui_ru { display-name = "Hold GUI + Latin layer (Russian)"; };
+&ctl_ru { display-name = "Hold Ctrl + Latin layer (Russian)"; };
+&mol { display-name = "Layer / Tap - Left hand"; };
+&mor { display-name = "Layer / Tap - Right hand"; };
+&kt_off { display-name = "Key Toggle Off"; };
+&kt_on { display-name = "Key Toggle On"; };
+&td_copy_cut { display-name = "Copy / Cut (tap dance)"; };
+&rt { display-name = "Key / Key (retro tap)"; };
+&ht { display-name = "Key / Key (tap preferred)"; };
+&mo_f20 { display-name = "QWERTY + F20 / Tap"; };
+&comma { display-name = "Comma / Semicolon"; };
+&dot { display-name = "Period / Colon"; };
+&qmark { display-name = "Question / Exclamation"; };
+&comma_RU { display-name = "Russian Comma / Semicolon"; };
+&dot_RU { display-name = "Russian Period / Colon"; };
+&semi_ru { display-name = "Russian Semicolon / Colon"; };
+&sqt_ru { display-name = "Russian Quote / Double Quote"; };
+&fslh_ru { display-name = "Russian Slash / Question"; };
+&lalt_en { display-name = "Left Alt / Tap (Latin)"; };
+&lalt_ru { display-name = "Left Alt / Tap (Russian)"; };
+&lgui_en { display-name = "Left GUI / Tap (Latin)"; };
+&lgui_ru { display-name = "Left GUI / Tap (Russian)"; };
+&lctl_en { display-name = "Left Ctrl / Tap (Latin)"; };
+&lctl_ru { display-name = "Left Ctrl / Tap (Russian)"; };
+&ralt_en { display-name = "Right Alt / Tap (Latin)"; };
+&ralt_ru { display-name = "Right Alt / Tap (Russian)"; };
+&rgui_en { display-name = "Right GUI / Tap (Latin)"; };
+&rgui_ru { display-name = "Right GUI / Tap (Russian)"; };
+&rctl_en { display-name = "Right Ctrl / Tap (Latin)"; };
+&rctl_ru { display-name = "Right Ctrl / Tap (Russian)"; };
+&lshft { display-name = "Left Shift / Tap"; };
+&rshft { display-name = "Right Shift / Tap"; };
