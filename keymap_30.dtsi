@@ -75,7 +75,7 @@
 #define GAM 7
 #define GAM2 8
 #define GAM3 9
-#define DEV 10 // Device controls; activation is assigned separately in Studio.
+#define DEV 10 // Device controls; hold the inner right home-row key on alpha layers.
 #define NOTGAM 0 1 2 3 4 5 6
 
 #define A_RU F
@@ -150,7 +150,7 @@
  B1, B2, B3, B4, B5, B6, B7, B8, B9, B10) \
 NAME { display-name = #NAME; bindings = < \
 ___ &kp T1   hrlC(T2)     hrlA(T3)     hrlG(T4)     &kp T5      __ __   &kp T6      hrrG(T7)     hrrA(T8)     hrrC(T9)     &kp T10    ___ \
-___ hrlS(M1) &mol EXT M2  &mol FUN M3  &mol QWE M4  &mol MYS M5 __ __   &mor MYS M6 &mor QWE M7  &mor FUN M8  &mor EXT M9  hrrS(M10)  ___ \
+___ hrlS(M1) &mol EXT M2  &mol FUN M3  &mol QWE M4  &mol MYS M5 __ __   &mor DEV M6 &mor QWE M7  &mor FUN M8  &mor EXT M9  hrrS(M10)  ___ \
 ___ &kp B1   &kp B2       &kp B3       &kp B4       &kp B5      __ __   &kp B6      &kp B7       &B8          &B9          &kp B10    ___ \
                                                              THUMBS_ROW \
 >;};
@@ -161,7 +161,7 @@ ___ &kp B1   &kp B2       &kp B3       &kp B4       &kp B5      __ __   &kp B6  
  B1, B2, B3, B4, B5, B6, B7, B8, B9, B10) \
 NAME { display-name = #NAME; bindings = < \
 ___ &kp T1##_RU   hrlC_RU(T2##_RU)  hrlA_RU(T3##_RU)  hrlG_RU(T4##_RU)  &kp T5##_RU        __ __   &kp T6##_RU       hrrG_RU(T7##_RU)  hrrA_RU(T8##_RU)  hrrC_RU(T9##_RU)  &kp T10##_RU    ___ \
-___ hrlS(M1##_RU) &mol EXT M2##_RU  &mol FUN M3##_RU  &mol QWE M4##_RU  &mol MYS M5##_RU   __ __   &mor MYS M6##_RU  &mor QWE M7##_RU  &mor FUN M8##_RU  &mor EXT M9##_RU  hrrS(M10##_RU)  ___ \
+___ hrlS(M1##_RU) &mol EXT M2##_RU  &mol FUN M3##_RU  &mol QWE M4##_RU  &mol MYS M5##_RU   __ __   &mor DEV M6##_RU  &mor QWE M7##_RU  &mor FUN M8##_RU  &mor EXT M9##_RU  hrrS(M10##_RU)  ___ \
 ___ &kp B1##_RU   &kp B2##_RU       &kp B3##_RU       &kp B4##_RU       &kp B5##_RU        __ __   &kp B6##_RU       &kp B7##_RU       &B8##_RU          &B9##_RU          &kp B10##_RU    ___ \
                                                                                         THUMBS_ROW \
 >;};
@@ -485,7 +485,7 @@ hrlS(F1)      &kp F2        &kp F3        &kp F4        &kp F5    __ __    &kp F
 mice { display-name = "Mouse"; bindings = <
 &kp C_EJECT   &kp LCTL      &kp LALT      &kp LGUI      _____     __ __    &msc SCRL_DOWN  &msc SCRL_LEFT   &mmv MOVE_UP    &msc SCRL_RIGHT _____
 &kp LSHFT     &mkp MB1      &mkp MB2      _____         _____     __ __    &msc SCRL_UP    &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT &mkp MB3
-&bt BT_CLR    &bt BT_SEL 0  _____         _____      &bootloader  __ __    _____           _____            _____           _____           _____
+_____         _____         _____         _____         _____     __ __    _____           _____            _____           _____           _____
                                                               THUMBS_MOUSE
 >;};
 
@@ -510,13 +510,11 @@ gamfun { display-name = "Gaming Function"; bindings = <
                                           &mo GAM2   &kp SPC  MIDDLE(LALT)  &kp SPC        &mo GAM2
 >;};
 
-
-// Layer 10. Deliberately no activation binding: assign &mo DEV / &to DEV in Studio.
 device { display-name = "Device"; bindings = <
-&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 __ __ &out OUT_USB &out OUT_BLE &trans &trans &trans
-&bt BT_PRV   &bt BT_NXT   &trans      &trans      &trans       __ __ &trans       &trans       &trans &trans &trans
-&bt BT_CLR   &trans       &trans      &trans      &trans       __ __ &trans       &trans       &trans &trans &bootloader
-                                                              THUMBS_TRANS
+&bt BT_PRV   &bt BT_NXT   _____        _____        _____        __ __ _____        _____  &out OUT_USB &out OUT_BLE _____
+&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 __ __ _____        _____  _____        _____        _____
+_____        _____        _____        _____        _____        __ __ &bt BT_CLR   _____  _____        _____        &bootloader
+                                                        THUMBS_TRANS
 >;};
 
 // Reserved slots can be enabled and renamed in Studio without another flash.
