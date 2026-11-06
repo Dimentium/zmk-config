@@ -69,6 +69,7 @@
 #define RUL 1 // Alpha RUS
 #define QWE 2 // QWERTY (static)
 #define EXT 3 // Extended Symbols
+#define BASE 0 1 2 3
 #define NAV 4 // Navigation
 #define FUN 5 // Function
 #define MYS 6 // Mice
@@ -226,42 +227,42 @@ name: name##_mod_tap_righthand {                        \
 
 / {
 combos { compatible = "zmk,combos";
-    lock         { bindings = <&kp LC(LG(Q))>; key-positions = < k2 k3 k4 >; timeout-ms = < COMBO_TIMEOUT_3 >; layers = < NOTGAM >; };
+    lock         { bindings = <&kp LC(LG(Q))>; key-positions = < k2 k3 k4 >; timeout-ms = < COMBO_TIMEOUT_3 >; layers = < BASE >; };
 
-    escape_left  { bindings = <&kp ESC>; key-positions = <k2 k3>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    escape_left2 { bindings = <&kp ESC>; key-positions = <k2 k14>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < NOTGAM >; };
-    escape_right { bindings = <&kp ESC>; key-positions = <k8 k9>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < NOTGAM >; };
-    escape_right2{ bindings = <&kp ESC>; key-positions = <k9 k21>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < NOTGAM >; };
+    escape_left  { bindings = <&kp ESC>; key-positions = <k2 k3>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
+    escape_left2 { bindings = <&kp ESC>; key-positions = <k2 k14>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
+    escape_right { bindings = <&kp ESC>; key-positions = <k8 k9>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
+    escape_right2{ bindings = <&kp ESC>; key-positions = <k9 k21>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
 
-    enter_left   { bindings = <&kp ENTER>; key-positions = <k4 k16>; timeout-ms = < COMBO_TIMEOUT_2 >; };
-    enter_right  { bindings = <&kp ENTER>; key-positions = <k32 k33>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = <0 1 2 3> ;};
-    enter_right2 { bindings = <&kp ENTER>; key-positions = <k7  k19>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < NOTGAM >; };
+    enter_left   { bindings = <&kp ENTER>; key-positions = <k4 k16>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
+    enter_right  { bindings = <&kp ENTER>; key-positions = <k32 k33>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
+    enter_right2 { bindings = <&kp ENTER>; key-positions = <k7  k19>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
 
-    bspc_left    { bindings = <&kp BACKSPACE>; key-positions = <k3 k16>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < NOTGAM >; };
-    bspc_right   { bindings = <&kp BACKSPACE>; key-positions = <k8 k19>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = <0 1 2 3> ;};
+    bspc_left    { bindings = <&kp BACKSPACE>; key-positions = <k3 k16>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
+    bspc_right   { bindings = <&kp BACKSPACE>; key-positions = <k8 k19>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE > ;};
 
-    del_left     { bindings = <&kp DELETE>; key-positions = <k3 k14>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < NOTGAM >; };
-    del_right    { bindings = <&kp DELETE>; key-positions = <k8 k21>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = <0 1 2 3> ;};
+    del_left     { bindings = <&kp DELETE>; key-positions = <k3 k14>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
+    del_right    { bindings = <&kp DELETE>; key-positions = <k8 k21>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE > ;};
 
-    tab_left     { bindings = <&kp TAB>; key-positions = <k3 k4>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < NOTGAM >; };
-    tab_right    { bindings = <&kp TAB>; key-positions = <k7 k8>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < NOTGAM >; };
-    tab_left_2   { bindings = <&kp TAB>; key-positions = <k3 k15>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < NOTGAM >; };
-    tab_right_2  { bindings = <&kp TAB>; key-positions = <k8 k20>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < NOTGAM >; };
+    tab_left     { bindings = <&kp TAB>; key-positions = <k3 k4>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
+    tab_right    { bindings = <&kp TAB>; key-positions = <k7 k8>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
+    tab_left_2   { bindings = <&kp TAB>; key-positions = <k3 k15>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
+    tab_right_2  { bindings = <&kp TAB>; key-positions = <k8 k20>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
 
-    copy_cut     { bindings = <&td_copy_cut>; key-positions = < k14 k16 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < NOTGAM >; };
-    paste        { bindings = <&kp LG(V)>; key-positions = < k2 k4 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < NOTGAM >; };
-    undo         { bindings = <&kp LG(Z)>; key-positions = < k13 k16 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < NOTGAM >; };
-    redo         { bindings = <&kp LS(LG(Z))>; key-positions = < k1 k4 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < NOTGAM >; };
+    copy_cut     { bindings = <&td_copy_cut>; key-positions = < k14 k16 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
+    paste        { bindings = <&kp LG(V)>; key-positions = < k2 k4 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
+    undo         { bindings = <&kp LG(Z)>; key-positions = < k13 k16 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
+    redo         { bindings = <&kp LS(LG(Z))>; key-positions = < k1 k4 >; timeout-ms = < COMBO_TIMEOUT_2 >; layers = < BASE >; };
 
-    to_rus       { bindings = <&rus>; key-positions = < k19 k20 k21 >; timeout-ms = < COMBO_TIMEOUT_3 >; };
-    to_eng       { bindings = <&eng>; key-positions = < k14 k15 k16 >; timeout-ms = < COMBO_TIMEOUT_3 >; layers = < NOTGAM >; };
+    to_rus       { bindings = <&rus>; key-positions = < k19 k20 k21 >; timeout-ms = < COMBO_TIMEOUT_3 >; layers = < BASE >; };
+    to_eng       { bindings = <&eng>; key-positions = < k14 k15 k16 >; timeout-ms = < COMBO_TIMEOUT_3 >; layers = < BASE >; };
 
     num1         { bindings = <&kp N1>; key-positions = <k20 k19>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = <NAV> ;};
     num3         { bindings = <&kp N3>; key-positions = <k20 k21>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = <NAV> ;};
     num7         { bindings = <&kp N7>; key-positions = <k8  k19>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = <NAV> ;};
     num9         { bindings = <&kp N9>; key-positions = <k8  k21>; timeout-ms = < COMBO_TIMEOUT_2 >; layers = <NAV> ;};
 
-    to_gam       { bindings = <&to GAM>; key-positions = < k1 k13 k25 >; timeout-ms = < COMBO_TIMEOUT_3 >; };
+    // to_gam       { bindings = <&to GAM>; key-positions = < k1 k13 k25 >; timeout-ms = < COMBO_TIMEOUT_3 >; };
  };
 
 macros {
